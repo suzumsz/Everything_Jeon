@@ -1,4 +1,15 @@
-# everything_jeon
+# Everything_Jeon
+# 에브리띵전
+
+### 소개
+- 모바일 학생증이 내장된 편리한 학교 생활을 위한 어플리케이션
+
+### 다운로드 후 실행
+'''
+
+git clone 주소복사
+flutter run
+'''
 
 A new Flutter project.
 
