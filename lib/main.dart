@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '안녕하세요 김수정입니다. 저는 양혜원이에요. 김진원 업데이트됏다 굿 끝!!!!!!!!!!!!오예 드디어진원이도!',
+              '안녕하세요 김수정입니다. 저는 양혜원이에요. 김진원 업데이트됏다 굿 끝!!!!!!!!!!!!오예 드디어진원이도!오예 보라도!!!!!!!!!!!!!!',
             ),
             Text(
               '$_counter',
