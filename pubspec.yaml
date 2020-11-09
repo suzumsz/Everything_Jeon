@@ -45,6 +45,9 @@ flutter:
   - images/barcode.png
   - images/logo.png
   - images/minilogo.png
+  - images/mjclogo.jpg
+  - images/calender.jpg
+  - images/time.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
