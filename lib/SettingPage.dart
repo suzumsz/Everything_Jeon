@@ -7,6 +7,9 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: Text('LoginPage'),
+        ),
         //backgroundColor: Color.fromRGBO(223, 230, 243, 1),
         body: Align(
           child: Column(
