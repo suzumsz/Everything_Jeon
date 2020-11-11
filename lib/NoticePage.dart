@@ -407,7 +407,7 @@ class ThiredRoute extends StatelessWidget {
             child: make_Appbar(false),
           ),
           body: Text(
-            '분실물 더보기',
+            '분실물 더보기1',
             style: new TextStyle(fontSize: 20.0, color: Colors.black),
           ),
         ),
