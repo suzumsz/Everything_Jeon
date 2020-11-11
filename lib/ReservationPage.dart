@@ -409,21 +409,6 @@ class MyApp extends State<ReservationAppPage> {
         ],
       ),
     );
-
-    // 버튼 로우 구성을 위한 컨테이너 위젯
-    Widget bookbutton = Container(
-      child: Row(
-        // 로우를 자식으로 가짐
-        mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly, // 자식들이 여유 공간을 공편하게 나눠가짐
-        children: <Widget>[
-          // 세개의 위젯들을 자식들로 가짐
-          _buildButtonColumn(PrimaryColor, '스터디룸 예약'),
-          _buildButtonColumn(PrimaryColor, '독서실 예약'),
-          _buildButtonColumn(PrimaryColor, '도서 예약')
-        ],
-      ),
-    );
     Widget bookbuttonfinish = Container(
       margin: const EdgeInsets.only(right: 30),
       child: Row(
@@ -633,30 +618,5 @@ Column _buildbookButton(Color color, String label) {
   );
 }
 
-Column _buildButtonColumn(Color color, String label) {
-  const TextColor = Color(0xff0A1736);
-  // 컬럼을 생성하여 반환
-  return Column(
-    mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
-    mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
-    // 컬럼의 자식들로 아이콘과 컨테이너를 등록
-    children: <Widget>[
-      ButtonTheme(
-        minWidth: 90,
-        height: 90,
-        padding: EdgeInsets.symmetric(vertical: 40),
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(20)),
-          color: color,
-          child: Text(
-            label,
-            style: TextStyle(fontSize: 15, color: TextColor),
-            textAlign: TextAlign.center,
-          ),
-          onPressed: () => clickcase(label),
-        ),
-      ),
-    ],
-  );
+C
 }
