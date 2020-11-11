@@ -617,6 +617,3 @@ Column _buildbookButton(Color color, String label) {
     ],
   );
 }
-
-C
-}
