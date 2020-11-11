@@ -300,7 +300,6 @@ class MyApp extends State<ReservationAppPage> {
     );
 
     Widget booktime = Container(
-      margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.only(right: 32, left: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -409,6 +408,140 @@ class MyApp extends State<ReservationAppPage> {
         ],
       ),
     );
+
+    Widget booksearch = Container(
+      margin: const EdgeInsets.only(top: 10, bottom: 10),
+      padding: const EdgeInsets.only(right: 32, left: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            width: 400,
+            height: 110,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                width: 3,
+                color: PrimaryColor,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 30,
+                        height: 30,
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.only(top: 5, left: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: PrimaryColor,
+                        ),
+                        child: Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 10, left: 10),
+                        width: 150,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: PrimaryColor,
+                        ),
+                        child: new Theme(
+                          data: new ThemeData(
+                            primaryColor: BorderColor,
+                            primaryColorDark: BorderColor,
+                          ),
+                          child: TextField(
+                            decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.search,
+                                  color: BorderColor,
+                                ),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(25.0)))),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 40),
+                        child: FlatButton(
+                          minWidth: 20,
+                          height: 20,
+                          color: PrimaryColor,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(20)),
+                          child: Text(
+                            "더보기",
+                            style: TextStyle(fontSize: 10, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 30),
+                  width: 250,
+                  height: 50,
+                  child: ListView(
+                    children: [
+                      ListTile(
+                        leading: Image.asset(
+                          'images/book1.png',
+                          width: 40,
+                          height: 60,
+                          fit: BoxFit.cover,
+                        ),
+                        title: Text(
+                          "도서정보\n[" +
+                              "자존감 수업" +
+                              "/윤홍균" +
+                              "] [서울:심플라이프]\n\n " +
+                              "대출가능" +
+                              "\n[182.1 윤95ㅈ]",
+                          style: TextStyle(
+                            fontSize: 10,
+                          ),
+                        ),
+                        trailing: FlatButton(
+                          minWidth: 20,
+                          height: 20,
+                          color: Colors.grey[300],
+                          child: Text(
+                            "예약",
+                            style: TextStyle(fontSize: 10, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+
     Widget bookbuttonfinish = Container(
       margin: const EdgeInsets.only(right: 30),
       child: Row(
@@ -423,119 +556,126 @@ class MyApp extends State<ReservationAppPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Sample App"),
+        title: Text("Reservation Page"),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            mybook,
-            book,
-            DefaultTabController(
-                length: 3,
-                child: Column(children: <Widget>[
-                  Container(
-                    margin: const EdgeInsets.only(left: 15, right: 15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: TabBar(
-                      indicatorColor: Colors.transparent,
-                      labelColor: TextColor,
-                      unselectedLabelColor: Colors.black,
-                      tabs: [
-                        Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(width: 5, color: BorderColor),
-                            color: PrimaryColor,
-                          ),
-                          child: Tab(
-                            child: Text(
-                              "스터디룸 예약",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: TextColor,
+      body: ListView(
+        children: <Widget>[
+          Container(
+            child: Column(
+              children: [
+                mybook,
+                book,
+                DefaultTabController(
+                    length: 3,
+                    child: Column(children: <Widget>[
+                      Container(
+                        margin: const EdgeInsets.only(left: 15, right: 15),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: TabBar(
+                          indicatorColor: Colors.transparent,
+                          labelColor: TextColor,
+                          unselectedLabelColor: Colors.black,
+                          tabs: [
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border:
+                                    Border.all(width: 5, color: BorderColor),
+                                color: PrimaryColor,
                               ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: PrimaryColor,
-                          ),
-                          child: Tab(
-                            child: Text(
-                              "독서실 예약",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: TextColor,
+                              child: Tab(
+                                child: Text(
+                                  "스터디룸 예약",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: TextColor,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              textAlign: TextAlign.center,
                             ),
-                          ),
-                        ),
-                        Container(
-                          width: 90,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: PrimaryColor,
-                          ),
-                          child: Tab(
-                            child: Text(
-                              "도서 예약",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: TextColor,
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: PrimaryColor,
                               ),
-                              textAlign: TextAlign.center,
+                              child: Tab(
+                                child: Text(
+                                  "독서실 예약",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: TextColor,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
                             ),
-                          ),
+                            Container(
+                              width: 90,
+                              height: 90,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: PrimaryColor,
+                              ),
+                              child: Tab(
+                                child: Text(
+                                  "도서 예약",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: TextColor,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                      height: 275, //height of TabBarView
-                      decoration: BoxDecoration(
-                          border: Border(
-                              top:
-                                  BorderSide(color: Colors.white, width: 0.5))),
-                      child: TabBarView(children: <Widget>[
-                        Container(
-                          child: Column(
-                            children: [
-                              bookplace,
-                              booktime,
-                            ],
-                          ),
-                        ),
-                        Container(
-                          child: Center(
-                            child: Text('Display Tab 2',
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                        Container(
-                          child: Center(
-                            child: Text('Display Tab 3',
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold)),
-                          ),
-                        ),
-                      ]))
-                ])),
-            bookbuttonfinish,
-            //Text(textToShow),
-          ],
-        ),
+                      ),
+                      Container(
+                          height: 275, //height of TabBarView
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                      color: Colors.white, width: 0.5))),
+                          child: TabBarView(children: <Widget>[
+                            Container(
+                              child: Column(
+                                children: [
+                                  bookplace,
+                                  booktime,
+                                ],
+                              ),
+                            ),
+                            Container(
+                              child: Column(
+                                children: [
+                                  bookplace,
+                                  booktime,
+                                ],
+                              ),
+                            ),
+                            Container(
+                              child: Column(
+                                children: [
+                                  booksearch,
+                                  booktime,
+                                ],
+                              ),
+                            ),
+                          ]))
+                    ])),
+                bookbuttonfinish,
+                //Text(textToShow),
+              ],
+            ),
+          ),
+        ],
       ),
 
       // floatingActionButton: FloatingActionButton(
@@ -614,6 +754,34 @@ Column _buildbookButton(Color color, String label) {
           // onPressed: () => clickcase(label),
         ),
       )
+    ],
+  );
+}
+
+Column _buildButtonColumn(Color color, String label) {
+  const TextColor = Color(0xff0A1736);
+  // 컬럼을 생성하여 반환
+  return Column(
+    mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
+    mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
+    // 컬럼의 자식들로 아이콘과 컨테이너를 등록
+    children: <Widget>[
+      ButtonTheme(
+        minWidth: 90,
+        height: 90,
+        padding: EdgeInsets.symmetric(vertical: 40),
+        child: RaisedButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(20)),
+          color: color,
+          child: Text(
+            label,
+            style: TextStyle(fontSize: 15, color: TextColor),
+            textAlign: TextAlign.center,
+          ),
+          onPressed: () => clickcase(label),
+        ),
+      ),
     ],
   );
 }
