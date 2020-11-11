@@ -170,6 +170,145 @@ class MyApp extends State<ReservationAppPage> {
       ),
     );
 
+    Widget studyroomplace = Container(
+      margin: const EdgeInsets.only(top: 10, bottom: 10),
+      padding: const EdgeInsets.only(right: 32, left: 32),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            width: 400,
+            height: 110,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                width: 3,
+                color: PrimaryColor,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 30,
+                        height: 30,
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.only(top: 5, left: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: PrimaryColor,
+                        ),
+                        child: Text(
+                          '1',
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        margin: const EdgeInsets.only(top: 3, left: 10),
+                        child: Text(
+                          '장소를 선택하세요',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(left: 40),
+                        child: Column(
+                          children: [
+                            Text(
+                              '제 1열람실',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 5),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    height: 30,
+                                    child: FlatButton(
+                                      color: Colors.grey[300],
+                                      child: Text(
+                                        "좌석 확인하기",
+                                        style: TextStyle(
+                                            fontSize: 10, color: Colors.black),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 50),
+                        child: Column(
+                          children: [
+                            Text(
+                              '제 2열람실',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 5),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 100,
+                                    height: 30,
+                                    child: FlatButton(
+                                      color: Colors.grey[300],
+                                      child: Text(
+                                        "좌석 확인하기",
+                                        style: TextStyle(
+                                            fontSize: 10, color: Colors.black),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+
     Widget book = Container(
       margin: const EdgeInsets.only(top: 10, bottom: 10, right: 230),
       child: Text(
@@ -655,7 +794,7 @@ class MyApp extends State<ReservationAppPage> {
                             Container(
                               child: Column(
                                 children: [
-                                  bookplace,
+                                  studyroomplace,
                                   booktime,
                                 ],
                               ),
