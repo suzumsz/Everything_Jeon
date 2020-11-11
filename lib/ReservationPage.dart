@@ -1,11 +1,43 @@
 import 'package:flutter/material.dart';
 
-class ReservationPage extends StatelessWidget {
+void main() {
+  runApp(ReservationApp());
+}
+
+class ReservationApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      home: ReservationAppPage(),
+    );
+  }
+}
+
+class ReservationAppPage extends StatefulWidget {
+  ReservationAppPage({Key key}) : super(key: key);
+
+  @override
+  MyApp createState() => MyApp();
+}
+
+class MyApp extends State<ReservationAppPage> {
+  String textToShow = "I Like Flutter";
+
+  void _updateText() {
+    setState(() {
+      // update the text
+      textToShow = "Flutter is Awesome!";
+    });
+  }
+
   static const PrimaryColor = Color(0xffDFE6F3);
   static const PrimaryAssentColor = Color(0xFF205072);
   static const PrimaryDarkColor = Color(0xff0C1939);
   static const TextColor = Color(0xff0A1736);
   static const SubColor = Color(0xff3C4C73);
+  static const BorderColor = Color(0xff445379);
 
   @override
   Widget build(BuildContext context) {
@@ -404,23 +436,128 @@ class ReservationPage extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
-      title: 'Flutter layout 11',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter layout 22'),
-        ),
-        body: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sample App"),
+      ),
+      body: Container(
+        child: Column(
           children: [
             mybook,
             book,
-            bookbutton,
-            bookplace,
-            booktime,
+            DefaultTabController(
+                length: 3,
+                child: Column(children: <Widget>[
+                  Container(
+                    margin: const EdgeInsets.only(left: 15, right: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TabBar(
+                      indicatorColor: Colors.transparent,
+                      labelColor: TextColor,
+                      unselectedLabelColor: Colors.black,
+                      tabs: [
+                        Container(
+                          width: 90,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(width: 5, color: BorderColor),
+                            color: PrimaryColor,
+                          ),
+                          child: Tab(
+                            child: Text(
+                              "스터디룸 예약",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: TextColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 90,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: PrimaryColor,
+                          ),
+                          child: Tab(
+                            child: Text(
+                              "독서실 예약",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: TextColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 90,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: PrimaryColor,
+                          ),
+                          child: Tab(
+                            child: Text(
+                              "도서 예약",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: TextColor,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                      height: 275, //height of TabBarView
+                      decoration: BoxDecoration(
+                          border: Border(
+                              top:
+                                  BorderSide(color: Colors.white, width: 0.5))),
+                      child: TabBarView(children: <Widget>[
+                        Container(
+                          child: Column(
+                            children: [
+                              bookplace,
+                              booktime,
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Center(
+                            child: Text('Display Tab 2',
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                        Container(
+                          child: Center(
+                            child: Text('Display Tab 3',
+                                style: TextStyle(
+                                    fontSize: 22, fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                      ]))
+                ])),
             bookbuttonfinish,
+            //Text(textToShow),
           ],
         ),
       ),
+
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _updateText,
+      //   tooltip: 'Update Text',
+      //   child: Icon(Icons.update),
+      // ),
     );
   }
 }
