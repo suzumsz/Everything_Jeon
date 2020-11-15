@@ -5,6 +5,7 @@ import 'ReservationPage.dart';
 import 'NoticePage.dart';
 import 'LocationPage.dart';
 import 'SettingPage.dart';
+import 'XDinfo_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/NoticePage': (context) => NoticePage(),
         '/LocationPage': (context) => LocationPage(),
         '/SettingPage': (context) => SettingPage(),
+        '/XDinfo_list': (context) => XDinfo_list(),
       },
     );
   }

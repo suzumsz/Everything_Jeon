@@ -64,6 +64,17 @@ class MainPage extends StatelessWidget {
               },
               trailing: Icon(Icons.arrow_forward),
             ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.grey,
+              ),
+              title: Text('XDinfo_list-진원이가달라고한페이지'),
+              onTap: () {
+                Navigator.pushNamed(context, '/XDinfo_list');
+              },
+              trailing: Icon(Icons.arrow_forward),
+            ),
           ],
         ),
       ),
