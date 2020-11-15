@@ -6,6 +6,7 @@ import 'NoticePage.dart';
 import 'LocationPage.dart';
 import 'SettingPage.dart';
 import 'XDinfo_list.dart';
+import 'XDres.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/LocationPage': (context) => LocationPage(),
         '/SettingPage': (context) => SettingPage(),
         '/XDinfo_list': (context) => XDinfo_list(),
+        '/XDres': (context) => XDres(),
       },
     );
   }

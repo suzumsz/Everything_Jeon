@@ -75,6 +75,17 @@ class MainPage extends StatelessWidget {
               },
               trailing: Icon(Icons.arrow_forward),
             ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.grey,
+              ),
+              title: Text('XDres-보라가달라고한페이지'),
+              onTap: () {
+                Navigator.pushNamed(context, '/XDres');
+              },
+              trailing: Icon(Icons.arrow_forward),
+            ),
           ],
         ),
       ),
