@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:url_launcher/url_launcher.dart';
+
+// 브라우저를 열 링크
+const url = 'https://www.mjc.ac.kr/bbs/data/list.do?menu_idx=169';
 
 const double formH = 120;
 
@@ -62,15 +67,14 @@ Widget buttonArrow(Alignment direction, int btnType, String heroTag) {
                       backgroundColor: PrimaryColor,
                       foregroundColor: Colors.white,
                       mini: true,
-                      onPressed: () {
+                      onPressed: () async {
+                        await launch(url,
+                            forceWebView: false, forceSafariVC: false);
+                        //await launch(url, forceWebView: true, forceSafariVC: true);
+
                         // Respond to button press
                         switch (btnType) {
                           case 1:
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SecondRoute()),
-                            );
                             break;
                           case 2:
                             Navigator.push(

@@ -86,6 +86,17 @@ class MainPage extends StatelessWidget {
               },
               trailing: Icon(Icons.arrow_forward),
             ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.grey,
+              ),
+              title: Text('로그인'),
+              onTap: () {
+                Navigator.pushNamed(context, '/testlog');
+              },
+              trailing: Icon(Icons.arrow_forward),
+            ),
           ],
         ),
       ),
