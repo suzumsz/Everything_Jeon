@@ -47,141 +47,142 @@ class MyApp extends State<ReservationAppPage> {
         "-" +
         DateTime.now().day.toString();
 
-    Widget mybook = Container(
-      padding: const EdgeInsets.only(left: 32, right: 32),
-      height: 160,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
-        color: PrimaryColor,
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 15),
-                  child: Text(
-                    '나의 예약',
-                    style: TextStyle(
-                      color: PrimaryDarkColor,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Container(
-                    margin: const EdgeInsets.only(top: 25),
-                    padding: const EdgeInsets.only(left: 75),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 2, right: 5),
-                          child: Image.asset(
-                            'images/mjclogo.jpg',
-                            width: 20,
-                            height: 20,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Text(
-                          '이름 [2020123456]',
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: TextColor,
-                          ),
-                        ),
-                      ],
-                    )),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 20),
-            width: 360,
-            height: 80,
+    Widget mybook = Stack(
+      children: [
+        Transform.translate(
+          offset: Offset(0.0, -1.0),
+          child:
+              // Adobe XD layer: 'Background' (shape)
+              Container(
+            width: 414.0,
+            height: 227.0,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.white,
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(top: 10),
-                        width: 60,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: SubColor,
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: Text(
-                          '예약 정보',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 30, left: 10),
-                        child: Text(
-                          '장소: 본관 스터디룸 B',
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: PrimaryAssentColor,
-                          ),
-                        ),
-                      ),
-                      Container(
-                          margin: const EdgeInsets.only(top: 20, left: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "날짜: " + currentCal,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: PrimaryAssentColor,
-                                ),
-                              ),
-                              Text(
-                                '시간: 17:00 ~ 18:00',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: PrimaryAssentColor,
-                                ),
-                              ),
-                            ],
-                          )),
-                    ],
-                  ),
-                ),
-              ],
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(25.0),
+                bottomLeft: Radius.circular(25.0),
+              ),
+              color: const Color(0xffdfe6f3),
             ),
           ),
-        ],
-      ),
+        ),
+        Transform.translate(
+          offset: Offset(58.0, 112.0),
+          child:
+              // Adobe XD layer: 'Rectangle' (shape)
+              Container(
+            width: 330.0,
+            height: 88.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13.0),
+              color: const Color(0xffffffff),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(26.0, 125.0),
+          child: Container(
+            width: 62.0,
+            height: 62.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(13.0),
+              color: const Color(0xf23c4c73),
+              border: Border.all(width: 3.0, color: const Color(0xf2ffffff)),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(27.0, 56.0),
+          child: Text(
+            '나의 예약',
+            style: TextStyle(
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 25,
+              color: const Color(0xff0c1939),
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(27.0, 251.0),
+          child: Text(
+            '예약하기',
+            style: TextStyle(
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 25,
+              color: const Color(0xff0c1939),
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(265.0, 71.0),
+          child: Text(
+            '정혜진 [2020581015]',
+            style: TextStyle(
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 13,
+              color: const Color(0xff0a1736),
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(37.0, 148.0),
+          child: Text(
+            '예약정보',
+            style: TextStyle(
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 10,
+              color: const Color(0xffffffff),
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(97.0, 147.0),
+          child:
+              // Adobe XD layer: 'Svyatoslav Taushev' (text)
+              Text(
+            '장소 : 본관 스터디룸  B',
+            style: TextStyle(
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 12,
+              color: const Color(0xff205072),
+              height: 1.5,
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(256.0, 137.0),
+          child:
+              // Adobe XD layer: 'Svyatoslav Taushev' (text)
+              Text(
+            '날짜 : 2020. 10. 31\n시간 : 17:00 - 18:00',
+            style: TextStyle(
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 12,
+              color: const Color(0xff205072),
+              height: 1.5,
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ],
     );
 
     Widget studyroomplace = Container(
-      margin: const EdgeInsets.only(top: 10, bottom: 10),
+      margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.only(right: 32, left: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: const EdgeInsets.only(top: 10),
-            width: 400,
-            height: 110,
+            width: 310,
+            height: 128,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 width: 3,
                 color: PrimaryColor,
@@ -195,10 +196,10 @@ class MyApp extends State<ReservationAppPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: 26,
+                        height: 26,
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        margin: const EdgeInsets.only(top: 5, left: 10),
+                        margin: const EdgeInsets.only(top: 10, left: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: PrimaryColor,
@@ -209,17 +210,20 @@ class MyApp extends State<ReservationAppPage> {
                             fontSize: 15,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
+                            fontFamily: 'DX유니고딕 20',
                           ),
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        margin: const EdgeInsets.only(top: 3, left: 10),
+                        margin: const EdgeInsets.only(top: 7, left: 10),
                         child: Text(
                           '장소를 선택하세요',
                           style: TextStyle(
                             color: Colors.black,
+                            fontFamily: 'DX유니고딕 20',
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -230,13 +234,15 @@ class MyApp extends State<ReservationAppPage> {
                   child: Row(
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(left: 40),
+                        margin: const EdgeInsets.only(top: 15, left: 40),
                         child: Column(
                           children: [
                             Text(
                               '제 1열람실',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontFamily: 'DX유니고딕 20',
+                                fontSize: 12,
                               ),
                             ),
                             Container(
@@ -252,7 +258,10 @@ class MyApp extends State<ReservationAppPage> {
                                       child: Text(
                                         "좌석 확인하기",
                                         style: TextStyle(
-                                            fontSize: 10, color: Colors.black),
+                                          fontSize: 10,
+                                          color: Colors.black,
+                                          fontFamily: 'DX유니고딕 20',
+                                        ),
                                         textAlign: TextAlign.center,
                                       ),
                                       onPressed: () {},
@@ -265,13 +274,15 @@ class MyApp extends State<ReservationAppPage> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 50),
+                        margin: const EdgeInsets.only(top: 15, left: 50),
                         child: Column(
                           children: [
                             Text(
                               '제 2열람실',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontFamily: 'DX유니고딕 20',
+                                fontSize: 12,
                               ),
                             ),
                             Container(
@@ -287,7 +298,10 @@ class MyApp extends State<ReservationAppPage> {
                                       child: Text(
                                         "좌석 확인하기",
                                         style: TextStyle(
-                                            fontSize: 10, color: Colors.black),
+                                          fontSize: 10,
+                                          color: Colors.black,
+                                          fontFamily: 'DX유니고딕 20',
+                                        ),
                                         textAlign: TextAlign.center,
                                       ),
                                       onPressed: () {},
@@ -309,30 +323,18 @@ class MyApp extends State<ReservationAppPage> {
       ),
     );
 
-    Widget book = Container(
-      margin: const EdgeInsets.only(top: 10, bottom: 10, right: 230),
-      child: Text(
-        '예약하기',
-        style: TextStyle(
-          color: PrimaryDarkColor,
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
     Widget bookplace = Container(
-      margin: const EdgeInsets.only(top: 10, bottom: 10),
+      margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.only(right: 32, left: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: const EdgeInsets.only(top: 10),
-            width: 400,
-            height: 110,
+            width: 310,
+            height: 128,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 width: 3,
                 color: PrimaryColor,
@@ -346,10 +348,10 @@ class MyApp extends State<ReservationAppPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: 26,
+                        height: 26,
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        margin: const EdgeInsets.only(top: 5, left: 10),
+                        margin: const EdgeInsets.only(top: 10, left: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: PrimaryColor,
@@ -366,11 +368,12 @@ class MyApp extends State<ReservationAppPage> {
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        margin: const EdgeInsets.only(top: 3, left: 10),
+                        margin: const EdgeInsets.only(top: 7, left: 10),
                         child: Text(
                           '장소를 선택하세요',
                           style: TextStyle(
                             color: Colors.black,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -381,13 +384,14 @@ class MyApp extends State<ReservationAppPage> {
                   child: Row(
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(left: 50),
+                        margin: const EdgeInsets.only(top: 15, left: 45),
                         child: Column(
                           children: [
                             Text(
                               '도서관 지하 1층',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontSize: 12,
                               ),
                             ),
                             Container(
@@ -405,13 +409,14 @@ class MyApp extends State<ReservationAppPage> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 50),
+                        margin: const EdgeInsets.only(top: 15, left: 50),
                         child: Column(
                           children: [
                             Text(
                               '본관 카페 1층',
                               style: TextStyle(
                                 color: Colors.black,
+                                fontSize: 12,
                               ),
                             ),
                             Container(
@@ -439,16 +444,16 @@ class MyApp extends State<ReservationAppPage> {
     );
 
     Widget booktime = Container(
-      padding: const EdgeInsets.only(right: 32, left: 32),
+      padding: const EdgeInsets.only(top: 10, right: 32, left: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: const EdgeInsets.only(top: 10),
-            width: 400,
-            height: 100,
+            width: 310,
+            height: 128,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 width: 3,
                 color: PrimaryColor,
@@ -462,10 +467,10 @@ class MyApp extends State<ReservationAppPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: 26,
+                        height: 26,
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        margin: const EdgeInsets.only(top: 5, left: 10),
+                        margin: const EdgeInsets.only(top: 10, left: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: PrimaryColor,
@@ -482,11 +487,12 @@ class MyApp extends State<ReservationAppPage> {
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        margin: const EdgeInsets.only(top: 5, left: 10),
+                        margin: const EdgeInsets.only(top: 7, left: 10),
                         child: Text(
                           '날짜와 시간을 선택하세요',
                           style: TextStyle(
                             color: Colors.black,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -494,7 +500,7 @@ class MyApp extends State<ReservationAppPage> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 40),
+                  margin: const EdgeInsets.only(top: 15, left: 35),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -509,8 +515,9 @@ class MyApp extends State<ReservationAppPage> {
                               Text(
                                 "10.25",
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 12,
                                   color: Colors.black,
+                                  fontFamily: 'DX유니고딕 20',
                                 ),
                               ),
                             ],
@@ -529,8 +536,9 @@ class MyApp extends State<ReservationAppPage> {
                               Text(
                                 "14:00 ~ 15:00",
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 12,
                                   color: Colors.black,
+                                  fontFamily: 'DX유니고딕 20',
                                 ),
                               ),
                             ],
@@ -549,17 +557,17 @@ class MyApp extends State<ReservationAppPage> {
     );
 
     Widget booksearch = Container(
-      margin: const EdgeInsets.only(top: 10, bottom: 10),
+      margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.only(right: 32, left: 32),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: const EdgeInsets.only(top: 10),
-            width: 400,
-            height: 110,
+            width: 310,
+            height: 128,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 width: 3,
                 color: PrimaryColor,
@@ -573,10 +581,10 @@ class MyApp extends State<ReservationAppPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 30,
-                        height: 30,
+                        width: 26,
+                        height: 26,
                         padding: EdgeInsets.symmetric(vertical: 5),
-                        margin: const EdgeInsets.only(top: 5, left: 10),
+                        margin: const EdgeInsets.only(top: 10, left: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: PrimaryColor,
@@ -584,6 +592,7 @@ class MyApp extends State<ReservationAppPage> {
                         child: Text(
                           '1',
                           style: TextStyle(
+                            fontFamily: 'DX유니고딕 20',
                             fontSize: 15,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -694,21 +703,21 @@ class MyApp extends State<ReservationAppPage> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Reservation Page"),
-      ),
-      body: ListView(
+      // appBar: AppBar(
+      //   title: Text("Reservation Page"),
+      // ),
+      body: Stack(
         children: <Widget>[
           Container(
             child: Column(
               children: [
                 mybook,
-                book,
                 DefaultTabController(
                     length: 3,
                     child: Column(children: <Widget>[
                       Container(
-                        margin: const EdgeInsets.only(left: 15, right: 15),
+                        margin:
+                            const EdgeInsets.only(top: 80, left: 15, right: 15),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -777,7 +786,7 @@ class MyApp extends State<ReservationAppPage> {
                         ),
                       ),
                       Container(
-                          height: 275, //height of TabBarView
+                          height: 310, //height of TabBarView
                           decoration: BoxDecoration(
                               border: Border(
                                   top: BorderSide(
@@ -860,7 +869,11 @@ Column _buildABCButton(Color color, String label) {
           color: Colors.grey[300],
           child: Text(
             label,
-            style: TextStyle(fontSize: 15, color: color),
+            style: TextStyle(
+              fontSize: 12,
+              color: color,
+              fontFamily: 'DX유니고딕 20',
+            ),
             textAlign: TextAlign.center,
           ),
           onPressed: () {},
@@ -878,16 +891,20 @@ Column _buildbookButton(Color color, String label) {
     // 컬럼의 자식들로 아이콘과 컨테이너를 등록
     children: <Widget>[
       ButtonTheme(
-        minWidth: 65,
+        minWidth: 67,
         height: 35,
-        child: RaisedButton(
+        child: FlatButton(
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(18)),
           color: color,
           child: Text(
             label,
-            style: TextStyle(fontSize: 15, color: Colors.black),
-            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.black,
+              fontFamily: 'DX유니고딕 20',
+            ),
+            textAlign: TextAlign.left,
           ),
           onPressed: () {},
           // onPressed: () => clickcase(label),
