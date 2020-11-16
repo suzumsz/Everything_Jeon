@@ -706,7 +706,7 @@ class MyApp extends State<ReservationAppPage> {
       // appBar: AppBar(
       //   title: Text("Reservation Page"),
       // ),
-      body: Stack(
+      body: Column(
         children: <Widget>[
           Container(
             child: Column(
@@ -717,24 +717,34 @@ class MyApp extends State<ReservationAppPage> {
                     child: Column(children: <Widget>[
                       Container(
                         margin:
-                            const EdgeInsets.only(top: 80, left: 15, right: 15),
+                            const EdgeInsets.only(top: 80, left: 35, right: 35),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                         ),
+                        // child: Container(
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(20),
+                        //     color: PrimaryColor,
+                        //   ),
                         child: TabBar(
-                          indicatorColor: Colors.transparent,
+                          indicatorPadding: EdgeInsets.all(30),
+                          indicatorWeight: 5,
+                          indicator: BoxDecoration(
+                            color: PrimaryColor,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(width: 3.0, color: BorderColor),
+                          ),
                           labelColor: TextColor,
-                          unselectedLabelColor: Colors.black,
+                          unselectedLabelColor: TextColor,
                           tabs: [
                             Container(
-                              width: 90,
+                              width: 200,
                               height: 90,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                border:
-                                    Border.all(width: 5, color: BorderColor),
-                                color: PrimaryColor,
-                              ),
+                              color: PrimaryColor,
+                              // decoration: BoxDecoration(
+                              //   borderRadius: BorderRadius.circular(20),
+                              //   color: PrimaryColor,
+                              // ),
                               child: Tab(
                                 child: Text(
                                   "스터디룸 예약",
@@ -784,6 +794,7 @@ class MyApp extends State<ReservationAppPage> {
                             ),
                           ],
                         ),
+                        // ),
                       ),
                       Container(
                           height: 310, //height of TabBarView
@@ -910,34 +921,6 @@ Column _buildbookButton(Color color, String label) {
           // onPressed: () => clickcase(label),
         ),
       )
-    ],
-  );
-}
-
-Column _buildButtonColumn(Color color, String label) {
-  const TextColor = Color(0xff0A1736);
-  // 컬럼을 생성하여 반환
-  return Column(
-    mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
-    mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
-    // 컬럼의 자식들로 아이콘과 컨테이너를 등록
-    children: <Widget>[
-      ButtonTheme(
-        minWidth: 90,
-        height: 90,
-        padding: EdgeInsets.symmetric(vertical: 40),
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(20)),
-          color: color,
-          child: Text(
-            label,
-            style: TextStyle(fontSize: 15, color: TextColor),
-            textAlign: TextAlign.center,
-          ),
-          onPressed: () => clickcase(label),
-        ),
-      ),
     ],
   );
 }
