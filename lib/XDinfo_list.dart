@@ -88,6 +88,8 @@ class XDinfo_list extends StatelessWidget {
                             "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
                         lostProperetyBox("", "[체크카드] 정XX님 국민카드",
                             "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox(
+                            "", "[체크카드] 정XX님 국민카드", "예체능관 어져 있어서요."),
                       ],
                     ),
                   )
