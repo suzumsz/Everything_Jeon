@@ -1,4 +1,6 @@
+import 'package:everything_jeon/NoticePage.dart';
 import 'package:flutter/material.dart';
+import 'NoticePage.dart';
 
 // ignore: camel_case_types
 class XDinfo_list extends StatelessWidget {
@@ -53,7 +55,7 @@ class XDinfo_list extends StatelessWidget {
           ),
           // Adobe XD layer: 'Background' (shape)
           Container(
-            width: 415.0,
+            width: MediaQuery.of(context).size.width,
             height: 113.0,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -231,45 +233,36 @@ class XDinfo_list extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(274.0, 207.0),
-            /*child: SvgPicture.string(
-              _svg_ecau1l,
-              allowDrawingOutsideViewBox: true,
-            ),*/ //-----> 분실물신고 싸고있는 버튼 넣음 돼
-          ),
-          Transform.translate(
-            offset: Offset(274.0, 255.0),
+            offset: Offset(255.0, 200.0),
             child: Container(
-              width: 84.0,
-              height: 30.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xffdfe6f3),
-              ),
+              width: 105,
+              height: 40,
+              child: buttonExtended(
+                  "분실물 신고",
+                  TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: 12,
+                    color: const Color(0xff000000),
+                  ),
+                  "btnEx3",
+                  PrimaryColor),
             ),
           ),
+
           Transform.translate(
-            offset: Offset(284.0, 212.0),
-            child: Text(
-              '분실물 신고',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(284.0, 260.0),
-            child: Text(
-              '분실물 검색',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
+            offset: Offset(255.0, 245.0),
+            child: Container(
+              width: 105,
+              height: 40,
+              child: buttonExtended(
+                  "분실물 검색",
+                  TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: 12,
+                    color: const Color(0xff000000),
+                  ),
+                  "btnEx4",
+                  PrimaryColor),
             ),
           ),
           Transform.translate(

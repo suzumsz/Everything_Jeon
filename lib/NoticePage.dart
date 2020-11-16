@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:url_launcher/url_launcher.dart';
+import 'XDinfo_list.dart';
 
 // 브라우저를 열 링크
 const url = 'https://www.mjc.ac.kr/bbs/data/list.do?menu_idx=169';
 
 const double formH = 120;
+double _width = 200;
+double _height = 200;
 
 const PrimaryColor = const Color(0xFFDFE6F3);
+AnimationController aniController;
+Animation<double> animation;
 
 Container addText(String text, double size, double _left, double _top) {
   return Container(
@@ -68,19 +73,19 @@ Widget buttonArrow(Alignment direction, int btnType, String heroTag) {
                       foregroundColor: Colors.white,
                       mini: true,
                       onPressed: () async {
-                        await launch(url,
-                            forceWebView: false, forceSafariVC: false);
                         //await launch(url, forceWebView: true, forceSafariVC: true);
 
                         // Respond to button press
                         switch (btnType) {
                           case 1:
+                            await launch(url,
+                                forceWebView: false, forceSafariVC: false);
                             break;
                           case 2:
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ThiredRoute()),
+                                  builder: (context) => XDinfo_list()),
                             );
                             break;
                         }
@@ -128,22 +133,25 @@ Widget boxMileage(String text, TextStyle textstyle) {
 }
 
 Widget borderContainer1 = Container(
-  padding: const EdgeInsets.all(15.0),
-  margin: const EdgeInsets.all(15.0),
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(20),
-    border: Border.all(width: 3, color: PrimaryColor),
-  ),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text("● 10. 31 / 16:00     산업디자인과 취업 특강 이수"),
-      Text("● 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출"),
-      Text("● 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출"),
-      buttonAdd(Alignment.centerRight, "btnAdd1"),
-    ],
-  ),
-);
+    //padding: const EdgeInsets.all(15.0),
+    //margin: const EdgeInsets.all(15.0),
+    width: _width,
+    height: _height,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      border: Border.all(width: 3, color: PrimaryColor),
+    ),
+    child: Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("⦁ 10. 31 / 16:00     산업디자인과 취업 특강 이수"),
+          Text("⦁ 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출"),
+          Text("⦁ 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출"),
+          //buttonAdd(Alignment.centerRight, "btnAdd1"),
+        ],
+      ),
+    ));
 
 Widget borderContainer2 = Container(
   padding: const EdgeInsets.all(15.0),
@@ -154,9 +162,9 @@ Widget borderContainer2 = Container(
   child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text("● [긴급] 기숙사생 입사 관련 공지사항"),
-      Text("● 비대면 수업 중간고사 시험 안내"),
-      Text("● 프레젠테이션 경진대회 결과"),
+      Text("⦁ [긴급] 기숙사생 입사 관련 공지사항"),
+      Text("⦁ 비대면 수업 중간고사 시험 안내"),
+      Text("⦁ 프레젠테이션 경진대회 결과"),
       buttonArrow(Alignment.centerRight, 1, "btnArrow1"),
     ],
   ),
@@ -178,8 +186,8 @@ Widget borderContainer3 = Container(
             children: [
               Text("     최근 분실물",
                   style: TextStyle(fontWeight: FontWeight.bold)),
-              Text("● [체크카트] 정XX님 국민카드"),
-              Text("● [에어팟 케이스] 갈색 곰돌이 모양"),
+              Text("⦁ [체크카트] 정XX님 국민카드"),
+              Text("⦁ [에어팟 케이스] 갈색 곰돌이 모양"),
             ],
           ),
           Column(
@@ -377,25 +385,6 @@ class NoticePage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-/* 그 뭐냐 그... 그그.....그.......... 아 학사공지 탭 */
-class SecondRoute extends StatelessWidget {
-  NoticePage myapp = new NoticePage();
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(formH - 40),
-            child: make_Appbar(false),
-          ),
-          body: Text('학사 공지',
-              style: new TextStyle(fontSize: 20.0, color: Colors.black)),
-        ),
-      ],
     );
   }
 }
