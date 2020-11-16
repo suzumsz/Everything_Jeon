@@ -7,52 +7,94 @@ class XDinfo_list extends StatelessWidget {
   XDinfo_list({
     Key key,
   }) : super(key: key);
+
+  //분실물 리스트 박스
+  Widget lostProperetyBox(String imgSrc, String title, String content) {
+    return FlatButton(
+      onPressed: () {},
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+            width: 132.0,
+            height: 84.0,
+            decoration: BoxDecoration(
+              color: const Color(0xffdfe6f3),
+            ),
+          ),
+          Container(
+              child: Flexible(
+                  child: Container(
+            margin: EdgeInsets.only(top: 8),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  title + "\n\n" + content,
+                  maxLines: 4,
+                  style: TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: 12,
+                    color: const Color(0xff0c1939),
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
+          ))),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       body: Stack(
-        children: <Widget>[
-          Transform.translate(
-            offset: Offset(48.0, 351.0),
-            child: Container(
-              width: 132.0,
-              height: 84.0,
+        children: [
+          /* 박스 */
+          Container(
+              margin: EdgeInsets.only(left: 27, top: 182),
+              padding: EdgeInsets.only(left: 5, top: 155),
+              width: 361.0,
+              height: 573.0,
               decoration: BoxDecoration(
-                color: const Color(0xffdfe6f3),
+                borderRadius: BorderRadius.circular(20.0),
+                border: Border.all(width: 3.0, color: const Color(0xffdfe6f3)),
               ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(48.0, 451.0),
-            child: Container(
-              width: 132.0,
-              height: 84.0,
-              decoration: BoxDecoration(
-                color: const Color(0xffdfe6f3),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(48.0, 551.0),
-            child: Container(
-              width: 132.0,
-              height: 84.0,
-              decoration: BoxDecoration(
-                color: const Color(0xffdfe6f3),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(48.0, 651.0),
-            child: Container(
-              width: 132.0,
-              height: 84.0,
-              decoration: BoxDecoration(
-                color: const Color(0xffdfe6f3),
-              ),
-            ),
-          ),
+              child: ListView(
+                children: [
+                  Container(
+                    child: Column(
+                      children: [
+                        lostProperetyBox(
+                            "", "[체크카드] 정XX님 국민카드", "예체능관 어져 있어서요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                      ],
+                    ),
+                  )
+                ],
+              )),
+
+          /* */
           // Adobe XD layer: 'Background' (shape)
           Container(
             width: MediaQuery.of(context).size.width,
@@ -113,17 +155,7 @@ class XDinfo_list extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          Transform.translate(
-            offset: Offset(27.0, 182.0),
-            child: Container(
-              width: 361.0,
-              height: 573.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                border: Border.all(width: 3.0, color: const Color(0xffdfe6f3)),
-              ),
-            ),
-          ),
+
           Transform.translate(
             offset: Offset(61.0, 210.0),
             child: Text(
@@ -160,54 +192,8 @@ class XDinfo_list extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          Transform.translate(
-            offset: Offset(189.0, 348.0),
-            child: Text(
-              '[체크카드] 정XX님 국민카드\n\n예체능관 정문에 떨어져 있어서\n경비실에 맡겨놨어요!정X님꺼에요.',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(189.0, 449.0),
-            child: Text(
-              '[에어팟 케이스] 갈색 곰돌이 모양\n\n사교관 하나은행 2번 창구에 있어\n서 직원분께 맡겨놨습니다~',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(189.0, 550.0),
-            child: Text(
-              '[필통] 노란색 스폰지밥 필통\n\n공학관 지하1층 예배실에서 발견\n했어요~ 그 자리에 그대로 뒀습니\n다.',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(189.0, 656.0),
-            child: Text(
-              '[프린트] A4용지 프린트\n인프에서 발견했습니다.\n직원분께 맡겨놨어요. \n',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff000000),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
+
+          //점박이
           Transform.translate(
             offset: Offset(48.0, 240.0),
             child: Container(
