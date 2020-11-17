@@ -7,8 +7,6 @@ import 'XDinfo_list.dart';
 const url = 'https://www.mjc.ac.kr/bbs/data/list.do?menu_idx=169';
 
 const double formH = 120;
-double _width = 200;
-double _height = 200;
 
 const PrimaryColor = const Color(0xFFDFE6F3);
 AnimationController aniController;
@@ -133,25 +131,22 @@ Widget boxMileage(String text, TextStyle textstyle) {
 }
 
 Widget borderContainer1 = Container(
-    //padding: const EdgeInsets.all(15.0),
-    //margin: const EdgeInsets.all(15.0),
-    width: _width,
-    height: _height,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all(width: 3, color: PrimaryColor),
-    ),
-    child: Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("⦁ 10. 31 / 16:00     산업디자인과 취업 특강 이수"),
-          Text("⦁ 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출"),
-          Text("⦁ 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출"),
-          //buttonAdd(Alignment.centerRight, "btnAdd1"),
-        ],
-      ),
-    ));
+  padding: const EdgeInsets.all(15.0),
+  margin: const EdgeInsets.all(15.0),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(20),
+    border: Border.all(width: 3, color: PrimaryColor),
+  ),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text("⦁ 10. 31 / 16:00     산업디자인과 취업 특강 이수"),
+      Text("⦁ 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출"),
+      Text("⦁ 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출"),
+      buttonAdd(Alignment.centerRight, "btnAdd1"),
+    ],
+  ),
+);
 
 Widget borderContainer2 = Container(
   padding: const EdgeInsets.all(15.0),
@@ -190,14 +185,17 @@ Widget borderContainer3 = Container(
               Text("⦁ [에어팟 케이스] 갈색 곰돌이 모양"),
             ],
           ),
-          Column(
-            children: [
-              buttonExtended("분실물 신고", TextStyle(fontWeight: FontWeight.bold),
-                  "btnEx2", PrimaryColor),
-              buttonExtended("분실물 찾기", TextStyle(fontWeight: FontWeight.bold),
-                  "btnEx3", PrimaryColor),
-            ],
-          ),
+          Container(
+            margin: EdgeInsets.only(left: 25),
+            child: Column(
+              children: [
+                buttonExtended("분실물 신고", TextStyle(fontWeight: FontWeight.bold),
+                    "btnEx2", PrimaryColor),
+                buttonExtended("분실물 찾기", TextStyle(fontWeight: FontWeight.bold),
+                    "btnEx3", PrimaryColor),
+              ],
+            ),
+          )
         ],
       ),
       Row(
@@ -343,12 +341,11 @@ Container make_Appbar(bool show) {
     ),
   );
 }
+//textControl 사용하여 추가
 
 class NoticePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //textControl 사용하여 추가
-
     // ignore: non_constant_identifier_names
 
     /********************************************** AppBar ***************************************************************/
