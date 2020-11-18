@@ -1,16 +1,44 @@
 import 'package:everything_jeon/NoticePage.dart';
 import 'package:flutter/material.dart';
-import 'NoticePage.dart';
 
 // ignore: camel_case_types
 class XDinfo_list extends StatelessWidget {
+  /* 
+  TabController _controller = TabController(
+    vsync: this,
+    length: 3,
+    initialIndex: 0,
+  );
+  */
+  TabController _controller;
   XDinfo_list({
     Key key,
   }) : super(key: key);
 
+  Widget buttonExtended(
+      String text, TextStyle textstyle, String heroTag, Color backgroundColor) {
+    return Container(
+      padding: const EdgeInsets.only(left: 20, top: 10),
+      child: Container(
+        width: 90.0,
+        height: 30.0,
+        child: FloatingActionButton.extended(
+            heroTag: heroTag,
+            elevation: 0,
+            backgroundColor: backgroundColor,
+            foregroundColor: Colors.black,
+            onPressed: () {
+              print(_controller.toString());
+            },
+            label: Text(text, style: textstyle)),
+      ),
+    );
+  }
+
   //분실물 리스트 박스
   Widget lostProperetyBox(String imgSrc, String title, String content) {
     return FlatButton(
+      color: Colors.white,
       onPressed: () {},
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,6 +75,62 @@ class XDinfo_list extends StatelessWidget {
     );
   }
 
+  Widget tab1(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: Container(
+            margin: EdgeInsets.only(left: 20, bottom: 0),
+            child: Text(
+              '분실물 신고목록',
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 20,
+                color: const Color(0xff0c1939),
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 29),
+          child: ListView(
+            children: [
+              Column(
+                children: [
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
+                  lostProperetyBox("", "[체크카드] 정XX님 국민카드", "예체능관 어져 있어서요."),
+                ],
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget tab2() {}
+  Widget tab3() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,44 +139,53 @@ class XDinfo_list extends StatelessWidget {
         children: [
           /* 박스 */
           Container(
-              margin: EdgeInsets.only(left: 27, top: 182),
-              padding: EdgeInsets.only(left: 5, top: 155),
-              width: 361.0,
-              height: 573.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                border: Border.all(width: 3.0, color: const Color(0xffdfe6f3)),
-              ),
-              child: ListView(
-                children: [
-                  Container(
-                    child: Column(
+            margin: EdgeInsets.only(left: 27, top: 182),
+            padding: EdgeInsets.only(left: 0, top: 125),
+            width: 361.0,
+            height: 573.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              border: Border.all(width: 3.0, color: const Color(0xffdfe6f3)),
+            ),
+            child: Stack(
+              children: [
+                DefaultTabController(
+                  length: 3,
+                  child: Scaffold(
+                    appBar: PreferredSize(
+                      preferredSize: Size.fromHeight(-24),
+                      child: AppBar(
+                        backgroundColor: Colors.white,
+                        elevation: 0,
+                        automaticallyImplyLeading: false,
+                        bottom: TabBar(
+                          tabs: [
+                            Tab(
+                              child: Container(),
+                            ),
+                            Tab(
+                              child: Container(),
+                            ),
+                            Tab(
+                              child: Container(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    body: TabBarView(
+                      controller: _controller,
                       children: [
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                            "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                        lostProperetyBox(
-                            "", "[체크카드] 정XX님 국민카드", "예체능관 어져 있어서요."),
+                        tab1(context),
+                        Icon(Icons.cloud_circle),
+                        Icon(Icons.directions_bike),
                       ],
                     ),
-                  )
-                ],
-              )),
+                  ),
+                ),
+              ],
+            ),
+          ),
 
           /* */
           // Adobe XD layer: 'Background' (shape)
@@ -135,18 +228,6 @@ class XDinfo_list extends StatelessWidget {
             offset: Offset(27.0, 141.0),
             child: Text(
               '분실물 리스트',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 20,
-                color: const Color(0xff0c1939),
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(48.0, 306.0),
-            child: Text(
-              '분실물 신고목록',
               style: TextStyle(
                 fontFamily: 'DX유니고딕 20',
                 fontSize: 20,
