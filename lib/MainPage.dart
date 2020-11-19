@@ -97,6 +97,17 @@ class MainPage extends StatelessWidget {
               },
               trailing: Icon(Icons.arrow_forward),
             ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.grey,
+              ),
+              title: Text('visible'),
+              onTap: () {
+                Navigator.pushNamed(context, '/Visibility_');
+              },
+              trailing: Icon(Icons.arrow_forward),
+            ),
           ],
         ),
       ),

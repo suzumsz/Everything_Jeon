@@ -7,6 +7,7 @@ import 'LocationPage.dart';
 import 'SettingPage.dart';
 import 'XDinfo_list.dart';
 import 'XDres.dart';
+import 'Visibility_.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/SettingPage': (context) => SettingPage(),
         '/XDinfo_list': (context) => XDinfo_list(),
         '/XDres': (context) => XDres(),
+        '/Visibility_': (context) => Visibility_(),
       },
     );
   }
