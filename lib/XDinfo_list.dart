@@ -1,19 +1,20 @@
 import 'package:everything_jeon/NoticePage.dart';
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class XDinfo_list extends StatelessWidget {
-  /* 
-  TabController _controller = TabController(
-    vsync: this,
-    length: 3,
-    initialIndex: 0,
-  );
-  */
-  TabController _controller;
-  XDinfo_list({
+class XDinfo_list_tab extends StatefulWidget {
+  
+  XDinfo_list_tab({
     Key key,
   }) : super(key: key);
+
+  @override
+  XDinfo_list_state createState() => XDinfo_list_state();
+}
+
+class XDinfo_list_state extends State<XDinfo_list_tab>
+    with SingleTickerProviderStateMixin {
+      
+  TabController _controller;
 
   Widget buttonExtended(
       String text, TextStyle textstyle, String heroTag, Color backgroundColor) {
@@ -28,7 +29,9 @@ class XDinfo_list extends StatelessWidget {
             backgroundColor: backgroundColor,
             foregroundColor: Colors.black,
             onPressed: () {
-              print(_controller.toString());
+              if (text == "분실물 신고")
+                _controller.animateTo(1);
+              else if (text == "분실물 검색") _controller.animateTo(2);
             },
             label: Text(text, style: textstyle)),
       ),
@@ -128,8 +131,67 @@ class XDinfo_list extends StatelessWidget {
     );
   }
 
-  Widget tab2() {}
-  Widget tab3() {}
+  Widget tab2() {
+    return Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: Container(
+            margin: EdgeInsets.only(left: 20, bottom: 0),
+            child: Text(
+              '분실물 신고',
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 20,
+                color: const Color(0xff0c1939),
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget tab3() {
+return Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: Container(
+            margin: EdgeInsets.only(left: 20, bottom: 0),
+            child: Text(
+              '분실물 검색',
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 20,
+                color: const Color(0xff0c1939),
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ),
+      ],
+    );
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // SingleTickerProviderStateMixin를 상속 받아서
+    // vsync에 this 형태로 전달해야 애니메이션이 정상 처리된다.
+    _controller = TabController(vsync: this, length: 3);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,6 +221,7 @@ class XDinfo_list extends StatelessWidget {
                         elevation: 0,
                         automaticallyImplyLeading: false,
                         bottom: TabBar(
+                          controller: _controller,
                           tabs: [
                             Tab(
                               child: Container(),
@@ -177,8 +240,8 @@ class XDinfo_list extends StatelessWidget {
                       controller: _controller,
                       children: [
                         tab1(context),
-                        Icon(Icons.cloud_circle),
-                        Icon(Icons.directions_bike),
+                        tab2(),
+                        tab3(),
                       ],
                     ),
                   ),
@@ -360,4 +423,18 @@ class XDinfo_list extends StatelessWidget {
       ),
     );
   }
+}
+
+// ignore: camel_case_types
+class XDinfo_list extends StatelessWidget {
+  TabController _controller;
+  /* 
+  TabController _controller = TabController(
+    vsync: this,
+    length: 3,
+    initialIndex: 0,
+  );
+  */
+  @override
+  Widget build(BuildContext context) {}
 }

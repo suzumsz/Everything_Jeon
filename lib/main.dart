@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         '/NoticePage': (context) => NoticePage(),
         '/LocationPage': (context) => LocationPage(),
         '/SettingPage': (context) => SettingPage(),
-        '/XDinfo_list': (context) => XDinfo_list(),
+        '/XDinfo_list': (context) => XDinfo_list_tab(),
         '/XDres': (context) => XDres(),
         '/Visibility_': (context) => Visibility_(),
       },

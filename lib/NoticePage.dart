@@ -83,7 +83,7 @@ Widget buttonArrow(Alignment direction, int btnType, String heroTag) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => XDinfo_list()),
+                                  builder: (context) => XDinfo_list_tab()),
                             );
                             break;
                         }
