@@ -1457,20 +1457,31 @@ Column _buildbookButton(Color color, String label) {
       ButtonTheme(
         minWidth: 67,
         height: 35,
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(18)),
-          color: color,
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.black,
-              fontFamily: 'DX유니고딕 20',
+        child: Builder(
+          builder: (context) => Center(
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(18)),
+              color: color,
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.black,
+                  fontFamily: 'DX유니고딕 20',
+                ),
+                textAlign: TextAlign.left,
+              ),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                          title: Text('예약되었습니다.'),
+                          content: Text('닫고 싶으시면 아무곳이나 눌러주세요!'),
+                        ));
+              },
             ),
-            textAlign: TextAlign.left,
           ),
-          onPressed: () {},
           // onPressed: () => clickcase(label),
         ),
       )
