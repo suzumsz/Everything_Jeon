@@ -1,4 +1,6 @@
+import 'package:everything_jeon/LoginPage.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SettingPage extends StatelessWidget {
   @override
@@ -124,22 +126,38 @@ class SettingPage extends StatelessWidget {
             child: Container(
               width: 63.0,
               height: 28.0,
-              decoration: BoxDecoration(
+              child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14.0),
+                  ),
+                  color: const Color(0xffdfe6f3),
+                  /*decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(14.0),
                 color: const Color(0xffdfe6f3),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(319.5, 128.5),
-            child: Text(
-              'Log out',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 13,
-                color: const Color(0xff0c1939),
-              ),
-              textAlign: TextAlign.left,
+                */
+
+                  //Transform.translate(
+                  //offset: Offset(319.5, 128.5),
+                  //child: RaisedButton(
+                  child: Text(
+                    'Logout',
+                    style: TextStyle(
+                      fontFamily: 'DX유니고딕 20',
+                      fontSize: 9,
+                      color: const Color(0xff0c1939),
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  onPressed: () {
+                    //async {
+                    // final User user = await _auth.currentUser;
+                    // Respond to button press
+                    // _auth.signOut();
+                    //https://eory96study.tistory.com/36
+                    //https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_auth/firebase_auth/example/lib/signin_page.dart
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
+                  }),
             ),
           ),
         ],
