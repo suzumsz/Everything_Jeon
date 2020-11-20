@@ -213,44 +213,6 @@ Widget borderContainer3 = Container(
   ),
 );
 
-Container make_textField(String text) {
-  String input = "";
-  return Container(
-    width: 350,
-    height: 45,
-    padding: const EdgeInsets.only(top: 10),
-    child: TextField(
-      onChanged: (String str) {
-        //바뀔때마다
-        input = str;
-      },
-      autofocus: false,
-      style: TextStyle(fontSize: 13.0, color: Color(0xFFbdc6cf)),
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white,
-        hintText: text,
-        suffixIcon: IconButton(
-          onPressed: () {
-            print(input + " 검색!");
-          }, //입력했을 때
-          icon: Icon(Icons.search),
-        ),
-        contentPadding:
-            const EdgeInsets.only(left: 14.0, bottom: 15.0, top: 0.0),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-          borderRadius: BorderRadius.circular(25.7),
-        ),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-          borderRadius: BorderRadius.circular(25.7),
-        ),
-      ),
-    ),
-  );
-}
-
 Container schoolLogo(String text) {
   return Container(
     padding: EdgeInsets.only(left: 100, top: 15),

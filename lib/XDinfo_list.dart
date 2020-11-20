@@ -1,8 +1,9 @@
+import 'dart:collection';
+
 import 'package:everything_jeon/NoticePage.dart';
 import 'package:flutter/material.dart';
 
 class XDinfo_list_tab extends StatefulWidget {
-  
   XDinfo_list_tab({
     Key key,
   }) : super(key: key);
@@ -13,7 +14,45 @@ class XDinfo_list_tab extends StatefulWidget {
 
 class XDinfo_list_state extends State<XDinfo_list_tab>
     with SingleTickerProviderStateMixin {
-      
+  Container make_textField(String text) {
+    String input = "";
+    return Container(
+      width: 300,
+      height: 45,
+      margin: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
+      child: TextField(
+        onChanged: (String str) {
+          //바뀔때마다
+          input = str;
+        },
+        autofocus: false,
+        style: TextStyle(fontSize: 13.0, color: Color(0xFF000000)),
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          hintText: text,
+          suffixIcon: IconButton(
+            onPressed: () {
+              print(input + " 검색!");
+            }, //입력했을 때
+            icon: Icon(Icons.search),
+          ),
+          contentPadding:
+              const EdgeInsets.only(left: 14.0, bottom: 15.0, top: 0.0),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(27.0)),
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(27.0)),
+            borderSide: BorderSide(color: Colors.black),
+          ),
+        ),
+      ),
+    );
+  }
+
   TabController _controller;
 
   Widget buttonExtended(
@@ -41,7 +80,6 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
   //분실물 리스트 박스
   Widget lostProperetyBox(String imgSrc, String title, String content) {
     return FlatButton(
-      color: Colors.white,
       onPressed: () {},
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,12 +116,58 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
     );
   }
 
+  //분실물 검색 리스트
+  Widget lostProperetySearchBox(String imgSrc, String title, String content) {
+    return new Container(
+      child: new Material(
+        child: new FlatButton(
+          color: Color(0xFFF9FAFD),
+          onPressed: () {},
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: 25),
+                child: Text(
+                  '제목  :  ' + title,
+                  style: TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: 12,
+                    color: const Color(0xff0c1939),
+                  ),
+                ),
+              ),
+              Container(
+                margin:
+                    EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+                height: 140.0,
+                decoration: BoxDecoration(
+                  color: const Color(0xffdfe6f3),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: 15),
+                child: Text(
+                  '본분  :  ' + content,
+                  style: TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: 12,
+                    color: const Color(0xff0c1939),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget tab1(BuildContext context) {
     return Stack(
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          color: Colors.white,
           child: Container(
             margin: EdgeInsets.only(left: 20, bottom: 0),
             child: Text(
@@ -132,11 +216,12 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
   }
 
   Widget tab2() {
-    return Stack(
+    return SingleChildScrollView(
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          color: Colors.white,
           child: Container(
             margin: EdgeInsets.only(left: 20, bottom: 0),
             child: Text(
@@ -150,16 +235,111 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
             ),
           ),
         ),
+        Container(
+          margin: EdgeInsets.only(left: 20, top: 10),
+          child: Text.rich(
+            TextSpan(
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 10,
+                color: const Color(0xffff0000),
+              ),
+              children: [
+                TextSpan(
+                  text: '*주의사항',
+                ),
+                TextSpan(
+                  text: '\n분실물 발견 시 학교 [본관/인터넷 프라자] 에 맡기거나 분실 장소에 그대로 나두어 주세요.',
+                  style: TextStyle(
+                    fontSize: 7.5,
+                  ),
+                ),
+              ],
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 20, top: 15),
+          child: Container(
+            width: 307.0,
+            height: 167.0,
+            decoration: BoxDecoration(
+              color: const Color(0xffdfe6f3),
+            ),
+          ),
+        ),
+
+        //제목
+        Container(
+          margin: EdgeInsets.only(left: 20, top: 10),
+          child: Row(
+            children: <Widget>[
+              Text(
+                '제목 :   ',
+                style: TextStyle(
+                  fontFamily: 'DX유니고딕 20',
+                  fontSize: 12,
+                  color: const Color(0xff000000),
+                ),
+                textAlign: TextAlign.left,
+              ),
+              Container(
+                width: 270,
+                child: TextField(
+                  onChanged: (result) {},
+                  //onSaved: (value) => _email = value,
+                ),
+              ),
+            ],
+          ),
+        ),
+        //본분
+        Container(
+          margin: EdgeInsets.only(left: 20, top: 0),
+          child: Row(
+            children: <Widget>[
+              Text(
+                '본문 :   ',
+                style: TextStyle(
+                  fontFamily: 'DX유니고딕 20',
+                  fontSize: 12,
+                  color: const Color(0xff000000),
+                ),
+                textAlign: TextAlign.left,
+              ),
+              Container(
+                width: 270,
+                child: TextField(
+                  onChanged: (result) {},
+                  //onSaved: (value) => _email = value,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        Container(
+          color: Colors.white,
+          margin: EdgeInsets.only(left: 220, top: 10),
+          child: buttonExtended(
+              "완료",
+              TextStyle(
+                  fontFamily: 'DX유니고딕 20',
+                  fontSize: 12,
+                  color: const Color(0xff000000)),
+              'btnEx5',
+              PrimaryColor),
+        )
       ],
-    );
+    ));
   }
 
   Widget tab3() {
-return Stack(
+    return Stack(
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          color: Colors.white,
           child: Container(
             margin: EdgeInsets.only(left: 20, bottom: 0),
             child: Text(
@@ -173,9 +353,24 @@ return Stack(
             ),
           ),
         ),
+        Container(
+          color: Color(0xFFF9FAFD),
+          margin: EdgeInsets.only(top: 45, left: 20, right: 20),
+          child: ListView(
+            children: [
+              Column(
+                children: [
+                  make_textField("검색어를 입력해주세요."),
+                  lostProperetySearchBox("", "나는 카드에요", "히히 나는 카드다"),
+                  lostProperetySearchBox("", "마춤뻡 파괘자", "이거슨 네가 일어벌인 물건이애요"),
+                  lostProperetySearchBox("", "아기상어 뚜루루루뚜루루뚜", "엄마상어 뚜루루"),
+                ],
+              ),
+            ],
+          ),
+        )
       ],
     );
-
   }
 
   @override
@@ -196,6 +391,7 @@ return Stack(
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       backgroundColor: const Color(0xffffffff),
       body: Stack(
         children: [
@@ -214,6 +410,7 @@ return Stack(
                 DefaultTabController(
                   length: 3,
                   child: Scaffold(
+                    backgroundColor: Colors.white,
                     appBar: PreferredSize(
                       preferredSize: Size.fromHeight(-24),
                       child: AppBar(
