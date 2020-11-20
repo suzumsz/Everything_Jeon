@@ -91,9 +91,9 @@ class MainPage extends StatelessWidget {
                 Icons.home,
                 color: Colors.grey,
               ),
-              title: Text('로그인'),
+              title: Text('visible'),
               onTap: () {
-                Navigator.pushNamed(context, '/testlog');
+                Navigator.pushNamed(context, '/Visibility_');
               },
               trailing: Icon(Icons.arrow_forward),
             ),
@@ -102,9 +102,9 @@ class MainPage extends StatelessWidget {
                 Icons.home,
                 color: Colors.grey,
               ),
-              title: Text('visible'),
+              title: Text('회원가입'),
               onTap: () {
-                Navigator.pushNamed(context, '/Visibility_');
+                Navigator.pushNamed(context, '/JoinPage');
               },
               trailing: Icon(Icons.arrow_forward),
             ),

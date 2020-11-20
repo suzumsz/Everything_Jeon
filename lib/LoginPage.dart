@@ -1,7 +1,9 @@
+import 'package:everything_jeon/MainPage.dart';
 import 'package:flutter/material.dart';
-import 'package:adobe_xd/pinned.dart';
+//import 'package:adobe_xd/pinned.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatelessWidget {
+/*class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -200,6 +202,98 @@ class LoginPage extends StatelessWidget {
             ),*/
           ),
         ],
+      ),
+    );
+  }
+}*/
+
+class Auth {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  Future<FirebaseUser> handleSignInEmail(String email, String password) async {
+    AuthResult result =
+        await auth.signInWithEmailAndPassword(email: email, password: password);
+    final FirebaseUser user = result.user;
+
+    assert(user != null);
+    assert(await user.getIdToken() != null);
+
+    final FirebaseUser currentUser = await auth.currentUser();
+    assert(user.uid == currentUser.uid);
+
+    print('signInEmail succeeded: $user');
+
+    return user;
+  }
+
+  Future<FirebaseUser> handleSignUp(email, password) async {
+    AuthResult result = await auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    final FirebaseUser user = result.user;
+
+    assert(user != null);
+    assert(await user.getIdToken() != null);
+
+    return user;
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  // This widget is the root of your application.//설정
+
+  @override
+  Widget build(BuildContext context) {
+    String id, pw;
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              //이미지
+
+              TextFormField(
+                decoration: InputDecoration(labelText: 'ID'),
+                validator: (value) =>
+                    value.isEmpty ? 'Email can\'t be empty' : null, //입력없으면 널
+                onChanged: (result) {
+                  id = result;
+                },
+                //onSaved: (value) => _email = value,
+              ),
+
+              TextFormField(
+                obscureText: true,
+                decoration: InputDecoration(labelText: 'PW'),
+                validator: (value) =>
+                    value.isEmpty ? 'Password can\'t be empty' : null,
+                onChanged: (result) {
+                  pw = result;
+                },
+                //onSaved: (value) => _password = value,
+              ),
+              RaisedButton(
+                  child: Text(
+                    'Login',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                  onPressed: () {
+                    print(id + '\n' + pw);
+                    var authHandler = new Auth();
+                    authHandler
+                        .handleSignInEmail(id, pw)
+                        .then((FirebaseUser user) {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => MainPage()));
+                    }).catchError((e) => print(e));
+                  } //validateAndSave,
+
+                  ),
+            ],
+          ),
+        ),
       ),
     );
   }
