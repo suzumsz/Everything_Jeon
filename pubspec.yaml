@@ -25,8 +25,8 @@ dependencies:
     sdk: flutter
   adobe_xd: ^1.0.0+1  
   firebase_auth: ^0.16.1
-  cloud_firestore: ^0.14.3
-  firebase_core: ^0.5.2
+  #cloud_firestore: ^0.14.3
+  #firebase_core: ^0.5.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -53,6 +53,9 @@ flutter:
   - images/mjclogo.jpg
   - images/book1.png
   - images/mapimage.png
+  - images/circlelogo.png
+  - images/rightarrow.png
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:adobe_xd/pinned.dart';
 
 class LocationPage extends StatelessWidget {
   @override
@@ -8,8 +7,8 @@ class LocationPage extends StatelessWidget {
       backgroundColor: const Color(0xffffffff),
       body: Stack(
         children: <Widget>[
-          // Adobe XD layer: 'Background' (shape)
           Container(
+            //header
             width: 414.0,
             height: 174.0,
             decoration: BoxDecoration(
@@ -21,6 +20,7 @@ class LocationPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
+            //header title
             offset: Offset(27.0, 56.0),
             child: Text(
               '위치',
@@ -33,6 +33,7 @@ class LocationPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
+            // 사용자 정보
             offset: Offset(265.0, 71.0),
             child: Text(
               '정혜진 [2020581015]',
@@ -45,147 +46,99 @@ class LocationPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
+            // 검색어 입력1
             offset: Offset(27.0, 112.0),
-            child:
-                // Adobe XD layer: 'Rectangle' (shape)
-                Container(
+            child: Container(
               width: 168.0,
               height: 38.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(19.0),
-                color: const Color(0xffffffff),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(top: 12, right: 20),
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: '검색어를 입력하세요.',
+                  hintStyle: TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: 12,
+                    color: const Color(0xff0c1939),
+                    height: 1.5,
+                  ),
+                  prefixIconConstraints:
+                      BoxConstraints(minWidth: 40, maxHeight: 20),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Icon(
+                      Icons.search,
+                      color: Color.fromRGBO(10, 23, 54, 1),
+                      size: 20,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(19.0),
+                    borderSide: BorderSide(
+                      width: 0,
+                      style: BorderStyle.none,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
           Transform.translate(
+            // 오른쪽 화살표
+            offset: Offset(203.0, 124.0),
+            child: Container(
+              width: 11,
+              height: 13,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: const AssetImage('images/rightarrow.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
+          Transform.translate(
+            // 검색어 입력2
             offset: Offset(220.0, 112.0),
-            child:
-                // Adobe XD layer: 'Rectangle' (shape)
-                Container(
+            child: Container(
               width: 168.0,
               height: 38.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(19.0),
-                color: const Color(0xffffffff),
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(43.0, 121.0),
-            child:
-                // Adobe XD layer: 'Svyatoslav Taushev' (text)
-                Text(
-              '검색어를 입력하세요.',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff0c1939),
-                height: 1.5,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(236.0, 121.0),
-            child:
-                // Adobe XD layer: 'Svyatoslav Taushev' (text)
-                Text(
-              '검색어를 입력하세요.',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff0c1939),
-                height: 1.5,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          Transform.translate(
-            offset: Offset(162.9, 119.6),
-            child: Transform.rotate(
-              angle: -0.1571,
-              child: SizedBox(
-                width: 20.0,
-                height: 21.0,
-                child: Stack(
-                  children: <Widget>[
-                    Pinned.fromSize(
-                      bounds: Rect.fromLTWH(2.9, 2.9, 14.2, 14.2),
-                      size: Size(20.0, 20.9),
-                      pinLeft: true,
-                      pinRight: true,
-                      pinTop: true,
-                      pinBottom: true,
-                      child: Transform.rotate(
-                        angle: 0.8901,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                                Radius.elliptical(9999.0, 9999.0)),
-                            color: const Color(0xffffffff),
-                            border: Border.all(
-                                width: 1.5, color: const Color(0xff0a1736)),
-                          ),
-                        ),
-                      ),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(top: 12, right: 20),
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: '검색어를 입력하세요.',
+                  hintStyle: TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: 12,
+                    color: const Color(0xff0c1939),
+                    height: 1.5,
+                  ),
+                  prefixIconConstraints:
+                      BoxConstraints(minWidth: 40, maxHeight: 20),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Icon(
+                      Icons.search,
+                      color: Color.fromRGBO(10, 23, 54, 1),
+                      size: 20,
+                    ), // icon is 48px widget.
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(19.0),
+                    borderSide: BorderSide(
+                      width: 0,
+                      style: BorderStyle.none,
                     ),
-                    Pinned.fromSize(
-                      bounds: Rect.fromLTWH(14.7, 15.1, 4.7, 5.8),
-                      size: Size(20.0, 20.9),
-                      pinRight: true,
-                      pinBottom: true,
-                      fixedWidth: true,
-                      fixedHeight: true,
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
           Transform.translate(
-            offset: Offset(355.9, 119.6),
-            child: Transform.rotate(
-              angle: -0.1571,
-              child: SizedBox(
-                width: 20.0,
-                height: 21.0,
-                child: Stack(
-                  children: <Widget>[
-                    Pinned.fromSize(
-                      bounds: Rect.fromLTWH(2.9, 2.9, 14.2, 14.2),
-                      size: Size(20.0, 20.9),
-                      pinLeft: true,
-                      pinRight: true,
-                      pinTop: true,
-                      pinBottom: true,
-                      child: Transform.rotate(
-                        angle: 0.8901,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                                Radius.elliptical(9999.0, 9999.0)),
-                            color: const Color(0xffffffff),
-                            border: Border.all(
-                                width: 1.5, color: const Color(0xff0a1736)),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Pinned.fromSize(
-                      bounds: Rect.fromLTWH(14.7, 15.1, 4.7, 5.8),
-                      size: Size(20.0, 20.9),
-                      pinRight: true,
-                      pinBottom: true,
-                      fixedWidth: true,
-                      fixedHeight: true,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
-          Transform.translate(
+            // body title
             offset: Offset(27.0, 200.0),
             child: Text(
               '학교 지도',
@@ -198,10 +151,9 @@ class LocationPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
+            // 지도 이미지 파일
             offset: Offset(37.0, 258.0),
-            child:
-                // Adobe XD layer: '학교지도일러스트 네이비' (shape)
-                Container(
+            child: Container(
               width: 341.0,
               height: 430.0,
               decoration: BoxDecoration(
@@ -213,6 +165,7 @@ class LocationPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
+            // 지도 테두리
             offset: Offset(27.0, 241.0),
             child: Container(
               width: 361.0,
@@ -235,14 +188,16 @@ class LocationPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(244.0, 74.0),
+            // 원형로고
+            offset: Offset(243.0, 73.0),
             child: Container(
-              width: 15.0,
-              height: 15.0,
+              width: 17.0,
+              height: 17.0,
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
-                color: const Color(0xff205072),
+                image: DecorationImage(
+                  image: const AssetImage('images/circlelogo.png'),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
