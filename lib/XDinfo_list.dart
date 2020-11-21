@@ -4,16 +4,20 @@ import 'package:everything_jeon/NoticePage.dart';
 import 'package:flutter/material.dart';
 
 class XDinfo_list_tab extends StatefulWidget {
-  XDinfo_list_tab({
-    Key key,
-  }) : super(key: key);
-
+  int selectTap;
+  XDinfo_list_tab(int selectTap) {
+    this.selectTap = selectTap;
+  }
   @override
-  XDinfo_list_state createState() => XDinfo_list_state();
+  XDinfo_list_state createState() => XDinfo_list_state(selectTap);
 }
 
 class XDinfo_list_state extends State<XDinfo_list_tab>
     with SingleTickerProviderStateMixin {
+  int selectTap;
+  XDinfo_list_state(int selectTap) {
+    this.selectTap = selectTap;
+  }
   Container make_textField(String text) {
     String input = "";
     return Container(
@@ -328,7 +332,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                   fontFamily: 'DX유니고딕 20',
                   fontSize: 12,
                   color: const Color(0xff000000)),
-              'btnEx5',
+              'btnEx10',
               PrimaryColor),
         )
       ],
@@ -390,6 +394,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
 
   @override
   Widget build(BuildContext context) {
+    _controller.animateTo(this.selectTap);
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       backgroundColor: const Color(0xffffffff),
@@ -571,7 +576,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                     fontSize: 12,
                     color: const Color(0xff000000),
                   ),
-                  "btnEx3",
+                  "btnEx4",
                   PrimaryColor),
             ),
           ),
@@ -588,7 +593,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                     fontSize: 12,
                     color: const Color(0xff000000),
                   ),
-                  "btnEx4",
+                  "btnEx5",
                   PrimaryColor),
             ),
           ),
@@ -620,18 +625,4 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
       ),
     );
   }
-}
-
-// ignore: camel_case_types
-class XDinfo_list extends StatelessWidget {
-  TabController _controller;
-  /* 
-  TabController _controller = TabController(
-    vsync: this,
-    length: 3,
-    initialIndex: 0,
-  );
-  */
-  @override
-  Widget build(BuildContext context) {}
 }

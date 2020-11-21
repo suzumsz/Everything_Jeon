@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -23,16 +23,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  adobe_xd: ^1.0.0+1  
+  adobe_xd: ^1.0.0+1
   flutter_calendar_carousel: ^1.5.1
   firebase_auth: ^0.16.1
+  intl: ^0.16.1
   #cloud_firestore: ^0.14.3
   #firebase_core: ^0.5.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-
 
 dev_dependencies:
   flutter_test:
@@ -46,18 +46,17 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-  - images/sample.jpg
-  - images/mjcname.png
-  - images/barcode.png
-  - images/logo.png
-  - images/minilogo.png
-  - images/mjclogo.jpg
-  - images/book1.png
-  - images/book2.png
-  - images/mapimage.png
-  - images/circlelogo.png
-  - images/rightarrow.png
-
+    - images/sample.jpg
+    - images/mjcname.png
+    - images/barcode.png
+    - images/logo.png
+    - images/minilogo.png
+    - images/mjclogo.jpg
+    - images/book1.png
+    - images/book2.png
+    - images/mapimage.png
+    - images/circlelogo.png
+    - images/rightarrow.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
