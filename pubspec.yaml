@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   adobe_xd: ^1.0.0+1  
+  flutter_calendar_carousel: ^1.5.1
   firebase_auth: ^0.16.1
   #cloud_firestore: ^0.14.3
   #firebase_core: ^0.5.2
@@ -52,6 +53,7 @@ flutter:
   - images/minilogo.png
   - images/mjclogo.jpg
   - images/book1.png
+  - images/book2.png
   - images/mapimage.png
   - images/circlelogo.png
   - images/rightarrow.png

@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
+    show CalendarCarousel;
+import 'package:flutter_calendar_carousel/classes/event.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
 void main() {
   runApp(ReservationPage());
@@ -16,7 +21,8 @@ class ReservationPage extends StatelessWidget {
 }
 
 class ReservationAppPage extends StatefulWidget {
-  ReservationAppPage({Key key}) : super(key: key);
+  ReservationAppPage({Key key, this.title}) : super(key: key);
+  final String title;
 
   @override
   MyApp createState() => MyApp();
@@ -26,6 +32,58 @@ class MyApp extends State<ReservationAppPage>
     with SingleTickerProviderStateMixin {
   //_tabController
   TabController _tabController;
+  String currtime = "00";
+  String nexttime = "00";
+  String currMonth = DateTime.now().month.toString();
+  String currDay = DateTime.now().day.toString();
+  int studyroomnum = 0;
+  double newheight = 128.0;
+  double listnewheight = 50.0;
+  double newtop = 400.0;
+
+  DateTime _currentDate = DateTime.now();
+  DateTime _currentDate2 = DateTime.now();
+  String _currentMonth = DateTime(2020, 11, 20).month.toString();
+  DateTime _targetDateTime = DateTime.now();
+  CalendarCarousel _calendarCarouselNoHeader;
+
+  static const postime = Color(0xff9BFFA1);
+  static const impostime = Color(0xffFF8888);
+  Color selectColor = Color(0xffE3E5E9);
+
+  void changeText(String time) {
+    setState(() {
+      currtime = time;
+      nexttime = (int.parse(time) + 1).toString();
+    });
+  }
+
+  void changeTextday(DateTime time) {
+    setState(() {
+      currMonth = time.month.toString();
+      currDay = time.day.toString();
+    });
+  }
+
+  void changeTextNum(int stnum) {
+    setState(() {
+      studyroomnum = stnum;
+    });
+  }
+
+  void changeaddheigh(double height, double top, double listheight) {
+    setState(() {
+      newheight = height;
+      newtop = top;
+      listnewheight = listheight;
+    });
+  }
+
+  void changeButtonColor(Color color) {
+    setState(() {
+      selectColor = color;
+    });
+  }
 
   void initState() {
     super.initState();
@@ -37,24 +95,68 @@ class MyApp extends State<ReservationAppPage>
     super.dispose();
   }
 
-  //스터디룸예약 - 시간 클릭
+  // 도서예약 - 더보기 클릭
 
-  bool studyroomVisible1 = true; //보이는거 안보이게
-  bool studyroomVisible2 = false; //안보이는거 보이게
+  bool addVisible1 = true; //보이는거 안보이게
+  bool addVisible2 = false; //안보이는거 보이게
 
-  void studyroomshowWidget() {
+  void addshowWidget() {
     //보이기
     setState(() {
-      studyroomVisible1 = true;
-      studyroomVisible2 = false;
+      addVisible1 = true;
+      addVisible2 = false;
     });
   }
 
-  void studyroomhideWidget() {
+  void addhideWidget() {
     //숨기기
     setState(() {
-      studyroomVisible1 = false;
-      studyroomVisible2 = true;
+      addVisible1 = false;
+      addVisible2 = true;
+    });
+  }
+
+  //2.날짜와 시간 선택 - 시간 클릭
+
+  bool dayVisible1 = true; //보이는거 안보이게
+  bool dayVisible2 = false; //안보이는거 보이게
+
+  //2.날짜와 시간 선택 - 시간 클릭
+
+  bool timeVisible1 = true; //보이는거 안보이게
+  bool timeVisible2 = false; //안보이는거 보이게
+
+  void dayshowWidget() {
+    //보이기
+    setState(() {
+      dayVisible1 = true;
+      dayVisible2 = false;
+    });
+  }
+
+  void dayhideWidget() {
+    //숨기기
+    setState(() {
+      dayVisible1 = false;
+      dayVisible2 = true;
+      timeVisible2 = false;
+    });
+  }
+
+  void timeVshowWidget() {
+    //보이기
+    setState(() {
+      timeVisible1 = true;
+      timeVisible2 = false;
+    });
+  }
+
+  void timeVhideWidget() {
+    //숨기기
+    setState(() {
+      timeVisible1 = false;
+      timeVisible2 = true;
+      dayVisible2 = false;
     });
   }
 
@@ -80,7 +182,6 @@ class MyApp extends State<ReservationAppPage>
   }
 
   //달력 클릭
-  DateTime _selectedDate = DateTime.now();
 
   static const PrimaryColor = Color(0xffDFE6F3);
   static const PrimaryAssentColor = Color(0xFF205072);
@@ -146,7 +247,7 @@ class MyApp extends State<ReservationAppPage>
                 textAlign: TextAlign.center,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -337,7 +438,7 @@ class MyApp extends State<ReservationAppPage>
                   child: Row(
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(top: 15, left: 40),
+                        margin: const EdgeInsets.only(top: 10, left: 25),
                         child: Column(
                           children: [
                             Text(
@@ -369,6 +470,7 @@ class MyApp extends State<ReservationAppPage>
                                       ),
                                       onPressed: () {
                                         bookhideWidget();
+                                        changeTextNum(1);
                                       },
                                     ),
                                   ),
@@ -409,7 +511,10 @@ class MyApp extends State<ReservationAppPage>
                                         ),
                                         textAlign: TextAlign.center,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        bookhideWidget();
+                                        changeTextNum(2);
+                                      },
                                     ),
                                   ),
                                 ],
@@ -557,7 +662,7 @@ class MyApp extends State<ReservationAppPage>
           Container(
             margin: const EdgeInsets.only(top: 10),
             width: 310,
-            height: 128,
+            height: newheight,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
@@ -630,7 +735,11 @@ class MyApp extends State<ReservationAppPage>
                             style: TextStyle(fontSize: 10, color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            addhideWidget();
+                            changeaddheigh(250.0, 280.0, 180.0);
+                            print(newheight);
+                          },
                         ),
                       ),
                     ],
@@ -639,7 +748,7 @@ class MyApp extends State<ReservationAppPage>
                 Container(
                   margin: const EdgeInsets.only(left: 30),
                   width: 250,
-                  height: 50,
+                  height: listnewheight,
                   child: ListView(
                     children: [
                       ListTile(
@@ -672,6 +781,36 @@ class MyApp extends State<ReservationAppPage>
                           onPressed: () {},
                         ),
                       ),
+                      ListTile(
+                        leading: Image.asset(
+                          'images/book2.png',
+                          width: 40,
+                          height: 60,
+                          fit: BoxFit.cover,
+                        ),
+                        title: Text(
+                          "도서정보\n[" +
+                              "나는 나로 살기로 했다" +
+                              "/김수현" +
+                              "] [서울:마음의 숲]\n\n " +
+                              "대출가능" +
+                              "\n[184.7 김57나]",
+                          style: TextStyle(
+                            fontSize: 10,
+                          ),
+                        ),
+                        trailing: FlatButton(
+                          minWidth: 20,
+                          height: 20,
+                          color: Colors.grey[300],
+                          child: Text(
+                            "대기",
+                            style: TextStyle(fontSize: 10, color: Colors.black),
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -682,19 +821,166 @@ class MyApp extends State<ReservationAppPage>
       ),
     );
 
-// 예약 가능 시간
-    const postime = Color(0xff9BFFA1);
-    const impostime = Color(0xffFF8888);
-    String _restime = "";
-    int _counter = 0;
+// 예약 가능 날짜
 
-    void changeText() {
-      setState(() {
-        //_restime = time;
-        _counter++;
-        print(_counter);
-      });
-    }
+    _calendarCarouselNoHeader = CalendarCarousel<Event>(
+      //todayBorderColor: Colors.green,
+      locale: 'ko-KR',
+      onDayPressed: (DateTime date, List<Event> events) {
+        this.setState(() => _currentDate2 = date);
+        events.forEach((event) => print(event.title));
+      },
+      daysHaveCircularBorder: true,
+      showOnlyCurrentMonthDate: false,
+      weekendTextStyle: TextStyle(
+        color: Colors.red,
+      ),
+      weekFormat: false,
+//      firstDayOfWeek: 4,
+      //markedDatesMap: _markedDateMap,
+      height: 200.0,
+      selectedDateTime: _currentDate2,
+      targetDateTime: _targetDateTime,
+      customGridViewPhysics: NeverScrollableScrollPhysics(),
+      // markedDateCustomShapeBorder:
+      //     CircleBorder(side: BorderSide(color: Colors.yellow)),
+      // markedDateCustomTextStyle: TextStyle(
+      //   fontSize: 18,
+      //   color: Colors.blue,
+      // ),
+      showHeader: false,
+      todayTextStyle: TextStyle(
+        //오늘 텍스트 컬러
+        color: Colors.black,
+      ),
+      weekdayTextStyle:
+          TextStyle(color: Colors.black, fontFamily: 'DX유니고딕 20', fontSize: 12),
+      todayBorderColor: Colors.white,
+      todayButtonColor: Colors.white,
+      selectedDayBorderColor: postime,
+      selectedDayButtonColor: postime,
+      selectedDayTextStyle: TextStyle(
+        color: Colors.black,
+      ),
+      minSelectedDate: _currentDate.subtract(Duration(days: 360)),
+      maxSelectedDate: _currentDate.add(Duration(days: 360)),
+      // prevDaysTextStyle: TextStyle(
+      //   fontSize: 16,
+      //   color: Colors.pinkAccent,
+      // ),
+      // inactiveDaysTextStyle: TextStyle(
+      //   color: Colors.tealAccent,
+      //   fontSize: 16,
+      // ),
+      onCalendarChanged: (DateTime date) {
+        this.setState(() {
+          _targetDateTime = date;
+          _currentMonth = DateFormat.M().format(_targetDateTime);
+        });
+      },
+
+      onDayLongPressed: (DateTime date) {
+        changeTextday(date);
+        print('long pressed date $date');
+      },
+    );
+
+    Widget _resday = Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.only(top: 305, left: 50),
+          width: 310,
+          height: 250,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              width: 3,
+              color: PrimaryColor,
+            ),
+          ),
+          child: Column(
+            children: [
+              Container(
+                width: 320.0,
+                height: 39.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15.0),
+                    topRight: Radius.circular(15.0),
+                  ),
+                  color: const Color(0xffdfe6f3),
+                ),
+                child: Container(
+                    child: Row(
+                  children: [
+                    Container(
+                        width: 50,
+                        child: FlatButton(
+                          child: Icon(
+                            Icons.navigate_before,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          // child: Text('>'),
+                          onPressed: () {
+                            setState(() {
+                              _targetDateTime = DateTime(_targetDateTime.year,
+                                  _targetDateTime.month - 1);
+                              _currentMonth = _targetDateTime.month.toString();
+
+                              //DateFormat.yMMM().format(_targetDateTime);
+                            });
+                          },
+                        )),
+                    Container(
+                      margin: EdgeInsets.only(left: 90),
+                      child: Text(
+                        _currentMonth + "월",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'DX유니고딕 20',
+                          fontSize: 11,
+                          color: const Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                        margin: EdgeInsets.only(left: 85),
+                        width: 50,
+                        child: FlatButton(
+                          child: Icon(
+                            Icons.navigate_next,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                          // child: Text('>'),
+                          onPressed: () {
+                            setState(() {
+                              _targetDateTime = DateTime(_targetDateTime.year,
+                                  _targetDateTime.month + 1);
+                              _currentMonth = _targetDateTime.month.toString();
+
+                              //DateFormat.yMMM().format(_targetDateTime);
+                            });
+                          },
+                        )),
+                  ],
+                )),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 5),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 40.0),
+                  child: _calendarCarouselNoHeader,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+
+// 예약 가능 시간
 
     Widget timebutton(String time, Color color) {
       return Container(
@@ -704,7 +990,7 @@ class MyApp extends State<ReservationAppPage>
         child: FlatButton(
           color: color,
           child: Text(
-            time,
+            time + ":00",
             style: TextStyle(
               fontSize: 12,
               fontFamily: 'DX유니고딕 20',
@@ -712,7 +998,7 @@ class MyApp extends State<ReservationAppPage>
             textAlign: TextAlign.right,
           ),
           onPressed: () {
-            changeText();
+            changeText(time);
           },
         ),
       );
@@ -791,9 +1077,9 @@ class MyApp extends State<ReservationAppPage>
                 margin: EdgeInsets.only(top: 15, left: 30),
                 child: Row(
                   children: [
-                    timebutton("09:00", postime),
-                    timebutton("10:00", postime),
-                    timebutton("11:00", postime),
+                    timebutton("09", postime),
+                    timebutton("10", postime),
+                    timebutton("11", postime),
                   ],
                 ),
               ),
@@ -801,9 +1087,9 @@ class MyApp extends State<ReservationAppPage>
                 margin: EdgeInsets.only(top: 7, left: 30),
                 child: Row(
                   children: [
-                    timebutton("12:00", postime),
-                    timebutton("13:00", impostime),
-                    timebutton("14:00", postime),
+                    timebutton("12", postime),
+                    timebutton("13", impostime),
+                    timebutton("14", postime),
                   ],
                 ),
               ),
@@ -811,9 +1097,9 @@ class MyApp extends State<ReservationAppPage>
                 margin: EdgeInsets.only(top: 7, left: 30),
                 child: Row(
                   children: [
-                    timebutton("15:00", impostime),
-                    timebutton("16:00", postime),
-                    timebutton("17:00", impostime),
+                    timebutton("15", impostime),
+                    timebutton("16", postime),
+                    timebutton("17", impostime),
                   ],
                 ),
               ),
@@ -902,10 +1188,7 @@ class MyApp extends State<ReservationAppPage>
                               children: <Widget>[
                                 Icon(Icons.calendar_today),
                                 Text(
-                                  // '$_selectedDate',
-                                  _selectedDate.month.toString() +
-                                      "/" +
-                                      _selectedDate.day.toString(),
+                                  currMonth + "." + currDay,
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.black,
@@ -916,20 +1199,7 @@ class MyApp extends State<ReservationAppPage>
                             ),
                           ),
                           onPressed: () {
-                            Future<DateTime> selected = showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2015),
-                                lastDate: DateTime(2025),
-                                builder: (BuildContext context, Widget child) {
-                                  return Theme(
-                                      data: ThemeData.light(), child: child);
-                                });
-                            selected.then((dateTime) {
-                              setState(() {
-                                _selectedDate = dateTime;
-                              });
-                            });
+                            dayhideWidget();
                           },
                         ),
                         FlatButton(
@@ -937,11 +1207,15 @@ class MyApp extends State<ReservationAppPage>
                             width: 125,
                             height: 50,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Icon(Icons.query_builder),
                                 Text(
-                                  '$_counter',
+                                  "   " +
+                                      '$currtime' +
+                                      ":00 - " +
+                                      '$nexttime' +
+                                      ":00",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.black,
@@ -952,7 +1226,7 @@ class MyApp extends State<ReservationAppPage>
                             ),
                           ),
                           onPressed: () {
-                            studyroomhideWidget();
+                            timeVhideWidget();
                           },
                         ),
                       ],
@@ -976,7 +1250,7 @@ class MyApp extends State<ReservationAppPage>
               width: 21,
               height: 32,
               child: FlatButton(
-                color: Colors.grey[300],
+                color: selectColor,
                 child: Text(
                   label,
                   style: TextStyle(
@@ -985,7 +1259,9 @@ class MyApp extends State<ReservationAppPage>
                   ),
                   textAlign: TextAlign.right,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  changeButtonColor(postime);
+                },
               ),
             ),
             Container(
@@ -1095,239 +1371,241 @@ class MyApp extends State<ReservationAppPage>
       );
     }
 
-    Widget _readingroom = Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: 305, left: 50),
-          width: 310,
-          height: 250,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              width: 3,
-              color: PrimaryColor,
-            ),
-          ),
-          child: Column(
-            children: [
-              Container(
-                width: 320.0,
-                height: 39.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15.0),
-                    topRight: Radius.circular(15.0),
-                  ),
-                  color: const Color(0xffdfe6f3),
-                ),
-                child: Container(
-                  margin: EdgeInsets.only(top: 7, left: 120),
-                  child: Text(
-                    "제1열람실",
-                    style: TextStyle(
-                      fontFamily: 'DX유니고딕 20',
-                      fontSize: 11,
-                      color: const Color(0xff000000),
-                    ),
-                  ),
-                ),
+    Widget _readingroom(int studynum) {
+      return Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: 305, left: 50),
+            width: 310,
+            height: 250,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                width: 3,
+                color: PrimaryColor,
               ),
-              Container(
-                margin: EdgeInsets.only(top: 7, left: 30),
-                child: Row(
-                  children: [
-                    Text(
-                      "A",
+            ),
+            child: Column(
+              children: [
+                Container(
+                  width: 320.0,
+                  height: 39.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15.0),
+                      topRight: Radius.circular(15.0),
+                    ),
+                    color: const Color(0xffdfe6f3),
+                  ),
+                  child: Container(
+                    margin: EdgeInsets.only(top: 7, left: 120),
+                    child: Text(
+                      '제 ' + studynum.toString() + '열람실',
                       style: TextStyle(
                         fontFamily: 'DX유니고딕 20',
                         fontSize: 11,
                         color: const Color(0xff000000),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(left: 17),
-                      child: Text(
-                        "B",
-                        style: TextStyle(
-                          fontFamily: 'DX유니고딕 20',
-                          fontSize: 11,
-                          color: const Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 40),
-                      child: Text(
-                        "C",
-                        style: TextStyle(
-                          fontFamily: 'DX유니고딕 20',
-                          fontSize: 11,
-                          color: const Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 17),
-                      child: Text(
-                        "D",
-                        style: TextStyle(
-                          fontFamily: 'DX유니고딕 20',
-                          fontSize: 11,
-                          color: const Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 42),
-                      child: Text(
-                        "E",
-                        style: TextStyle(
-                          fontFamily: 'DX유니고딕 20',
-                          fontSize: 11,
-                          color: const Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 17),
-                      child: Text(
-                        "F",
-                        style: TextStyle(
-                          fontFamily: 'DX유니고딕 20',
-                          fontSize: 11,
-                          color: const Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 42),
-                      child: Text(
-                        "G",
-                        style: TextStyle(
-                          fontFamily: 'DX유니고딕 20',
-                          fontSize: 11,
-                          color: const Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 17),
-                      child: Text(
-                        "H",
-                        style: TextStyle(
-                          fontFamily: 'DX유니고딕 20',
-                          fontSize: 11,
-                          color: const Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              //
-              Container(
-                child: Row(
-                  children: [
-                    Container(
-                      child: Column(
-                        children: [
-                          _rightonechair("1"),
-                          _righttwofivechair("2"),
-                          _righttwofivechair("3"),
-                          _righttwofivechair("4"),
-                          _righttwofivechair("5"),
-                        ],
+                Container(
+                  margin: EdgeInsets.only(top: 7, left: 30),
+                  child: Row(
+                    children: [
+                      Text(
+                        "A",
+                        style: TextStyle(
+                          fontFamily: 'DX유니고딕 20',
+                          fontSize: 11,
+                          color: const Color(0xff000000),
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          _leftonechair("1"),
-                          _lefttwofivechair("2"),
-                          _lefttwofivechair("3"),
-                          _lefttwofivechair("4"),
-                          _lefttwofivechair("5"),
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(left: 17),
+                        child: Text(
+                          "B",
+                          style: TextStyle(
+                            fontFamily: 'DX유니고딕 20',
+                            fontSize: 11,
+                            color: const Color(0xff000000),
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          _rightonechair("1"),
-                          _righttwofivechair("2"),
-                          _righttwofivechair("3"),
-                          _righttwofivechair("4"),
-                          _righttwofivechair("5"),
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(left: 40),
+                        child: Text(
+                          "C",
+                          style: TextStyle(
+                            fontFamily: 'DX유니고딕 20',
+                            fontSize: 11,
+                            color: const Color(0xff000000),
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          _leftonechair("1"),
-                          _lefttwofivechair("2"),
-                          _lefttwofivechair("3"),
-                          _lefttwofivechair("4"),
-                          _lefttwofivechair("5"),
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(left: 17),
+                        child: Text(
+                          "D",
+                          style: TextStyle(
+                            fontFamily: 'DX유니고딕 20',
+                            fontSize: 11,
+                            color: const Color(0xff000000),
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          _rightonechair("1"),
-                          _righttwofivechair("2"),
-                          _righttwofivechair("3"),
-                          _righttwofivechair("4"),
-                          _righttwofivechair("5"),
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(left: 42),
+                        child: Text(
+                          "E",
+                          style: TextStyle(
+                            fontFamily: 'DX유니고딕 20',
+                            fontSize: 11,
+                            color: const Color(0xff000000),
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          _leftonechair("1"),
-                          _lefttwofivechair("2"),
-                          _lefttwofivechair("3"),
-                          _lefttwofivechair("4"),
-                          _lefttwofivechair("5"),
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(left: 17),
+                        child: Text(
+                          "F",
+                          style: TextStyle(
+                            fontFamily: 'DX유니고딕 20',
+                            fontSize: 11,
+                            color: const Color(0xff000000),
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          _rightonechair("1"),
-                          _righttwofivechair("2"),
-                          _righttwofivechair("3"),
-                          _righttwofivechair("4"),
-                          _righttwofivechair("5"),
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(left: 42),
+                        child: Text(
+                          "G",
+                          style: TextStyle(
+                            fontFamily: 'DX유니고딕 20',
+                            fontSize: 11,
+                            color: const Color(0xff000000),
+                          ),
+                        ),
                       ),
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          _leftonechair("1"),
-                          _lefttwofivechair("2"),
-                          _lefttwofivechair("3"),
-                          _lefttwofivechair("4"),
-                          _lefttwofivechair("5"),
-                        ],
+                      Container(
+                        margin: EdgeInsets.only(left: 17),
+                        child: Text(
+                          "H",
+                          style: TextStyle(
+                            fontFamily: 'DX유니고딕 20',
+                            fontSize: 11,
+                            color: const Color(0xff000000),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )
-            ],
+                //
+                Container(
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Column(
+                          children: [
+                            _rightonechair("1"),
+                            _righttwofivechair("2"),
+                            _righttwofivechair("3"),
+                            _righttwofivechair("4"),
+                            _righttwofivechair("5"),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            _leftonechair("1"),
+                            _lefttwofivechair("2"),
+                            _lefttwofivechair("3"),
+                            _lefttwofivechair("4"),
+                            _lefttwofivechair("5"),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            _rightonechair("1"),
+                            _righttwofivechair("2"),
+                            _righttwofivechair("3"),
+                            _righttwofivechair("4"),
+                            _righttwofivechair("5"),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            _leftonechair("1"),
+                            _lefttwofivechair("2"),
+                            _lefttwofivechair("3"),
+                            _lefttwofivechair("4"),
+                            _lefttwofivechair("5"),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            _rightonechair("1"),
+                            _righttwofivechair("2"),
+                            _righttwofivechair("3"),
+                            _righttwofivechair("4"),
+                            _righttwofivechair("5"),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            _leftonechair("1"),
+                            _lefttwofivechair("2"),
+                            _lefttwofivechair("3"),
+                            _lefttwofivechair("4"),
+                            _lefttwofivechair("5"),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            _rightonechair("1"),
+                            _righttwofivechair("2"),
+                            _righttwofivechair("3"),
+                            _righttwofivechair("4"),
+                            _righttwofivechair("5"),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            _leftonechair("1"),
+                            _lefttwofivechair("2"),
+                            _lefttwofivechair("3"),
+                            _lefttwofivechair("4"),
+                            _lefttwofivechair("5"),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
+    }
 
 // 탭뷰
     Widget tabView = Container(
-      margin: EdgeInsets.only(top: 400),
+      margin: EdgeInsets.only(top: newtop),
       child: TabBarView(controller: _tabController, children: [
         Container(
           child: Column(
@@ -1341,10 +1619,7 @@ class MyApp extends State<ReservationAppPage>
           child: Column(
             children: [
               studyroomplace,
-              booktime(
-                10,
-                32,
-              ),
+              booktime(10, 32),
             ],
           ),
         ),
@@ -1352,10 +1627,7 @@ class MyApp extends State<ReservationAppPage>
           child: Column(
             children: [
               booksearch,
-              booktime(
-                10,
-                32,
-              ),
+              booktime(10, 32),
             ],
           ),
         ),
@@ -1370,14 +1642,15 @@ class MyApp extends State<ReservationAppPage>
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           // 세개의 위젯들을 자식들로 가짐
-          _buildbookButton(PrimaryColor, '완료'),
+          _buildbookButton(PrimaryColor, '완료', context, currMonth, currDay,
+              currtime, nexttime),
         ],
       ),
     );
 
     return Scaffold(
       // appBar: AppBar(
-      //   title: Text("Reservation Page"),
+      //   title: new Text(widget.title),
       // ),
       body: Stack(
         children: <Widget>[
@@ -1385,24 +1658,47 @@ class MyApp extends State<ReservationAppPage>
             child: Stack(
               children: [
                 mybook,
+                Transform.translate(
+                  offset: Offset(150.0, 251.0),
+                  child: FlatButton(
+                      color: Colors.grey[300],
+                      child: Text(
+                        "버튼",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.black,
+                          fontFamily: 'DX유니고딕 20',
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      onPressed: () {
+                        runApp(ReservationPage());
+                      }),
+                ),
+
                 Visibility(
-                    visible: bookVisible1 && studyroomVisible1, child: tabs),
-                Visibility(visible: bookVisible2, child: _readingroom),
+                    visible: bookVisible1 &&
+                        timeVisible1 &&
+                        dayVisible1 &&
+                        addVisible1,
+                    child: tabs),
                 Visibility(
-                    visible: bookVisible2,
-                    child: booktime(
-                      565,
-                      50,
-                    )),
+                    visible: bookVisible1 && timeVisible1 && dayVisible1,
+                    child: tabView),
+
+                //열람실좌석
                 Visibility(
-                    visible: bookVisible1 && studyroomVisible1, child: tabView),
-                Visibility(visible: studyroomVisible2, child: _posrestime),
-                Visibility(
-                    visible: studyroomVisible2,
-                    child: booktime(
-                      565,
-                      50,
-                    )),
+                    visible: bookVisible2, child: _readingroom(studyroomnum)),
+                Visibility(visible: bookVisible2, child: booktime(565, 50)),
+
+                // 날짜
+                Visibility(visible: dayVisible2, child: _resday),
+                Visibility(visible: dayVisible2, child: booktime(565, 50)),
+
+                // 시간
+                Visibility(visible: timeVisible2, child: _posrestime),
+                Visibility(visible: timeVisible2, child: booktime(565, 50)),
+
                 bookbuttonfinish,
                 //Text(textToShow),
               ],
@@ -1447,7 +1743,8 @@ Column _buildABCButton(Color color, String label) {
   );
 }
 
-Column _buildbookButton(Color color, String label) {
+Column _buildbookButton(Color color, String label, dynamic context,
+    String currMonth, String currDay, String currTime, String nextTime) {
   // 컬럼을 생성하여 반환
   return Column(
     mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
@@ -1457,31 +1754,35 @@ Column _buildbookButton(Color color, String label) {
       ButtonTheme(
         minWidth: 67,
         height: 35,
-        child: Builder(
-          builder: (context) => Center(
-            child: FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(18)),
-              color: color,
-              child: Text(
-                label,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black,
-                  fontFamily: 'DX유니고딕 20',
-                ),
-                textAlign: TextAlign.left,
-              ),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (_) => AlertDialog(
-                          title: Text('예약되었습니다.'),
-                          content: Text('닫고 싶으시면 아무곳이나 눌러주세요!'),
-                        ));
-              },
+        child: FlatButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(18)),
+          color: color,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.black,
+              fontFamily: 'DX유니고딕 20',
             ),
+            textAlign: TextAlign.left,
           ),
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                      title: Text(currMonth +
+                          "월" +
+                          currDay +
+                          "일 " +
+                          currTime +
+                          ":00 - " +
+                          nextTime +
+                          ":00" +
+                          '\n예약되었습니다.'),
+                      content: Text('닫고 싶으시면 아무곳이나 눌러주세요!'),
+                    ));
+          },
           // onPressed: () => clickcase(label),
         ),
       )
