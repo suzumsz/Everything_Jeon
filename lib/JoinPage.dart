@@ -129,7 +129,7 @@ class _Sign_upState extends State<JoinPage> {
 
   //회원가입 하는 메소드
   void _register() async {
-    final AuthResult result = await FirebaseAuth.instance
+    final UserCredential result = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(
             email: _emailController.text, password: _passwordController.text);
     final FirebaseUser user = result.user;

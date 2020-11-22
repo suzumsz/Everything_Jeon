@@ -25,9 +25,9 @@ dependencies:
     sdk: flutter
   adobe_xd: ^1.0.0+1
   flutter_calendar_carousel: ^1.5.1
-  firebase_auth: ^0.16.1
+  firebase_auth: ^0.18.3
   intl: ^0.16.1
-  #cloud_firestore: ^0.14.3
+  cloud_firestore: ^0.14.3
   #firebase_core: ^0.5.2
 
   # The following adds the Cupertino Icons font to your application.

@@ -4,8 +4,11 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel;
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:intl/intl.dart' show DateFormat;
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp();
   runApp(ReservationPage());
 }
 
@@ -40,6 +43,7 @@ class MyApp extends State<ReservationAppPage>
   double newheight = 128.0;
   double listnewheight = 50.0;
   double newtop = 400.0;
+  String stloc = "";
 
   DateTime _currentDate = DateTime.now();
   DateTime _currentDate2 = DateTime.now();
@@ -50,7 +54,9 @@ class MyApp extends State<ReservationAppPage>
   static const postime = Color(0xff9BFFA1);
   static const impostime = Color(0xffFF8888);
   Color selectColor = Color(0xffE3E5E9);
+  Color stselectColor = Colors.grey[300];
 
+//시간
   void changeText(String time) {
     setState(() {
       currtime = time;
@@ -58,6 +64,7 @@ class MyApp extends State<ReservationAppPage>
     });
   }
 
+//달력
   void changeTextday(DateTime time) {
     setState(() {
       currMonth = time.month.toString();
@@ -71,6 +78,7 @@ class MyApp extends State<ReservationAppPage>
     });
   }
 
+// 도서 예약 - 더보기 클릭 시 레이아웃 변경
   void changeaddheigh(double height, double top, double listheight) {
     setState(() {
       newheight = height;
@@ -79,9 +87,17 @@ class MyApp extends State<ReservationAppPage>
     });
   }
 
+//열람실 버튼 클릭 시 색 변경
   void changeButtonColor(Color color) {
     setState(() {
       selectColor = color;
+      stselectColor = color;
+    });
+  }
+
+  void changeloctext(String loc) {
+    setState(() {
+      stloc = "본관 스터디룸" + loc;
     });
   }
 
@@ -190,13 +206,15 @@ class MyApp extends State<ReservationAppPage>
   static const SubColor = Color(0xff3C4C73);
   static const BorderColor = Color(0xff445379);
 
+  String studyroom1 = "도서관 지하 1층";
+  String studyroom2 = "본관 카페 1층";
+
   @override
   Widget build(BuildContext context) {
     Widget tabs = Container(
       margin: EdgeInsets.only(top: 305, left: 50, right: 50),
       child: TabBar(
         controller: _tabController,
-        indicatorPadding: EdgeInsets.all(30),
         indicatorWeight: 1,
         indicator: BoxDecoration(
           color: PrimaryColor,
@@ -533,6 +551,52 @@ class MyApp extends State<ReservationAppPage>
       ),
     );
 
+    Column _buildABCButton(Color color, String label, String loc) {
+      // 컬럼을 생성하여 반환
+      return Column(
+        mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
+        mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
+        // 컬럼의 자식들로 아이콘과 컨테이너를 등록
+        children: <Widget>[
+          Container(
+            width: 30,
+            height: 40,
+            padding: EdgeInsets.symmetric(vertical: 5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(5)),
+              color: color,
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontFamily: 'DX유니고딕 20',
+                ),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () {
+                if (loc == studyroom1) {
+                  print(label);
+                  if (label == "A") {
+                    changeloctext(label);
+                  }
+                  if (label == "B") {
+                    changeloctext(label);
+                  }
+                }
+                if (loc == studyroom2) {
+                  print(loc);
+                }
+              },
+            ),
+          )
+        ],
+      );
+    }
+
     Widget bookplace = Container(
       margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.only(right: 32, left: 32),
@@ -598,7 +662,7 @@ class MyApp extends State<ReservationAppPage>
                         child: Column(
                           children: [
                             Text(
-                              '도서관 지하 1층',
+                              studyroom1,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 12,
@@ -609,9 +673,12 @@ class MyApp extends State<ReservationAppPage>
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  _buildABCButton(Colors.grey[900], 'A'),
-                                  _buildABCButton(Colors.grey[900], 'B'),
-                                  _buildABCButton(Colors.grey[900], 'C'),
+                                  _buildABCButton(
+                                      stselectColor, 'A', studyroom1),
+                                  _buildABCButton(
+                                      stselectColor, 'B', studyroom1),
+                                  _buildABCButton(
+                                      Colors.grey[300], 'C', studyroom1),
                                 ],
                               ),
                             ),
@@ -623,7 +690,7 @@ class MyApp extends State<ReservationAppPage>
                         child: Column(
                           children: [
                             Text(
-                              '본관 카페 1층',
+                              studyroom2,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 12,
@@ -634,9 +701,12 @@ class MyApp extends State<ReservationAppPage>
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  _buildABCButton(Colors.grey[900], 'A'),
-                                  _buildABCButton(Colors.grey[900], 'B'),
-                                  _buildABCButton(Colors.grey[900], 'C'),
+                                  _buildABCButton(
+                                      Colors.grey[300], 'A', studyroom2),
+                                  _buildABCButton(
+                                      Colors.grey[300], 'B', studyroom2),
+                                  _buildABCButton(
+                                      Colors.grey[300], 'C', studyroom2),
                                 ],
                               ),
                             ),
@@ -1635,6 +1705,63 @@ class MyApp extends State<ReservationAppPage>
     );
 
 //완료버튼
+
+    Column _buildbookButton(Color color, String label, dynamic context,
+        String currMonth, String currDay, String currTime, String nextTime) {
+      // 컬럼을 생성하여 반환
+      return Column(
+        mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
+        mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
+        // 컬럼의 자식들로 아이콘과 컨테이너를 등록
+        children: <Widget>[
+          ButtonTheme(
+            minWidth: 67,
+            height: 35,
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(18)),
+              color: color,
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.black,
+                  fontFamily: 'DX유니고딕 20',
+                ),
+                textAlign: TextAlign.left,
+              ),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                          title: Text(currMonth +
+                              "월" +
+                              currDay +
+                              "일 " +
+                              currTime +
+                              ":00 - " +
+                              nextTime +
+                              ":00" +
+                              stloc +
+                              '에\n예약되었습니다.'),
+                          content: Text('닫고 싶으시면 아무곳이나 눌러주세요!'),
+                        ));
+
+                Firestore.instance
+                    .collection('test')
+                    .doc('test')
+                    .set({'currDay': currDay, 'currTime?': currTime});
+                // firestore
+                //     .collection('test')
+                //     .document("test")
+                //     .setData({'currDay': currDay, 'currTime?': currTime});
+              },
+            ),
+          )
+        ],
+      );
+    }
+
     Widget bookbuttonfinish = Container(
       margin: const EdgeInsets.only(top: 720, right: 50),
       child: Row(
@@ -1708,84 +1835,4 @@ class MyApp extends State<ReservationAppPage>
       ),
     );
   }
-}
-
-Column _buildABCButton(Color color, String label) {
-  // 컬럼을 생성하여 반환
-  return Column(
-    mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
-    mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
-    // 컬럼의 자식들로 아이콘과 컨테이너를 등록
-    children: <Widget>[
-      Container(
-        width: 30,
-        height: 40,
-        padding: EdgeInsets.symmetric(vertical: 5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(5)),
-          color: Colors.grey[300],
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontFamily: 'DX유니고딕 20',
-            ),
-            textAlign: TextAlign.center,
-          ),
-          onPressed: () {},
-        ),
-      )
-    ],
-  );
-}
-
-Column _buildbookButton(Color color, String label, dynamic context,
-    String currMonth, String currDay, String currTime, String nextTime) {
-  // 컬럼을 생성하여 반환
-  return Column(
-    mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
-    mainAxisAlignment: MainAxisAlignment.center, // 가운데 정렬
-    // 컬럼의 자식들로 아이콘과 컨테이너를 등록
-    children: <Widget>[
-      ButtonTheme(
-        minWidth: 67,
-        height: 35,
-        child: FlatButton(
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(18)),
-          color: color,
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.black,
-              fontFamily: 'DX유니고딕 20',
-            ),
-            textAlign: TextAlign.left,
-          ),
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                      title: Text(currMonth +
-                          "월" +
-                          currDay +
-                          "일 " +
-                          currTime +
-                          ":00 - " +
-                          nextTime +
-                          ":00" +
-                          '\n예약되었습니다.'),
-                      content: Text('닫고 싶으시면 아무곳이나 눌러주세요!'),
-                    ));
-          },
-          // onPressed: () => clickcase(label),
-        ),
-      )
-    ],
-  );
 }

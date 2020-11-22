@@ -210,15 +210,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 class Auth {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future<FirebaseUser> handleSignInEmail(String email, String password) async {
-    AuthResult result =
+  Future<User> handleSignInEmail(String email, String password) async {
+    UserCredential result =
         await auth.signInWithEmailAndPassword(email: email, password: password);
-    final FirebaseUser user = result.user;
+    final User user = result.user;
 
     assert(user != null);
     assert(await user.getIdToken() != null);
 
-    final FirebaseUser currentUser = await auth.currentUser();
+    final User currentUser = await auth.currentUser;
     assert(user.uid == currentUser.uid);
 
     print('signInEmail succeeded: $user');
@@ -226,10 +226,10 @@ class Auth {
     return user;
   }
 
-  Future<FirebaseUser> handleSignUp(email, password) async {
-    AuthResult result = await auth.createUserWithEmailAndPassword(
+  Future<User> handleSignUp(email, password) async {
+    UserCredential result = await auth.createUserWithEmailAndPassword(
         email: email, password: password);
-    final FirebaseUser user = result.user;
+    final User user = result.user;
 
     assert(user != null);
     assert(await user.getIdToken() != null);
@@ -280,9 +280,7 @@ class LoginPage extends StatelessWidget {
                   onPressed: () {
                     print(id + '\n' + pw);
                     var authHandler = new Auth();
-                    authHandler
-                        .handleSignInEmail(id, pw)
-                        .then((FirebaseUser user) {
+                    authHandler.handleSignInEmail(id, pw).then((User user) {
                       Navigator.push(
                           context,
                           new MaterialPageRoute(
