@@ -142,6 +142,9 @@ class MyApp extends State<ReservationAppPage>
   bool timeVisible1 = true; //보이는거 안보이게
   bool timeVisible2 = false; //안보이는거 보이게
 
+  bool bookVisible1 = true; //보이는거 안보이게
+  bool bookVisible2 = false; //안보이는거 보이게
+
   void dayshowWidget() {
     //보이기
     setState(() {
@@ -156,6 +159,7 @@ class MyApp extends State<ReservationAppPage>
       dayVisible1 = false;
       dayVisible2 = true;
       timeVisible2 = false;
+      bookVisible2 = false;
     });
   }
 
@@ -173,13 +177,11 @@ class MyApp extends State<ReservationAppPage>
       timeVisible1 = false;
       timeVisible2 = true;
       dayVisible2 = false;
+      bookVisible2 = false;
     });
   }
 
   //독서실예약 - 열람실 - 좌석확인하기 클릭
-
-  bool bookVisible1 = true; //보이는거 안보이게
-  bool bookVisible2 = false; //안보이는거 보이게
 
   void bookshowWidget() {
     //보이기
@@ -194,6 +196,8 @@ class MyApp extends State<ReservationAppPage>
     setState(() {
       bookVisible1 = false;
       bookVisible2 = true;
+      timeVisible2 = false;
+      dayVisible2 = false;
     });
   }
 
@@ -309,6 +313,31 @@ class MyApp extends State<ReservationAppPage>
               borderRadius: BorderRadius.circular(13.0),
               color: const Color(0xf23c4c73),
               border: Border.all(width: 3.0, color: const Color(0xf2ffffff)),
+            ),
+          ),
+        ),
+        Transform.translate(
+          offset: Offset(241.0, 71.0),
+          child: Container(
+            width: 21.0,
+            height: 21.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+              color: const Color(0xffffffff),
+            ),
+          ),
+        ),
+        Transform.translate(
+          // 원형로고
+          offset: Offset(243.0, 73.0),
+          child: Container(
+            width: 17.0,
+            height: 17.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: const AssetImage('images/circlelogo.png'),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),
