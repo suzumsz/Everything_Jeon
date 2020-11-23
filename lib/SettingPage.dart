@@ -2,6 +2,8 @@ import 'package:everything_jeon/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
 class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -148,13 +150,9 @@ class SettingPage extends StatelessWidget {
                     ),
                     textAlign: TextAlign.left,
                   ),
-                  onPressed: () {
-                    //async {
-                    // final User user = await _auth.currentUser;
-                    // Respond to button press
-                    // _auth.signOut();
-                    //https://eory96study.tistory.com/36
-                    //https://github.com/FirebaseExtended/flutterfire/blob/master/packages/firebase_auth/firebase_auth/example/lib/signin_page.dart
+                  onPressed: () async {
+                    _signOut();
+
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginPage()));
                   }),
@@ -164,4 +162,9 @@ class SettingPage extends StatelessWidget {
       ),
     );
   }
+}
+
+_signOut() async {
+  await _firebaseAuth.signOut();
+  print('signInEmail succeeded: $_signOut');
 }
