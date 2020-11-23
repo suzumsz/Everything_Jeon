@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'XDinfo_list.dart';
 import 'package:intl/intl.dart';
+import 'Barcode.dart';
 
 // 브라우저를 열 링크
 const url = 'https://www.mjc.ac.kr/bbs/data/list.do?menu_idx=169';
@@ -18,9 +19,18 @@ class NoticePage extends StatefulWidget {
 }
 
 class NoticePageState extends State<NoticePage> {
+  /* 나의 할 일 추가 */
+  String addCon = '';
+  String addDate = '';
+  String addTime = '';
+  /* */
+
+  List<String> contents = List<String>();
   DateTime _selectedTime; //날짜
   String _selectedTime2; //시간
+  String _selectedTime3;
 
+  bool startFlag = true;
   String _value = '';
   bool a = true;
   String mText = "Press to hide";
@@ -48,6 +58,7 @@ class NoticePageState extends State<NoticePage> {
     selectedTime.then((timeOfDay) {
       setState(() {
         _selectedTime2 = '${timeOfDay.hour}시   ${timeOfDay.minute}분';
+        _selectedTime3 = '${timeOfDay.hour}:${timeOfDay.minute}';
         print(_selectedTime2);
         return _selectedTime2;
       });
@@ -89,7 +100,11 @@ class NoticePageState extends State<NoticePage> {
                 padding: EdgeInsets.only(left: _left, top: _top),
                 child: Text(
                   text,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: size),
+                  style: TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: size,
+                    color: const Color(0xff0c1939),
+                  ),
                 ),
               ),
             ],
@@ -146,7 +161,15 @@ class NoticePageState extends State<NoticePage> {
                   Icons.add,
                   color: Colors.white,
                 )),
-            onTap: () {},
+            onTap: () {
+              addDate = DateFormat('⦁ MM. dd').format(
+                  _selectedTime == null ? DateTime.now() : _selectedTime);
+              addTime = _selectedTime3 == null ? "0:0" : _selectedTime3;
+
+              contents.add(addDate + ' / ' + addTime + '     ' + addCon);
+              _visibilitymethod(); //나왔다가
+              _visibilitymethod(); //가리기
+            },
           ),
         ),
       ),
@@ -159,24 +182,26 @@ class NoticePageState extends State<NoticePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          Container(
-            width: 25.0,
-            height: 25.0,
-            child: FloatingActionButton(
-              heroTag: heroTag,
-              elevation: 0,
-              backgroundColor: PrimaryColor,
-              foregroundColor: Colors.white,
-              mini: true,
-              onPressed: () {
-                if (heroTag == "btnAdd1") {
-                  _visibilitymethod();
-                }
-                // Respond to button press
-              },
-              child: Icon(Icons.add),
-            ),
-          ),
+          a == true
+              ? new Container(
+                  width: 25.0,
+                  height: 25.0,
+                  child: FloatingActionButton(
+                    heroTag: heroTag,
+                    elevation: 0,
+                    backgroundColor: PrimaryColor,
+                    foregroundColor: Colors.white,
+                    mini: true,
+                    onPressed: () {
+                      if (heroTag == "btnAdd1") {
+                        _visibilitymethod();
+                      }
+                      // Respond to button press
+                    },
+                    child: Icon(Icons.add),
+                  ),
+                )
+              : new Container(),
           a == true
               ? new Container()
               : new Container(
@@ -222,7 +247,9 @@ class NoticePageState extends State<NoticePage> {
                                     border: InputBorder.none,
                                     contentPadding:
                                         EdgeInsets.only(left: 10, bottom: 18)),
-                                onChanged: (result) {},
+                                onChanged: (result) {
+                                  addCon = result;
+                                },
                               ),
                               margin: EdgeInsets.only(top: 15),
                               height: 30,
@@ -341,6 +368,7 @@ class NoticePageState extends State<NoticePage> {
                                 foregroundColor: Colors.black,
                                 onPressed: () {
                                   // Respond to button press
+                                  _visibilitymethod();
                                 },
                                 label: Text('완료')),
                           ),
@@ -380,6 +408,7 @@ class NoticePageState extends State<NoticePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => XDinfo_list_tab(0)),
+                  //MaterialPageRoute(builder: (context) => Barcode())
                 );
                 break;
             }
@@ -407,6 +436,10 @@ class NoticePageState extends State<NoticePage> {
         ));
   }
 
+  Widget borderContainer1_ViewContent() {
+    for (int i = 0; i < contents.length; i++) Text(contents[i].toString());
+  }
+
   Widget borderContainer1() {
     return Container(
       padding: const EdgeInsets.all(15.0),
@@ -418,9 +451,12 @@ class NoticePageState extends State<NoticePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("⦁ 10. 31 / 16:00     산업디자인과 취업 특강 이수"),
-          Text("⦁ 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출"),
-          Text("⦁ 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출"),
+          for (int i = 0; i < contents.length; i++) Text(contents[i]),
+          /*borderContainer1_AddContent("⦁ 10. 31 / 16:00     산업디자인과 취업 특강 이수"),
+          borderContainer1_AddContent(
+              "⦁ 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출"),
+          borderContainer1_AddContent("⦁ 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출"),
+          */
           buttonAdd(Alignment.centerRight, "btnAdd1"),
         ],
       ),
@@ -510,7 +546,11 @@ class NoticePageState extends State<NoticePage> {
           //SvgPicture.asset('images/mytest.svg', width: 30, height: 30),
           Text(
             "김진원 [2019671062]",
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 13,
+                color: const Color(0xff0a1736),
+              ),
           )
         ],
       ),
@@ -557,6 +597,7 @@ class NoticePageState extends State<NoticePage> {
         fit: StackFit.expand,
         children: [
           AppBar(
+            elevation: 0.0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
@@ -566,14 +607,40 @@ class NoticePageState extends State<NoticePage> {
             child: Align(
                 alignment: Alignment.centerLeft,
                 child: Container(
-                  margin: const EdgeInsets.only(top: 50),
+                  margin: const EdgeInsets.only(top: 55),
                   child: Column(
                     children: [
                       Row(
                         children: [
-                          addText("공지사항", 25, 15, 0),
+                          addText("공지사항", 25, 30, 0),
+                          Transform.translate(
+                            offset: Offset(119.0, 8.5),
+                            child: Container(
+                              width: 21.0,
+                              height: 21.0,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                color: const Color(0xffffffff),
+                              ),
+                            ),
+                          ),
+                          Transform.translate(
+                            // 원형로고
+                            offset: Offset(100.0, 8.5),
+                            child: Container(
+                              width: 17.0,
+                              height: 17.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: const AssetImage('images/circlelogo.png'),
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                          ),
                           Container(
-                            margin: EdgeInsets.only(left: 20),
+                            margin: EdgeInsets.only(left: 5),
                             child: schoolLogo("김진원[2019671062]"),
                           ),
                         ],
@@ -596,6 +663,14 @@ class NoticePageState extends State<NoticePage> {
 //textControl 사용하여 추가
   @override
   Widget build(BuildContext context) {
+    print(startFlag);
+    if (startFlag) {
+      contents.clear();
+      contents.add("⦁ 10. 31 / 16:00     산업디자인과 취업 특강 이수");
+      contents.add("⦁ 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출");
+      contents.add("⦁ 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출");
+      startFlag = false;
+    }
     // ignore: non_constant_identifier_names
 
     /********************************************** AppBar ***************************************************************/
