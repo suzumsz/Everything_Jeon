@@ -194,6 +194,30 @@ class MainPage extends StatelessWidget {
                   fontSize: 9.5, color: Color.fromRGBO(12, 25, 57, 1)),
             ),
           ),
+          Transform.translate(
+            offset: Offset(150.7, 179.2),
+            child: Container(
+              width: 190.0,
+              height: 90.0,
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                color: Color.fromRGBO(223, 230, 243, 1),
+              ),
+            ),
+          ),
+          Transform.translate(
+            offset: Offset(172.7, 90.8),
+            child: Container(
+              width: 68.0,
+              height: 68.0,
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                color: const Color(0xffffffff),
+              ),
+            ),
+          ),
         ],
       ),
     );

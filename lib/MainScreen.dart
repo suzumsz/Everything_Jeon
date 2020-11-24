@@ -33,6 +33,10 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: new FloatingActionButton(
+        //child: Padding(
+        // padding: const EdgeInsets.all(15),
+        // child: Image.asset('images/barlogo.png'),
+        // ),
         clipBehavior: Clip.antiAlias,
         elevation: 0,
         onPressed: () {
@@ -42,15 +46,16 @@ class _MainScreenState extends State<MainScreen> {
           // Navigator.push(
           //   context, MaterialPageRoute(builder: (context) => FloatPage()));
         },
+        backgroundColor: BtnColor,
         child: new Icon(
-          Icons.add,
+          Icons.qr_code,
+          size: 30,
           color: PrimaryColor,
         ),
-        backgroundColor: BtnColor,
       ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
-        notchMargin: 9,
+        notchMargin: 12,
         color: Colors.blue,
         clipBehavior: Clip.antiAlias,
         child: BottomNavigationBar(
