@@ -4,7 +4,6 @@ import 'package:everything_jeon/NoticePage.dart';
 import 'package:everything_jeon/ReservationPage.dart';
 import 'package:flutter/material.dart';
 import 'SettingPage.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 const PrimaryColor = Color.fromRGBO(32, 80, 114, 1);
 const SecondaryColor = Color.fromRGBO(166, 185, 198, 1);
@@ -21,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> _widgetOptions = <Widget>[
     ReservationPage(),
     LocationPage(),
+    MainPage(),
     NoticePage(),
     SettingPage(),
   ];
@@ -36,9 +36,9 @@ class _MainScreenState extends State<MainScreen> {
         clipBehavior: Clip.antiAlias,
         elevation: 0,
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => MainPage(),
-          ));
+          // Navigator.of(context).push(MaterialPageRoute(
+          // builder: (context) => MainPage(),
+          //));
           // Navigator.push(
           //   context, MaterialPageRoute(builder: (context) => FloatPage()));
         },
@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
               //backgroundColor: Colors.white,
               icon: ImageIcon(
                 AssetImage("images/resericon.png"),
-                color: SecondaryColor,
+                //color: SecondaryColor,
                 size: 30,
               ),
 
@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
               title: Text('예약'),
               activeIcon: ImageIcon(
                 AssetImage("images/resericon.png"),
-                color: PrimaryColor,
+                //color: PrimaryColor,
                 size: 30,
               ),
             ),
@@ -96,9 +96,17 @@ class _MainScreenState extends State<MainScreen> {
               icon: ImageIcon(
                 AssetImage("images/noticeicon.png"),
                 color: SecondaryColor,
-                size: 30,
+                size: 0,
               ),
               title: Text('공지'),
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage("images/noticeicon.png"),
+                color: SecondaryColor,
+                size: 30,
+              ),
+              title: Text('설정'),
               activeIcon: ImageIcon(
                 AssetImage("images/noticeicon.png"),
                 color: PrimaryColor,
@@ -132,6 +140,7 @@ class _MainScreenState extends State<MainScreen> {
           _buildOffstageNavigator(1),
           _buildOffstageNavigator(2),
           _buildOffstageNavigator(3),
+          _buildOffstageNavigator(4),
         ],
       ),
     );
@@ -143,6 +152,7 @@ class _MainScreenState extends State<MainScreen> {
         return [
           ReservationPage(),
           LocationPage(),
+          MainPage(),
           NoticePage(),
           SettingPage(),
         ].elementAt(index);
