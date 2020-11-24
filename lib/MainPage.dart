@@ -167,7 +167,6 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  //바코드 div, 사진 임의로 넣어놓음
                   margin: const EdgeInsets.only(
                       left: 20.0, top: 30.0, right: 20.0, bottom: 0.0),
                   width: 400,
