@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String hak = "2020541012";
+    String barcode = hak + "30";
+
     return Scaffold(
       //------------ 여기서부터 body ------------------------
       backgroundColor: Color.fromRGBO(223, 230, 243, 1),
@@ -122,7 +126,7 @@ class MainPage extends StatelessWidget {
                               left: 13.0, top: 0.0, right: 0.0, bottom: 0.0),
                           width: 150,
                           height: 15,
-                          child: Text("학번 : 2020541012",
+                          child: Text("학번 : " + hak,
                               style: TextStyle(
                                   fontSize: 10,
                                   color: Color.fromRGBO(12, 25, 57, 1))),
@@ -168,13 +172,10 @@ class MainPage extends StatelessWidget {
                       left: 20.0, top: 30.0, right: 20.0, bottom: 0.0),
                   width: 400,
                   height: 90,
-                  child: Image.asset(
-                    'images/barcode.png',
-                    fit: BoxFit.cover,
+                  child: SfBarcodeGenerator(
+                    value: '$barcode',
+                    showValue: true,
                   ),
-                  decoration: BoxDecoration(
-                      // border: Border.all(color: Colors.blueGrey, width: 5)
-                      ),
                 ),
               ],
             ),
