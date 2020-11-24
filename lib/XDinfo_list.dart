@@ -72,8 +72,9 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
             backgroundColor: backgroundColor,
             foregroundColor: Colors.black,
             onPressed: () {
-              if (text == "분실물 신고")
-                _controller.animateTo(1);
+              if (text == "분실물 신고") {
+                //_controller.animateTo(1);
+              }
               else if (text == "분실물 검색") _controller.animateTo(2);
             },
             label: Text(text, style: textstyle)),
@@ -618,6 +619,21 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                 borderRadius:
                     BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                 color: const Color(0xff205072),
+              ),
+            ),
+          ),
+          
+          Transform.translate(
+            // 원형로고
+            offset: Offset(243.0, 73.0),
+            child: Container(
+              width: 17.0,
+              height: 17.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: const AssetImage('images/circlelogo.png'),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
