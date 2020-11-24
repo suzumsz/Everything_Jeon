@@ -610,9 +610,6 @@ class LoginPage extends StatelessWidget {
   }
 }*/
 
-
-
-
 /*
 class Auth {
   final FirebaseAuth auth = FirebaseAuth.instance;

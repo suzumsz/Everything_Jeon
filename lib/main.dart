@@ -1,4 +1,4 @@
-import 'package:everything_jeon/MainScreen.dart';
+import 'package:everything_jeon/LoginPage.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MainScreen(),
+      home: LoginPage(),
     );
   }
 }

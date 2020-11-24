@@ -28,6 +28,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: new FloatingActionButton(
@@ -59,53 +61,59 @@ class _MainScreenState extends State<MainScreen> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               //backgroundColor: Colors.white,
-              icon: Icon(
-                Feather.settings,
+              icon: ImageIcon(
+                AssetImage("images/resericon.png"),
                 color: SecondaryColor,
                 size: 30,
               ),
+
+              //Icon(
+              //Feather.settings,
+              //color: SecondaryColor,
+              //size: 30,
+
               title: Text('예약'),
-              activeIcon: Icon(
-                Feather.settings,
+              activeIcon: ImageIcon(
+                AssetImage("images/resericon.png"),
                 color: PrimaryColor,
                 size: 30,
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Feather.settings,
+              icon: ImageIcon(
+                AssetImage("images/locicon.png"),
                 color: SecondaryColor,
                 size: 30,
               ),
               title: Text('위치'),
-              activeIcon: Icon(
-                Feather.settings,
+              activeIcon: ImageIcon(
+                AssetImage("images/locicon.png"),
                 color: PrimaryColor,
                 size: 30,
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Feather.settings,
+              icon: ImageIcon(
+                AssetImage("images/noticeicon.png"),
                 color: SecondaryColor,
                 size: 30,
               ),
               title: Text('공지'),
-              activeIcon: Icon(
-                Feather.settings,
+              activeIcon: ImageIcon(
+                AssetImage("images/noticeicon.png"),
                 color: PrimaryColor,
                 size: 30,
               ),
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Feather.settings,
+              icon: ImageIcon(
+                AssetImage("images/seticon.png"),
                 color: SecondaryColor,
                 size: 30,
               ),
               title: Text('설정'),
-              activeIcon: Icon(
-                Feather.settings,
+              activeIcon: ImageIcon(
+                AssetImage("images/seticon.png"),
                 color: PrimaryColor,
                 size: 30,
               ),

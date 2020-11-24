@@ -63,6 +63,11 @@ flutter:
     - images/circlelogo.png
     - images/rightarrow.png
     - images/etlogo.png
+    - images/seticon.png
+    - images/resericon.png
+    - images/noticeicon.png
+    - images/locicon.png
+    - images/baricon.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
