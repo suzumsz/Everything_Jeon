@@ -20,6 +20,10 @@ class SettingPage extends StatelessWidget {
                 borderRadius:
                     BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                 color: const Color(0xffdfe6f3),
+                image: DecorationImage(
+                  image: const AssetImage('images/circlelogo.png'),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
@@ -95,6 +99,21 @@ class SettingPage extends StatelessWidget {
                 borderRadius:
                     BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                 color: const Color(0xffdfe6f3),
+              ),
+            ),
+          ),
+          Transform.translate(
+            offset: Offset(56.8, 140.0),
+            child: Container(
+              width: 71.0,
+              height: 71.0,
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                image: DecorationImage(
+                  image: const AssetImage('images/setlogo.png'),
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
           ),
