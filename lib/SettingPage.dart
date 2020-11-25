@@ -12,7 +12,7 @@ class SettingPage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Transform.translate(
-            offset: Offset(42.0, 290.0),
+            offset: Offset(40.0, 290.0),
             child: Container(
               width: 20.0,
               height: 20.0,
@@ -91,7 +91,7 @@ class SettingPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(52.0, 135.0),
+            offset: Offset(42.0, 125.0),
             child: Container(
               width: 81.0,
               height: 81.0,
@@ -103,7 +103,7 @@ class SettingPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(56.8, 140.0),
+            offset: Offset(47.8, 131.0),
             child: Container(
               width: 71.0,
               height: 71.0,
@@ -118,7 +118,7 @@ class SettingPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(153.0, 124.0),
+            offset: Offset(140.0, 126.0),
             child: Text.rich(
               TextSpan(
                 style: TextStyle(
@@ -128,13 +128,13 @@ class SettingPage extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                    text: '정혜진\n',
+                    text: '정혜진',
                   ),
                   TextSpan(
                     text:
                         '\n생년월일 : 1997. 04. 29\n학과 : 산업디자인(예술건강학부)\n학번 : 2020581015\n학적상태 : 재학(전공심화)\n\n*정보 수정은 학교 홈페이지 이용 바랍니다.',
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 11,
                     ),
                   ),
                 ],
@@ -143,13 +143,14 @@ class SettingPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(311.0, 125.0),
+            offset: Offset(288.0, 125.0),
             child: Container(
-              width: 63.0,
-              height: 28.0,
+              width: 85.0,
+              height: 35.0,
               child: RaisedButton(
+                  elevation: 0,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14.0),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                   color: const Color(0xffdfe6f3),
                   /*decoration: BoxDecoration(
@@ -161,13 +162,13 @@ class SettingPage extends StatelessWidget {
                   //offset: Offset(319.5, 128.5),
                   //child: RaisedButton(
                   child: Text(
-                    'Logout',
+                    'Log out',
                     style: TextStyle(
                       fontFamily: 'DX유니고딕 20',
-                      fontSize: 9,
+                      fontSize: 15,
                       color: const Color(0xff0c1939),
                     ),
-                    textAlign: TextAlign.left,
+                    //textAlign: TextAlign.left,
                   ),
                   onPressed: () async {
                     _signOut();
