@@ -103,7 +103,7 @@ class SettingPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(47.8, 131.0),
+            offset: Offset(47.5, 130.0),
             child: Container(
               width: 71.0,
               height: 71.0,
