@@ -75,6 +75,9 @@ class MyApp extends State<ReservationAppPage>
   bool dayVisible1 = true; //보이는거 안보이게
   bool dayVisible2 = false; //안보이는거 보이게
 
+  bool textVisible1 = true; //보이는거 안보이게
+  bool textVisible2 = false; //안보이는거 보이게
+
   // 디비 값
   String _dbplce = "본관 스터디룸 B";
   String _dbyear = "2020";
@@ -253,6 +256,22 @@ class MyApp extends State<ReservationAppPage>
       bookVisible2 = true;
       timeVisible2 = false;
       dayVisible2 = false;
+    });
+  }
+
+  void textshowWidget() {
+    //보이기
+    setState(() {
+      textVisible1 = true;
+      textVisible2 = false;
+    });
+  }
+
+  void texthideWidget() {
+    //숨기기
+    setState(() {
+      textVisible1 = false;
+      textVisible2 = true;
     });
   }
 
@@ -444,44 +463,64 @@ class MyApp extends State<ReservationAppPage>
             textAlign: TextAlign.left,
           ),
         ),
-        Transform.translate(
-          offset: Offset(97.0, 147.0),
-          child:
-              // Adobe XD layer: 'Svyatoslav Taushev' (text)
-              Text(
-            '장소 : ' + _dbplce,
-            style: TextStyle(
-              fontFamily: 'DX유니고딕 20',
-              fontSize: 12,
-              color: const Color(0xff205072),
-              height: 1.5,
+        Visibility(
+          visible: textVisible1,
+          child: Transform.translate(
+            offset: Offset(97.0, 147.0),
+            child: Text(
+              '예약 정보가 없습니다.',
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 12,
+                color: const Color(0xff205072),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.left,
             ),
-            textAlign: TextAlign.left,
           ),
         ),
-        Transform.translate(
-          offset: Offset(256.0, 137.0),
-          child:
-              // Adobe XD layer: 'Svyatoslav Taushev' (text)
-              Text(
-            '날짜 : ' +
-                _dbyear +
-                '.' +
-                _dbmonth +
-                '.' +
-                _dbday +
-                '\n시간 : ' +
-                _dbstarttime +
-                ':00 - ' +
-                _dbendtime +
-                ':00',
-            style: TextStyle(
-              fontFamily: 'DX유니고딕 20',
-              fontSize: 12,
-              color: const Color(0xff205072),
-              height: 1.5,
+        Visibility(
+          visible: textVisible2,
+          child: Transform.translate(
+            offset: Offset(97.0, 147.0),
+            child: Text(
+              '장소 : ' + _dbplce,
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 12,
+                color: const Color(0xff205072),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.left,
             ),
-            textAlign: TextAlign.left,
+          ),
+        ),
+        Visibility(
+          visible: textVisible2,
+          child: Transform.translate(
+            offset: Offset(256.0, 137.0),
+            child:
+                // Adobe XD layer: 'Svyatoslav Taushev' (text)
+                Text(
+              '날짜 : ' +
+                  _dbyear +
+                  '.' +
+                  _dbmonth +
+                  '.' +
+                  _dbday +
+                  '\n시간 : ' +
+                  _dbstarttime +
+                  ':00 - ' +
+                  _dbendtime +
+                  ':00',
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 12,
+                color: const Color(0xff205072),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.left,
+            ),
           ),
         ),
       ],
@@ -1826,6 +1865,7 @@ class MyApp extends State<ReservationAppPage>
                 textAlign: TextAlign.left,
               ),
               onPressed: () {
+                texthideWidget();
                 changeDB(
                     stPlace, currYear, currMonth, currDay, currTime, nextTime);
                 showDialog(
@@ -1867,6 +1907,7 @@ class MyApp extends State<ReservationAppPage>
     );
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       // appBar: AppBar(
       //   title: new Text(widget.title),
       // ),
