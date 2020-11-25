@@ -68,7 +68,7 @@ class _MainScreenState extends State<MainScreen> {
               //backgroundColor: Colors.white,
               icon: ImageIcon(
                 AssetImage("images/resericon.png"),
-                //color: SecondaryColor,
+                color: SecondaryColor,
                 size: 30,
               ),
 
@@ -80,7 +80,7 @@ class _MainScreenState extends State<MainScreen> {
               title: Text('예약'),
               activeIcon: ImageIcon(
                 AssetImage("images/resericon.png"),
-                //color: PrimaryColor,
+                color: PrimaryColor,
                 size: 30,
               ),
             ),
@@ -88,13 +88,13 @@ class _MainScreenState extends State<MainScreen> {
               icon: ImageIcon(
                 AssetImage("images/locicon.png"),
                 color: SecondaryColor,
-                size: 30,
+                size: 35,
               ),
               title: Text('위치'),
               activeIcon: ImageIcon(
                 AssetImage("images/locicon.png"),
                 color: PrimaryColor,
-                size: 30,
+                size: 35,
               ),
             ),
             BottomNavigationBarItem(
@@ -103,32 +103,32 @@ class _MainScreenState extends State<MainScreen> {
                 color: SecondaryColor,
                 size: 0,
               ),
+              title: Text('none'),
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(
+                AssetImage("images/noticeicon.png"),
+                color: SecondaryColor,
+                size: 32,
+              ),
               title: Text('공지'),
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage("images/noticeicon.png"),
-                color: SecondaryColor,
-                size: 30,
-              ),
-              title: Text('설정'),
               activeIcon: ImageIcon(
                 AssetImage("images/noticeicon.png"),
                 color: PrimaryColor,
-                size: 30,
+                size: 32,
               ),
             ),
             BottomNavigationBarItem(
               icon: ImageIcon(
                 AssetImage("images/seticon.png"),
                 color: SecondaryColor,
-                size: 30,
+                size: 35,
               ),
               title: Text('설정'),
               activeIcon: ImageIcon(
                 AssetImage("images/seticon.png"),
                 color: PrimaryColor,
-                size: 30,
+                size: 35,
               ),
             ),
           ],

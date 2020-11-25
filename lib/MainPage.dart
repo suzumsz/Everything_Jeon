@@ -207,7 +207,7 @@ class MainPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(172.7, 90.8),
+            offset: Offset(172.7, 85.8),
             child: Container(
               width: 68.0,
               height: 68.0,
