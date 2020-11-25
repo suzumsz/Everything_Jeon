@@ -17,7 +17,7 @@ class MainPage extends StatelessWidget {
           Container(
             //명지전문대학 로고 div
             margin: const EdgeInsets.only(
-                left: 20.0, top: 90.0, right: 0.0, bottom: 0.0),
+                left: 12.0, top: 90.0, right: 0.0, bottom: 0.0),
             width: 225,
             height: 50,
             child: Image.asset(
