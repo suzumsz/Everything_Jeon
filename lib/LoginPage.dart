@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget {
       height: 43.0,
       child: TextFormField(
         //textAlign: TextAlign.left,
-        // style: TextStyle(color: const Color(0xffffffff)),
+        style: TextStyle(color: const Color(0xffffffff)),
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xcc0b1837),
@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget {
       height: 43.0,
       child: TextFormField(
         //textAlign: TextAlign.left,
-        // style: TextStyle(color: const Color(0xffffffff)),
+        style: TextStyle(color: const Color(0xffffffff)),
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xcc0b1837),
@@ -110,7 +110,9 @@ class LoginPage extends StatelessWidget {
             ),
           ),
         ),
+        obscureText: true,
       ),
+
       //   ),
     );
     //);
@@ -164,46 +166,6 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-/*
-  Widget login() {
-    //  Transform.translate(
-    //  offset: Offset(183.0, 600.0),
-    // child:
-    // Adobe XD layer: '로그인 버튼' (group)
-    return Container(
-      margin: EdgeInsets.only(left: 90, top: 40),
-      width: 100.0,
-      height: 24.0,
-      child: Stack(
-        children: <Widget>[
-          FlatButton(
-            child: Pinned.fromSize(
-              bounds: Rect.fromLTWH(0.0, 0.0, 49.0, 24.0),
-              size: Size(49.0, 24.0),
-              pinLeft: true,
-              pinRight: true,
-              pinTop: true,
-              pinBottom: true,
-              child: Text(
-                'Log in',
-                style: TextStyle(
-                  fontFamily: 'YDIYGO320',
-                  fontSize: 18,
-                  color: const Color(0xff09316d),
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MainScreen()));
-            },
-          ),
-        ],
-      ),
-    );
-  }
-*/
   Widget mainlogo() {
     //   Transform.translate(
 
@@ -273,165 +235,4 @@ class LoginPage extends StatelessWidget {
       // ),
     );
   }
-
-/*
-class Auth {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-
-  Future<User> handleSignInEmail(String email, String password) async {
-    UserCredential result =
-        await auth.signInWithEmailAndPassword(email: email, password: password);
-    final User user = result.user;
-
-    assert(user != null);
-    assert(await user.getIdToken() != null);
-
-    final User currentUser = await auth.currentUser;
-    assert(user.uid == currentUser.uid);
-
-    print('signInEmail succeeded: $user');
-
-    return user;
-  }
-
-  Future<User> handleSignUp(email, password) async {
-    UserCredential result = await auth.createUserWithEmailAndPassword(
-        email: email, password: password);
-    final User user = result.user;
-
-    assert(user != null);
-    assert(await user.getIdToken() != null);
-
-    return user;
-  }
-}
-*/
-
-/*
-class FirebaseAuthService with ChangeNotifier {
-  FirebaseAuthService({auth}) : _auth = auth ?? FirebaseAuth.instance;
-
-  FirebaseAuth _auth;
-
-  Future<FirebaseUser> signInWithEmailAndPassword(
-      {@required String email, @required String password}) async {
-    final credential = EmailAuthProvider.getCredential(
-      email: email,
-      password: password,
-    );
-    final authResult = await _auth.signInWithCredential(credential);
-    return authResult.user;
-  }
-}
-class LoginPage extends StatelessWidget {
-  // This widget is the root of your application.//설정
-
-  LoginPage({Key key}) : super(key: key);
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: <Widget>[
-        Text('Login'),
-        _buildEmailInput(),
-        _buildPasswordInput(),
-        _buildSubmitButton(),
-      ],
-    ));
-  }
-
-  Widget _buildEmailInput() {
-    return TextFormField(
-      maxLines: 1,
-      keyboardType: TextInputType.emailAddress,
-      autocorrect: false,
-      decoration: InputDecoration(
-        hintText: 'email',
-      ),
-      controller: _emailController,
-      onSaved: (value) => _emailController.text = value.trim(),
-    );
-  }
-
-  Widget _buildPasswordInput() {
-    return TextFormField(
-      style: TextStyle(fontFamily: ''),
-      maxLines: 1,
-      keyboardType: TextInputType.visiblePassword,
-      autocorrect: false,
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: 'password',
-      ),
-      controller: _passwordController,
-      onSaved: (value) => _passwordController.text = value.trim(),
-    );
-  }
-
-  Widget _buildSubmitButton() {
-    return RaisedButton(
-      onPressed: () => print('click :)'),
-      child: Text('submit'),
-    );
-  }
-}
-/*
-  @override
-  Widget build(BuildContext context) {
-    String id, pw;
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              //이미지
-
-              TextFormField(
-                decoration: InputDecoration(labelText: 'ID'),
-                validator: (value) =>
-                    value.isEmpty ? 'Email can\'t be empty' : null, //입력없으면 널
-                onChanged: (result) {
-                  id = result;
-                },
-                //onSaved: (value) => _email = value,
-              ),
-
-              TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'PW'),
-                validator: (value) =>
-                    value.isEmpty ? 'Password can\'t be empty' : null,
-                onChanged: (result) {
-                  pw = result;
-                },
-                //onSaved: (value) => _password = value,
-              ),
-              RaisedButton(
-                  child: Text(
-                    'Login',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                  onPressed: () {
-                    print(id + '\n' + pw);
-                    var authHandler = new Auth();
-                    authHandler.handleSignInEmail(id, pw).then((User user) {
-                      Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) => MainPage()));
-                    }).catchError((e) => print(e));
-                  } //validateAndSave,
-
-                  ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }*/
-*/
 }
