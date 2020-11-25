@@ -138,6 +138,49 @@ class LocationPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
+            // 본관 위치
+            // 오른쪽 화살표
+            offset: Offset(150.0, 500.0),
+            child: Container(
+              width: 20.0,
+              height: 20.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: const AssetImage('images/loc.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
+          Transform.translate(
+            // body title
+            offset: Offset(27.0, 200.0),
+            child: Text(
+              '학교 지도',
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 20,
+                color: const Color(0xff0c1939),
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          Transform.translate(
+            // 사교 위치
+            // 오른쪽 화살표
+            offset: Offset(200.0, 420.0),
+            child: Container(
+              width: 20.0,
+              height: 20.0,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: const AssetImage('images/loc.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
+          Transform.translate(
             // body title
             offset: Offset(27.0, 200.0),
             child: Text(

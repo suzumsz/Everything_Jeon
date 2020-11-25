@@ -69,6 +69,7 @@ flutter:
     - images/noticeicon.png
     - images/locicon.png
     - images/baricon.png
+    - images/loc.png
 
     - images/notice/airpod.jpg
     - images/notice/airpod2.jpg
