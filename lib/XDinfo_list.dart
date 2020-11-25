@@ -1,5 +1,5 @@
-import 'dart:collection';
-
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:everything_jeon/NoticePage.dart';
 import 'package:flutter/material.dart';
 
@@ -14,11 +14,43 @@ class XDinfo_list_tab extends StatefulWidget {
 
 class XDinfo_list_state extends State<XDinfo_list_tab>
     with SingleTickerProviderStateMixin {
+  bool startFlag = true;
+  bool searchFlag = false;
+  List<Widget> lostPack = List<Widget>();
+  List<Widget> backup_lostPack = List<Widget>();
+  List<Widget> first_lostPack = List<Widget>();
+  List<String> lostPack_title = List<String>();
+
   int selectTap;
+  File mPhoto;
+  String addTitle, addContent;
   XDinfo_list_state(int selectTap) {
     this.selectTap = selectTap;
   }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("분실물 신고"),
+          content: new Text("분실물 등록이 완료되었습니다."),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("닫기"),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Container make_textField(String text) {
+    searchFlag = true;
     String input = "";
     return Container(
       width: 300,
@@ -27,8 +59,21 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
       padding: const EdgeInsets.only(top: 10),
       child: TextField(
         onChanged: (String str) {
-          //바뀔때마다
           input = str;
+          lostPack.clear();
+          print("backup lostPack : " + backup_lostPack.length.toString());
+          for (int idx = 0; idx < backup_lostPack.length; idx++) {
+            if (lostPack_title[idx].contains(str)) {
+              lostPack.add(backup_lostPack[idx]);
+              print(lostPack_title[idx] +
+                  " : " +
+                  str +
+                  lostPack.length.toString());
+            }
+          }
+        },
+        onTap: () {
+          this.selectTap = 2;
         },
         autofocus: false,
         style: TextStyle(fontSize: 13.0, color: Color(0xFF000000)),
@@ -39,7 +84,8 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
           suffixIcon: IconButton(
             onPressed: () {
               print(input + " 검색!");
-            }, //입력했을 때
+            },
+            //입력했을 때
             icon: Icon(Icons.search),
           ),
           contentPadding:
@@ -59,8 +105,8 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
 
   TabController _controller;
 
-  Widget buttonExtended(
-      String text, TextStyle textstyle, String heroTag, Color backgroundColor) {
+  Widget buttonExtended(String text, TextStyle textstyle, String heroTag,
+      Color backgroundColor, BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 20, top: 10),
       child: Container(
@@ -73,8 +119,21 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
             foregroundColor: Colors.black,
             onPressed: () {
               if (text == "분실물 신고") {
-                //_controller.animateTo(1);
-              } else if (text == "분실물 검색") _controller.animateTo(2);
+                _controller.animateTo(1);
+              } else if (text == "분실물 검색") {
+                _controller.animateTo(2);
+              } else if (text == "완료") {
+                print('추가 완료');
+                lostPack_title.add(addTitle);
+                lostPack.add(
+                    lostProperetySearchBox("", addTitle, addContent, mPhoto));
+                first_lostPack.add(
+                    lostProperetySearchBox("", addTitle, addContent, mPhoto));
+
+                backup_lostPack = List.from(first_lostPack);
+                print("first lostPack : " + first_lostPack.length.toString());
+                _showDialog();
+              }
             },
             label: Text(text, style: textstyle)),
       ),
@@ -122,7 +181,8 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
   }
 
   //분실물 검색 리스트
-  Widget lostProperetySearchBox(String imgSrc, String title, String content) {
+  Widget lostProperetySearchBox(
+      String imgSrc, String title, String content, File f) {
     return new Container(
       child: new Material(
         child: new FlatButton(
@@ -143,7 +203,12 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                 ),
               ),
               Container(
-                child: Image.asset(imgSrc, fit: BoxFit.fill),
+                child: f == null
+                    ? Image.asset(imgSrc, fit: BoxFit.fill)
+                    : Image.file(
+                        f,
+                        fit: BoxFit.fill,
+                      ),
                 margin:
                     EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
                 height: 140.0,
@@ -169,6 +234,8 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
     );
   }
 
+  //
+  //
   Widget tab1(BuildContext context) {
     return Stack(
       children: [
@@ -222,7 +289,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
     );
   }
 
-  Widget tab2() {
+  Widget tab2(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -266,13 +333,25 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
             textAlign: TextAlign.left,
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(left: 20, top: 15),
+        GestureDetector(
+          onTap: () {
+            getImage();
+            this.selectTap = 1;
+          },
           child: Container(
-            width: 307.0,
-            height: 167.0,
-            decoration: BoxDecoration(
-              color: const Color(0xffdfe6f3),
+            margin: EdgeInsets.only(left: 20, top: 15),
+            child: Container(
+              child: mPhoto == null
+                  ? Container()
+                  : Image.file(
+                      mPhoto,
+                      fit: BoxFit.fill,
+                    ),
+              width: 307.0,
+              height: 167.0,
+              decoration: BoxDecoration(
+                color: const Color(0xffdfe6f3),
+              ),
             ),
           ),
         ),
@@ -294,7 +373,12 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
               Container(
                 width: 270,
                 child: TextField(
-                  onChanged: (result) {},
+                  onChanged: (result) {
+                    addTitle = result;
+                  },
+                  onTap: () {
+                    selectTap = 1;
+                  },
                   //onSaved: (value) => _email = value,
                 ),
               ),
@@ -318,7 +402,12 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
               Container(
                 width: 270,
                 child: TextField(
-                  onChanged: (result) {},
+                  onChanged: (result) {
+                    addContent = result;
+                  },
+                  onTap: () {
+                    selectTap = 1;
+                  },
                   //onSaved: (value) => _email = value,
                 ),
               ),
@@ -336,13 +425,15 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                   fontSize: 12,
                   color: const Color(0xff000000)),
               'btnEx10',
-              PrimaryColor),
+              PrimaryColor,
+              context),
         )
       ],
     ));
   }
 
-  Widget tab3() {
+  Widget tab3(BuildContext context) {
+    print("길이 : " + lostPack.length.toString());
     return Stack(
       children: [
         Container(
@@ -368,28 +459,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
               Column(
                 children: [
                   make_textField("검색어를 입력해주세요."),
-                  lostProperetySearchBox(
-                      "images/notice/airpod.jpg",
-                      "[에어팟] 에어팟 한쪽",
-                      "공학관 3층 301호 실습실에 에어팟 한쪽이 있어서 과사무실에 맡겨놨습니다 !"),
-                  lostProperetySearchBox("images/notice/airpod2.jpg",
-                      "[에어팟] 에어팟", "도서실에서 에어팟이 있어서 도서관 관계자 분께 맡겨놨습니다."),
-                  lostProperetySearchBox("images/notice/bapuli.jpg", "[인형] 바푸리",
-                      "독서실에서 바푸리 인형이 있어서 도서관 관계자 분께 맡겨놨습니다."),
-                  lostProperetySearchBox(
-                      "images/notice/cloth.jpg", "[옷] 츄리닝", "식당에서 츄리닝 옷이 있어요"),
-                  lostProperetySearchBox("images/notice/libstick.jpg",
-                      "[립스틱] 립스틱", "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요!"),
-                  lostProperetySearchBox("images/notice/pencilcase.jpg",
-                      "[필통] 필통", "본관 801호 에서 필통이 발견되서 과사에 맡겨놨어요"),
-                  lostProperetySearchBox("images/notice/powerbank.jpg",
-                      "[배터리] 배터리", "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요!"),
-                  lostProperetySearchBox("images/notice/ring.jpg", "[반지] 반지",
-                      "독서실에서 인형이 있어서 도서관 관계자 분께 맡겨놨어요!"),
-                  lostProperetySearchBox("images/notice/suncushion.jpg",
-                      "[화장품] 선쿠션", "본관 4층 화장실에서 선쿠션이 있어서 4층 사무실에 맡겨놨어요"),
-                  lostProperetySearchBox("images/notice/tomato.jpg",
-                      "[토마토] 토마토", "잘 익은 토마토가 정문앞에 있어서 제가 먹었어요"),
+                  for (int idx = 0; idx < lostPack.length; idx++) lostPack[idx],
                 ],
               ),
             ],
@@ -397,6 +467,14 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
         )
       ],
     );
+  }
+
+  // 앨범과 카메라 양쪽에서 호출. ImageSource.gallery와 ImageSource.camera 두 가지밖에 없다.
+  void getImage() async {
+    // await 키워드 때문에 setState 안에서 호출할 수 없다.
+    // pickImage 함수 외에 pickVideo 함수가 더 있다.
+    PickedFile f = await ImagePicker().getImage(source: ImageSource.camera);
+    setState(() => mPhoto = File(f.path));
   }
 
   @override
@@ -416,6 +494,46 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
 
   @override
   Widget build(BuildContext context) {
+    print("Notice Loading...");
+    if (startFlag) {
+      lostPack.clear();
+      lostPack_title.clear();
+
+      lostPack_title.add("[에어팟] 에어팟 한쪽");
+      lostPack_title.add("[에어팟] 에어팟");
+      lostPack_title.add("[인형] 바푸리");
+      lostPack_title.add("[옷] 츄리닝");
+      lostPack_title.add("[립스틱] 립스틱");
+      lostPack_title.add("[필통] 필통");
+      lostPack_title.add("[배터리] 배터리");
+      lostPack_title.add("[반지] 반지");
+      lostPack_title.add("[화장품] 선쿠션");
+      lostPack_title.add("[토마토] 토마토");
+
+      lostPack.add(lostProperetySearchBox("images/notice/airpod.jpg",
+          "[에어팟] 에어팟 한쪽", "공학관 3층 301호 실습실에 에어팟 한쪽이 있어서 과사무실에 맡겨놨습니다 !", null));
+      lostPack.add(lostProperetySearchBox("images/notice/airpod2.jpg",
+          "[에어팟] 에어팟", "도서실에서 에어팟이 있어서 도서관 관계자 분께 맡겨놨습니다.", null));
+      lostPack.add(lostProperetySearchBox("images/notice/bapuli.jpg",
+          "[인형] 바푸리", "독서실에서 바푸리 인형이 있어서 도서관 관계자 분께 맡겨놨습니다.", null));
+      lostPack.add(lostProperetySearchBox(
+          "images/notice/cloth.jpg", "[옷] 츄리닝", "식당에서 츄리닝 옷이 있어요", null));
+      lostPack.add(lostProperetySearchBox("images/notice/libstick.jpg",
+          "[립스틱] 립스틱", "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요!", null));
+      lostPack.add(lostProperetySearchBox("images/notice/pencilcase.jpg",
+          "[필통] 필통", "본관 801호 에서 필통이 발견되서 과사에 맡겨놨어요", null));
+      lostPack.add(lostProperetySearchBox("images/notice/powerbank.jpg",
+          "[배터리] 배터리", "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요!", null));
+      lostPack.add(lostProperetySearchBox("images/notice/ring.jpg", "[반지] 반지",
+          "독서실에서 인형이 있어서 도서관 관계자 분께 맡겨놨어요!", null));
+      lostPack.add(lostProperetySearchBox("images/notice/suncushion.jpg",
+          "[화장품] 선쿠션", "본관 4층 화장실에서 선쿠션이 있어서 4층 사무실에 맡겨놨어요", null));
+      lostPack.add(lostProperetySearchBox("images/notice/tomato.jpg",
+          "[토마토] 토마토", "잘 익은 토마토가 정문앞에 있어서 제가 먹었어요", null));
+      startFlag = false;
+      first_lostPack = backup_lostPack = List.from(lostPack);
+    }
+
     _controller.animateTo(this.selectTap);
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -464,8 +582,8 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                       controller: _controller,
                       children: [
                         tab1(context),
-                        tab2(),
-                        tab3(),
+                        tab2(context),
+                        tab3(context),
                       ],
                     ),
                   ),
@@ -599,7 +717,8 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                     color: const Color(0xff000000),
                   ),
                   "btnEx4",
-                  PrimaryColor),
+                  PrimaryColor,
+                  context),
             ),
           ),
 
@@ -616,7 +735,8 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                     color: const Color(0xff000000),
                   ),
                   "btnEx5",
-                  PrimaryColor),
+                  PrimaryColor,
+                  context),
             ),
           ),
           Transform.translate(
