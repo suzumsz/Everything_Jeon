@@ -153,8 +153,8 @@ class SettingPage extends StatelessWidget {
                   onPressed: () async {
                     _signOut();
 
-                    //Navigator.push(context,
-                    //MaterialPageRoute(builder: (context) => LoginPage()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginPage()));
                   }),
             ),
           ),
