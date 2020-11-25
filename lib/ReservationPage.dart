@@ -7,13 +7,21 @@ import 'package:intl/intl.dart' show DateFormat;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+bool USE_FIRESTORE_EMULATOR = false;
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  if (USE_FIRESTORE_EMULATOR) {
+    FirebaseFirestore.instance.settings = Settings(
+        host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
+  }
   runApp(ReservationPage());
 }
 
 class ReservationPage extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,9 +32,6 @@ class ReservationPage extends StatelessWidget {
 }
 
 class ReservationAppPage extends StatefulWidget {
-  ReservationAppPage({Key key, this.title}) : super(key: key);
-  final String title;
-
   @override
   MyApp createState() => MyApp();
 }
@@ -39,11 +44,12 @@ class MyApp extends State<ReservationAppPage>
   String nexttime = "00";
   String currMonth = DateTime.now().month.toString();
   String currDay = DateTime.now().day.toString();
+  String currYear = DateTime.now().year.toString();
   int studyroomnum = 0;
   double newheight = 128.0;
   double listnewheight = 50.0;
   double newtop = 400.0;
-  String stloc = "";
+  String stPlace = "";
 
   DateTime _currentDate = DateTime.now();
   DateTime _currentDate2 = DateTime.now();
@@ -54,7 +60,74 @@ class MyApp extends State<ReservationAppPage>
   static const postime = Color(0xff9BFFA1);
   static const impostime = Color(0xffFF8888);
   Color selectColor = Color(0xffE3E5E9);
-  Color stselectColor = Colors.grey[300];
+
+  List<bool> _list = [false, false, false, false, false, false];
+
+  bool addVisible1 = true; //보이는거 안보이게
+  bool addVisible2 = false; //안보이는거 보이게
+
+  bool timeVisible1 = true; //보이는거 안보이게
+  bool timeVisible2 = false; //안보이는거 보이게
+
+  bool bookVisible1 = true; //보이는거 안보이게
+  bool bookVisible2 = false; //안보이는거 보이게
+
+  bool dayVisible1 = true; //보이는거 안보이게
+  bool dayVisible2 = false; //안보이는거 보이게
+
+  // 디비 값
+  String _dbplce = "본관 스터디룸 B";
+  String _dbyear = "2020";
+  String _dbmonth = "10";
+  String _dbday = "31";
+  String _dbstarttime = "17";
+  String _dbendtime = "18";
+
+  void refresh() {
+    setState(() {
+      addVisible1 = true;
+      addVisible2 = false;
+
+      timeVisible1 = true;
+      timeVisible2 = false;
+
+      bookVisible1 = true;
+      bookVisible2 = false;
+
+      dayVisible1 = true;
+      dayVisible2 = false;
+
+      _list = [false, false, false, false, false, false];
+
+      currtime = "00";
+      nexttime = "00";
+      currMonth = DateTime.now().month.toString();
+      currDay = DateTime.now().day.toString();
+      studyroomnum = 0;
+      newheight = 128.0;
+      listnewheight = 50.0;
+      newtop = 400.0;
+      _currentDate = DateTime.now();
+      _currentDate2 = DateTime.now();
+      _currentMonth = DateTime(2020, 11, 20).month.toString();
+      _targetDateTime = DateTime.now();
+
+      _tabController.index = 0;
+    });
+  }
+
+//DB
+  void changeDB(String place, String year, String month, String day,
+      String sttime, String endtime) {
+    setState(() {
+      _dbplce = place;
+      _dbyear = year;
+      _dbmonth = month;
+      _dbday = day;
+      _dbstarttime = sttime;
+      _dbendtime = endtime;
+    });
+  }
 
 //시간
   void changeText(String time) {
@@ -67,6 +140,7 @@ class MyApp extends State<ReservationAppPage>
 //달력
   void changeTextday(DateTime time) {
     setState(() {
+      currYear = time.year.toString();
       currMonth = time.month.toString();
       currDay = time.day.toString();
     });
@@ -91,13 +165,6 @@ class MyApp extends State<ReservationAppPage>
   void changeButtonColor(Color color) {
     setState(() {
       selectColor = color;
-      stselectColor = color;
-    });
-  }
-
-  void changeloctext(String loc) {
-    setState(() {
-      stloc = "본관 스터디룸" + loc;
     });
   }
 
@@ -112,9 +179,6 @@ class MyApp extends State<ReservationAppPage>
   }
 
   // 도서예약 - 더보기 클릭
-
-  bool addVisible1 = true; //보이는거 안보이게
-  bool addVisible2 = false; //안보이는거 보이게
 
   void addshowWidget() {
     //보이기
@@ -134,16 +198,7 @@ class MyApp extends State<ReservationAppPage>
 
   //2.날짜와 시간 선택 - 시간 클릭
 
-  bool dayVisible1 = true; //보이는거 안보이게
-  bool dayVisible2 = false; //안보이는거 보이게
-
   //2.날짜와 시간 선택 - 시간 클릭
-
-  bool timeVisible1 = true; //보이는거 안보이게
-  bool timeVisible2 = false; //안보이는거 보이게
-
-  bool bookVisible1 = true; //보이는거 안보이게
-  bool bookVisible2 = false; //안보이는거 보이게
 
   void dayshowWidget() {
     //보이기
@@ -394,7 +449,7 @@ class MyApp extends State<ReservationAppPage>
           child:
               // Adobe XD layer: 'Svyatoslav Taushev' (text)
               Text(
-            '장소 : 본관 스터디룸  B',
+            '장소 : ' + _dbplce,
             style: TextStyle(
               fontFamily: 'DX유니고딕 20',
               fontSize: 12,
@@ -409,7 +464,17 @@ class MyApp extends State<ReservationAppPage>
           child:
               // Adobe XD layer: 'Svyatoslav Taushev' (text)
               Text(
-            '날짜 : 2020. 10. 31\n시간 : 17:00 - 18:00',
+            '날짜 : ' +
+                _dbyear +
+                '.' +
+                _dbmonth +
+                '.' +
+                _dbday +
+                '\n시간 : ' +
+                _dbstarttime +
+                ':00 - ' +
+                _dbendtime +
+                ':00',
             style: TextStyle(
               fontFamily: 'DX유니고딕 20',
               fontSize: 12,
@@ -580,7 +645,7 @@ class MyApp extends State<ReservationAppPage>
       ),
     );
 
-    Column _buildABCButton(Color color, String label, String loc) {
+    Column _buildABCButton(Color color, String label, String loc, int i) {
       // 컬럼을 생성하여 반환
       return Column(
         mainAxisSize: MainAxisSize.min, // 여유공간을 최소로 할당
@@ -597,7 +662,6 @@ class MyApp extends State<ReservationAppPage>
             child: FlatButton(
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(5)),
-              color: color,
               child: Text(
                 label,
                 style: TextStyle(
@@ -606,20 +670,22 @@ class MyApp extends State<ReservationAppPage>
                 ),
                 textAlign: TextAlign.center,
               ),
+              color: _list[i - 1] ? postime : color,
               onPressed: () {
-                if (loc == studyroom1) {
-                  print(label);
-                  if (label == "A") {
-                    changeloctext(label);
-                  }
-                  if (label == "B") {
-                    changeloctext(label);
-                  }
+                if (i < 3) {
+                  setState(() {
+                    stPlace = "도서관 스터디룸 " + label;
+                  });
+                } else {
+                  setState(() {
+                    stPlace = "본관 스터디룸 " + label;
+                  });
                 }
-                if (loc == studyroom2) {
-                  print(loc);
-                }
+                setState(() {
+                  _list[i - 1] = !_list[i - 1];
+                });
               },
+              // onPressed: () => setState(() => _list[i - 1] = !_list[i - 1]),
             ),
           )
         ],
@@ -703,11 +769,11 @@ class MyApp extends State<ReservationAppPage>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   _buildABCButton(
-                                      stselectColor, 'A', studyroom1),
+                                      Colors.grey[300], 'A', studyroom1, 1),
                                   _buildABCButton(
-                                      stselectColor, 'B', studyroom1),
+                                      Colors.grey[300], 'B', studyroom1, 2),
                                   _buildABCButton(
-                                      Colors.grey[300], 'C', studyroom1),
+                                      Colors.grey[300], 'C', studyroom1, 3),
                                 ],
                               ),
                             ),
@@ -731,11 +797,11 @@ class MyApp extends State<ReservationAppPage>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   _buildABCButton(
-                                      Colors.grey[300], 'A', studyroom2),
+                                      Colors.grey[300], 'A', studyroom2, 4),
                                   _buildABCButton(
-                                      Colors.grey[300], 'B', studyroom2),
+                                      Colors.grey[300], 'B', studyroom2, 5),
                                   _buildABCButton(
-                                      Colors.grey[300], 'C', studyroom2),
+                                      Colors.grey[300], 'C', studyroom2, 6),
                                 ],
                               ),
                             ),
@@ -1760,30 +1826,26 @@ class MyApp extends State<ReservationAppPage>
                 textAlign: TextAlign.left,
               ),
               onPressed: () {
+                changeDB(
+                    stPlace, currYear, currMonth, currDay, currTime, nextTime);
                 showDialog(
                     context: context,
                     builder: (_) => AlertDialog(
-                          title: Text(currMonth +
+                          title: Text(currYear +
+                              "년" +
+                              currMonth +
                               "월" +
                               currDay +
                               "일 " +
                               currTime +
                               ":00 - " +
                               nextTime +
-                              ":00" +
-                              stloc +
+                              ":00\n" +
+                              stPlace +
                               '에\n예약되었습니다.'),
                           content: Text('닫고 싶으시면 아무곳이나 눌러주세요!'),
                         ));
-
-                Firestore.instance
-                    .collection('test')
-                    .doc('test')
-                    .set({'currDay': currDay, 'currTime?': currTime});
-                // firestore
-                //     .collection('test')
-                //     .document("test")
-                //     .setData({'currDay': currDay, 'currTime?': currTime});
+                refresh();
               },
             ),
           )
@@ -1815,11 +1877,14 @@ class MyApp extends State<ReservationAppPage>
               children: [
                 mybook,
                 Transform.translate(
-                  offset: Offset(150.0, 251.0),
+                  offset: Offset(320.0, 251.0),
                   child: FlatButton(
-                      color: Colors.grey[300],
+                      minWidth: 30,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(18)),
+                      color: PrimaryColor,
                       child: Text(
-                        "버튼",
+                        "취소",
                         style: TextStyle(
                           fontSize: 10,
                           color: Colors.black,
@@ -1828,7 +1893,7 @@ class MyApp extends State<ReservationAppPage>
                         textAlign: TextAlign.center,
                       ),
                       onPressed: () {
-                        runApp(ReservationPage());
+                        refresh();
                       }),
                 ),
 
