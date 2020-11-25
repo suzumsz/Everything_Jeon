@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
+import 'package:everything_jeon/ScrollingText.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -153,17 +154,23 @@ class MainPage extends StatelessWidget {
                 Container(
                   //도용방지선 div
                   margin: const EdgeInsets.only(
-                      left: 0.0, top: 25.0, right: 0.0, bottom: 10.0),
+                      left: 0.0, top: 20.0, right: 0.0, bottom: 10.0),
                   padding: const EdgeInsets.only(
                       left: 0.0, top: 5.0, right: 0.0, bottom: 0.0),
                   width: 400,
                   height: 25,
-                  child: Text(
-                    "도용방지선이 움직이는 모바일 학생증만 사용이 유효합니다. 캡쳐본은 사용불가",
+                  child: ScrollingText(
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    text: "도용방지선이 움직이는 모바일 학생증만 사용이 유효합니다. 캡쳐본은 사용불가",
+                    textStyle: TextStyle(
                         fontSize: 9.5, color: Color.fromRGBO(12, 25, 57, 1)),
                   ),
+                  // child: Text(
+                  //   "도용방지선이 움직이는 모바일 학생증만 사용이 유효합니다. 캡쳐본은 사용불가",
+                  //   textAlign: TextAlign.center,
+                  //   style: TextStyle(
+                  //       fontSize: 9.5, color: Color.fromRGBO(12, 25, 57, 1)),
+                  // ),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(214, 226, 233, 3.6),
                   ),
