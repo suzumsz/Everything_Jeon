@@ -370,7 +370,7 @@ class NoticePageState extends State<NoticePage> {
                                   // Respond to button press
                                   _visibilitymethod();
                                 },
-                                label: Text('완료')),
+                                label: Text('닫기')),
                           ),
                         ),
                       ),
@@ -547,10 +547,10 @@ class NoticePageState extends State<NoticePage> {
           Text(
             "김진원 [2019671062]",
             style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 13,
-                color: const Color(0xff0a1736),
-              ),
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 13,
+              color: const Color(0xff0a1736),
+            ),
           )
         ],
       ),
@@ -619,8 +619,8 @@ class NoticePageState extends State<NoticePage> {
                               width: 21.0,
                               height: 21.0,
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
+                                borderRadius: BorderRadius.all(
+                                    Radius.elliptical(9999.0, 9999.0)),
                                 color: const Color(0xffffffff),
                               ),
                             ),
@@ -633,7 +633,8 @@ class NoticePageState extends State<NoticePage> {
                               height: 17.0,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  image: const AssetImage('images/circlelogo.png'),
+                                  image:
+                                      const AssetImage('images/circlelogo.png'),
                                   fit: BoxFit.fill,
                                 ),
                               ),

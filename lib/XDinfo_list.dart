@@ -74,8 +74,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
             onPressed: () {
               if (text == "분실물 신고") {
                 //_controller.animateTo(1);
-              }
-              else if (text == "분실물 검색") _controller.animateTo(2);
+              } else if (text == "분실물 검색") _controller.animateTo(2);
             },
             label: Text(text, style: textstyle)),
       ),
@@ -90,12 +89,13 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 10, bottom: 10, right: 10),
             width: 132.0,
             height: 84.0,
+            margin: EdgeInsets.only(top: 10, bottom: 10, right: 10),
             decoration: BoxDecoration(
               color: const Color(0xffdfe6f3),
             ),
+            child: Image.asset(imgSrc, fit: BoxFit.fill),
           ),
           Container(
               child: Flexible(
@@ -143,6 +143,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                 ),
               ),
               Container(
+                child: Image.asset(imgSrc, fit: BoxFit.fill),
                 margin:
                     EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
                 height: 140.0,
@@ -192,25 +193,26 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
             children: [
               Column(
                 children: [
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드",
-                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요! 정X님꺼에요."),
-                  lostProperetyBox("", "[체크카드] 정XX님 국민카드", "예체능관 어져 있어서요."),
+                  lostProperetyBox("images/notice/airpod.jpg", "[에어팟] 에어팟 한쪽",
+                      "공학관 3층 301호 실습실에 에어팟 한쪽이 있어서 과사무실에 맡겨놨습니다 !"),
+                  lostProperetyBox("images/notice/airpod2.jpg", "[에어팟] 에어팟",
+                      "도서실에서 에어팟이 있어서 도서관 관계자 분께 맡겨놨습니다."),
+                  lostProperetyBox("images/notice/bapuli.jpg", "[인형] 바푸리",
+                      "독서실에서 바푸리 인형이 있어서 도서관 관계자 분께 맡겨놨습니다."),
+                  lostProperetyBox(
+                      "images/notice/cloth.jpg", "[옷] 츄리닝", "식당에서 츄리닝 옷이 있어요"),
+                  lostProperetyBox("images/notice/libstick.jpg", "[립스틱] 립스틱",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요!"),
+                  lostProperetyBox("images/notice/pencilcase.jpg", "[필통] 필통",
+                      "본관 801호 에서 필통이 발견되서 과사에 맡겨놨어요"),
+                  lostProperetyBox("images/notice/powerbank.jpg", "[배터리] 배터리",
+                      "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요!"),
+                  lostProperetyBox("images/notice/ring.jpg", "[반지] 반지",
+                      "독서실에서 인형이 있어서 도서관 관계자 분께 맡겨놨어요!"),
+                  lostProperetyBox("images/notice/suncushion.jpg", "[화장품] 선쿠션",
+                      "본관 4층 화장실에서 선쿠션이 있어서 4층 사무실에 맡겨놨어요"),
+                  lostProperetyBox("images/notice/tomato.jpg", "[토마토] 토마토",
+                      "잘 익은 토마토가 정문앞에 있어서 제가 먹었어요"),
                 ],
               ),
             ],
@@ -366,9 +368,28 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
               Column(
                 children: [
                   make_textField("검색어를 입력해주세요."),
-                  lostProperetySearchBox("", "나는 카드에요", "히히 나는 카드다"),
-                  lostProperetySearchBox("", "마춤뻡 파괘자", "이거슨 네가 일어벌인 물건이애요"),
-                  lostProperetySearchBox("", "아기상어 뚜루루루뚜루루뚜", "엄마상어 뚜루루"),
+                  lostProperetySearchBox(
+                      "images/notice/airpod.jpg",
+                      "[에어팟] 에어팟 한쪽",
+                      "공학관 3층 301호 실습실에 에어팟 한쪽이 있어서 과사무실에 맡겨놨습니다 !"),
+                  lostProperetySearchBox("images/notice/airpod2.jpg",
+                      "[에어팟] 에어팟", "도서실에서 에어팟이 있어서 도서관 관계자 분께 맡겨놨습니다."),
+                  lostProperetySearchBox("images/notice/bapuli.jpg", "[인형] 바푸리",
+                      "독서실에서 바푸리 인형이 있어서 도서관 관계자 분께 맡겨놨습니다."),
+                  lostProperetySearchBox(
+                      "images/notice/cloth.jpg", "[옷] 츄리닝", "식당에서 츄리닝 옷이 있어요"),
+                  lostProperetySearchBox("images/notice/libstick.jpg",
+                      "[립스틱] 립스틱", "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요!"),
+                  lostProperetySearchBox("images/notice/pencilcase.jpg",
+                      "[필통] 필통", "본관 801호 에서 필통이 발견되서 과사에 맡겨놨어요"),
+                  lostProperetySearchBox("images/notice/powerbank.jpg",
+                      "[배터리] 배터리", "예체능관 정문에 떨어져 있어서 경비실에 맡겨놨어요!"),
+                  lostProperetySearchBox("images/notice/ring.jpg", "[반지] 반지",
+                      "독서실에서 인형이 있어서 도서관 관계자 분께 맡겨놨어요!"),
+                  lostProperetySearchBox("images/notice/suncushion.jpg",
+                      "[화장품] 선쿠션", "본관 4층 화장실에서 선쿠션이 있어서 4층 사무실에 맡겨놨어요"),
+                  lostProperetySearchBox("images/notice/tomato.jpg",
+                      "[토마토] 토마토", "잘 익은 토마토가 정문앞에 있어서 제가 먹었어요"),
                 ],
               ),
             ],
@@ -622,7 +643,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
               ),
             ),
           ),
-          
+
           Transform.translate(
             // 원형로고
             offset: Offset(243.0, 73.0),

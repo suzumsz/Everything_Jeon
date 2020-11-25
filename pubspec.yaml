@@ -29,10 +29,10 @@ dependencies:
   intl: ^0.16.1
   cloud_firestore: ^0.14.3
   #firebase_core: ^0.5.2
-  flutter_icons: ^1.0.0+1 
+  flutter_icons: ^1.0.0+1
   syncfusion_flutter_barcodes: ^18.3.50
   flutter_barcode_scanner: ^1.0.1
- # provider: ^4.3.2+2
+  # provider: ^4.3.2+2
   circular_check_box: ^1.0.4
 
   # The following adds the Cupertino Icons font to your application.
@@ -68,6 +68,17 @@ flutter:
     - images/noticeicon.png
     - images/locicon.png
     - images/baricon.png
+
+    - images/notice/airpod.jpg
+    - images/notice/airpod2.jpg
+    - images/notice/bapuli.jpg
+    - images/notice/cloth.jpg
+    - images/notice/libstick.jpg
+    - images/notice/pencilcase.jpg
+    - images/notice/powerbank.jpg
+    - images/notice/ring.jpg
+    - images/notice/suncushion.jpg
+    - images/notice/tomato.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
