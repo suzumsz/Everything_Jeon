@@ -8,6 +8,7 @@ class MainPage extends StatelessWidget {
     String barcode = hak + "30";
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       //------------ 여기서부터 body ------------------------
       backgroundColor: Color.fromRGBO(223, 230, 243, 1),
       body: Column(
@@ -16,8 +17,8 @@ class MainPage extends StatelessWidget {
           Container(
             //명지전문대학 로고 div
             margin: const EdgeInsets.only(
-                left: 18.0, top: 50.0, right: 0.0, bottom: 0.0),
-            width: 200,
+                left: 20.0, top: 90.0, right: 0.0, bottom: 0.0),
+            width: 225,
             height: 50,
             child: Image.asset(
               'images/mjcname.png', //명지전문대학로고 이미지
@@ -25,12 +26,12 @@ class MainPage extends StatelessWidget {
           ),
           Container(
             //로고,인증 뺀 큰 div
-            width: 360.0,
-            height: 420.0,
+            width: 400.0,
+            height: 430.0,
             margin: const EdgeInsets.only(
-                left: 18.0, top: 7.0, right: 18.0, bottom: 5.0),
+                left: 20.0, top: 7.0, right: 18.0, bottom: 5.0),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(20),
               border:
                   Border.all(color: Color.fromRGBO(214, 226, 233, 1), width: 3),
               boxShadow: [
@@ -66,16 +67,17 @@ class MainPage extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           //모바일 학생증 div
+
                           margin: const EdgeInsets.only(
                               left: 0.0, top: 15.0, right: 0.0, bottom: 0.0),
-                          width: 150,
+                          width: 189,
                           height: 100,
                           child: Text(
                             "모바일 학생증",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 19,
+                                fontSize: 20,
                                 color: Color.fromRGBO(12, 25, 57, 1)),
                           ),
                         ),
@@ -84,8 +86,8 @@ class MainPage extends StatelessWidget {
                           margin: const EdgeInsets.only(
                               left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
                           padding: const EdgeInsets.only(
-                              left: 13.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          width: 150,
+                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                          width: 189,
                           height: 40,
                           child: Text("김명지",
                               style: TextStyle(
@@ -97,8 +99,8 @@ class MainPage extends StatelessWidget {
                           margin: const EdgeInsets.only(
                               left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
                           padding: const EdgeInsets.only(
-                              left: 13.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          width: 150,
+                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                          width: 189,
                           height: 15,
                           child: Text("생년월일 : 1997. 03. 17",
                               style: TextStyle(
@@ -110,8 +112,8 @@ class MainPage extends StatelessWidget {
                           margin: const EdgeInsets.only(
                               left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
                           padding: const EdgeInsets.only(
-                              left: 13.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          width: 150,
+                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                          width: 189,
                           height: 15,
                           child: Text("학과 : 정보통신공학과",
                               style: TextStyle(
@@ -123,8 +125,8 @@ class MainPage extends StatelessWidget {
                           margin: const EdgeInsets.only(
                               left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
                           padding: const EdgeInsets.only(
-                              left: 13.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          width: 150,
+                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                          width: 189,
                           height: 15,
                           child: Text("학번 : " + hak,
                               style: TextStyle(
@@ -136,8 +138,8 @@ class MainPage extends StatelessWidget {
                           margin: const EdgeInsets.only(
                               left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
                           padding: const EdgeInsets.only(
-                              left: 13.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          width: 150,
+                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                          width: 189,
                           height: 15,
                           child: Text("학적상태 : 재학(전공심화)",
                               style: TextStyle(
@@ -151,7 +153,7 @@ class MainPage extends StatelessWidget {
                 Container(
                   //도용방지선 div
                   margin: const EdgeInsets.only(
-                      left: 0.0, top: 15.0, right: 0.0, bottom: 10.0),
+                      left: 0.0, top: 25.0, right: 0.0, bottom: 10.0),
                   padding: const EdgeInsets.only(
                       left: 0.0, top: 5.0, right: 0.0, bottom: 0.0),
                   width: 400,
@@ -185,17 +187,18 @@ class MainPage extends StatelessWidget {
                 left: 0.0, top: 6.0, right: 0.0, bottom: 0.0),
             padding: const EdgeInsets.only(
                 left: 0.0, top: 3.0, right: 0.0, bottom: 0.0),
-            width: 400,
+            width: 500,
             height: 30,
+
             child: Text(
               "위 학생이 명지전문대 학생임을 인증합니다.",
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 9.5, color: Color.fromRGBO(12, 25, 57, 1)),
+              style:
+                  TextStyle(fontSize: 12, color: Color.fromRGBO(12, 25, 57, 1)),
             ),
           ),
           Transform.translate(
-            offset: Offset(150.7, 179.2),
+            offset: Offset(100.7, 120.2),
             child: Container(
               width: 190.0,
               height: 90.0,
@@ -207,10 +210,10 @@ class MainPage extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(172.7, 85.8),
+            offset: Offset(172.2, 34.8),
             child: Container(
-              width: 68.0,
-              height: 68.0,
+              width: 70.0,
+              height: 70.0,
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),

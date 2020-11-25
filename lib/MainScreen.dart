@@ -32,7 +32,22 @@ class _MainScreenState extends State<MainScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: new FloatingActionButton(
+      floatingActionButton: Container(
+        height: 63.0,
+        width: 63.0,
+        child: FittedBox(
+          child: FloatingActionButton(
+              backgroundColor: BtnColor,
+              elevation: 0,
+              child: ImageIcon(
+                AssetImage("images/baricon.png"),
+                size: 43,
+                color: PrimaryColor,
+              ),
+              onPressed: () {}),
+        ),
+      ),
+      /* floatingActionButton: new FloatingActionButton(
         //child: Padding(
         // padding: const EdgeInsets.all(15),
         // child: Image.asset('images/barlogo.png'),
@@ -52,7 +67,7 @@ class _MainScreenState extends State<MainScreen> {
           size: 30,
           color: PrimaryColor,
         ),
-      ),
+      ),*/
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 12,
