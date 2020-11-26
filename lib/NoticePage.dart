@@ -104,6 +104,7 @@ class NoticePageState extends State<NoticePage> {
                     fontFamily: 'DX유니고딕 20',
                     fontSize: size,
                     color: const Color(0xff0c1939),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -431,7 +432,7 @@ class NoticePageState extends State<NoticePage> {
         child: new Center(
           child: new Text(
             '9P',
-            style: new TextStyle(fontSize: 15.0, color: Colors.black),
+            style: new TextStyle(fontSize: 14.0, color: Colors.black),
           ),
         ));
   }
@@ -443,7 +444,8 @@ class NoticePageState extends State<NoticePage> {
   Widget borderContainer1() {
     return Container(
       padding: const EdgeInsets.all(15.0),
-      margin: const EdgeInsets.all(15.0),
+      //margin: const EdgeInsets.all(15.0),
+      margin: const EdgeInsets.only(right: 26, left: 26, top: 8, bottom: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         border: Border.all(width: 3, color: PrimaryColor),
@@ -466,7 +468,8 @@ class NoticePageState extends State<NoticePage> {
   Widget borderContainer2() {
     return Container(
       padding: const EdgeInsets.all(15.0),
-      margin: const EdgeInsets.all(15.0),
+      //margin: const EdgeInsets.all(15.0),
+      margin: const EdgeInsets.only(right: 26, left: 26, top: 8, bottom: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(width: 3, color: PrimaryColor)),
@@ -485,7 +488,8 @@ class NoticePageState extends State<NoticePage> {
 //분실물 찾기
   Widget borderContainer3() {
     return Container(
-      margin: const EdgeInsets.all(15.0),
+      margin: const EdgeInsets.only(right: 26, left: 26, top: 8, bottom: 10),
+      //margin: const EdgeInsets.all(15.0),
       padding: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -545,7 +549,7 @@ class NoticePageState extends State<NoticePage> {
         children: [
           //SvgPicture.asset('images/mytest.svg', width: 30, height: 30),
           Text(
-            "김진원 [2019671062]",
+            "정혜진 [2020581015]",
             style: TextStyle(
               fontFamily: 'DX유니고딕 20',
               fontSize: 13,
@@ -572,19 +576,19 @@ class NoticePageState extends State<NoticePage> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("마일리지",
-                    style: TextStyle(fontSize: 14.0),
+                    style: TextStyle(fontSize: 12.0),
                     textAlign: TextAlign.center),
               ),
-              padding: EdgeInsets.only(right: 25, bottom: 3),
+              padding: EdgeInsets.only(right: 23, bottom: 3),
               onPressed: () {},
             ),
             top: 100,
-            left: 280,
+            left: 300,
           ),
           Positioned(
             child: boxMileage("12P", TextStyle(fontWeight: FontWeight.normal)),
             top: 100,
-            left: 340,
+            left: 360,
           ),
         ],
       );
@@ -692,16 +696,16 @@ class NoticePageState extends State<NoticePage> {
               children: [
                 Row(
                   children: [
-                    addText("나의 할 일", 20, 15, 15),
+                    addText("나의 할 일", 20, 32, 22),
                     Container(
                       padding: EdgeInsets.only(left: 10, top: 0),
                     )
                   ],
                 ),
                 borderContainer1(),
-                addText("학사공지", 20, 15, 15),
+                addText("학사공지", 20, 32, 5),
                 borderContainer2(),
-                addText("분실물 찾기", 20, 15, 15),
+                addText("분실물 찾기", 20, 32, 5),
                 borderContainer3(),
               ],
             ),
