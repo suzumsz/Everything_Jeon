@@ -13,7 +13,7 @@ class SettingPage extends StatelessWidget {
         builder: (BuildContext context) {
           // return object of type Dialog
           return AlertDialog(
-            title: new Text("로그아웃"),
+            title: new Text("Log out"),
             content: new Text("로그아웃 되었습니다."),
             actions: <Widget>[
               new FlatButton(
