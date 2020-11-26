@@ -616,7 +616,7 @@ class NoticePageState extends State<NoticePage> {
                     children: [
                       Row(
                         children: [
-                          addText("공지사항", 25, 30, 0),
+                          addText("공지사항", 25, 28, 1),
                           Transform.translate(
                             offset: Offset(119.0, 8.5),
                             child: Container(
@@ -680,6 +680,7 @@ class NoticePageState extends State<NoticePage> {
 
     /********************************************** AppBar ***************************************************************/
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter layout demo',
       theme: ThemeData(
         //background 설정
