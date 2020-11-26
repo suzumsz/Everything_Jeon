@@ -5,7 +5,7 @@ import 'package:everything_jeon/ScrollingText.dart';
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String hak = "2020541012";
+    String hak = "2020581015";
     String barcode = hak + "30";
 
     return Scaffold(
