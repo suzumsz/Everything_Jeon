@@ -139,7 +139,6 @@ class LocationPage extends StatelessWidget {
           ),
           Transform.translate(
             // 본관 위치
-            // 오른쪽 화살표
             offset: Offset(150.0, 500.0),
             child: Container(
               width: 20.0,
@@ -167,7 +166,6 @@ class LocationPage extends StatelessWidget {
           ),
           Transform.translate(
             // 사교 위치
-            // 오른쪽 화살표
             offset: Offset(200.0, 420.0),
             child: Container(
               width: 20.0,
@@ -178,6 +176,13 @@ class LocationPage extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
               ),
+            ),
+          ),
+          Transform.translate(
+            // 대각선
+            offset: Offset(10.0, 10.0),
+            child: CustomPaint(
+              painter: MyPainter(),
             ),
           ),
           Transform.translate(
@@ -247,5 +252,22 @@ class LocationPage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class MyPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final p1 = Offset(150.0, 500.0);
+    final p2 = Offset(200.0, 420.0);
+    final paint = Paint()
+      ..color = Colors.red
+      ..strokeWidth = 4;
+    canvas.drawLine(p1, p2, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter old) {
+    return false;
   }
 }
