@@ -137,7 +137,7 @@ class MyApp extends State<LocationAppPage> {
               child: TextFormField(
                 onChanged: (String input) {
                   setState(() {
-                    if (input == "사회체육") {
+                    if (input == "사회교육관") {
                       sportsopacityValue = 1.0;
                       lineopacityValue = 1.0;
                     }

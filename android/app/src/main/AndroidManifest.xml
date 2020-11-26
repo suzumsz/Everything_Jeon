@@ -7,7 +7,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="everything_jeon"
+        android:label="에브리띵전"
         android:icon="@mipmap/applogo">
         <activity
             android:name=".MainActivity"
