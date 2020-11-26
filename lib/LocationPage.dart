@@ -1,6 +1,28 @@
 import 'package:flutter/material.dart';
 
 class LocationPage extends StatelessWidget {
+  // This widget is the root of your application.
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sample App',
+      home: LocationAppPage(),
+    );
+  }
+}
+
+class LocationAppPage extends StatefulWidget {
+  @override
+  MyApp createState() => MyApp();
+}
+
+class MyApp extends State<LocationAppPage> {
+  var mainopacityValue = 0.0;
+  var sportsopacityValue = 0.0;
+  var lineopacityValue = 0.0;
+  bool _trigger = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +74,13 @@ class LocationPage extends StatelessWidget {
               width: 168.0,
               height: 38.0,
               child: TextFormField(
+                onChanged: (String input) {
+                  setState(() {
+                    if (input == "본관") {
+                      mainopacityValue = 1.0;
+                    }
+                  });
+                },
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(top: 12, right: 20),
                   filled: true,
@@ -105,6 +134,14 @@ class LocationPage extends StatelessWidget {
               width: 168.0,
               height: 38.0,
               child: TextFormField(
+                onChanged: (String input) {
+                  setState(() {
+                    if (input == "사회체육") {
+                      sportsopacityValue = 1.0;
+                      lineopacityValue = 1.0;
+                    }
+                  });
+                },
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(top: 12, right: 20),
                   filled: true,
@@ -137,16 +174,20 @@ class LocationPage extends StatelessWidget {
               ),
             ),
           ),
-          Transform.translate(
-            // 본관 위치
-            offset: Offset(150.0, 500.0),
-            child: Container(
-              width: 20.0,
-              height: 20.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: const AssetImage('images/loc.png'),
-                  fit: BoxFit.fill,
+          AnimatedOpacity(
+            opacity: mainopacityValue,
+            duration: Duration(seconds: 1),
+            child: Transform.translate(
+              // 본관 위치
+              offset: Offset(150.0, 500.0),
+              child: Container(
+                width: 20.0,
+                height: 20.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: const AssetImage('images/loc.png'),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
@@ -164,25 +205,33 @@ class LocationPage extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          Transform.translate(
-            // 사교 위치
-            offset: Offset(200.0, 420.0),
-            child: Container(
-              width: 20.0,
-              height: 20.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: const AssetImage('images/loc.png'),
-                  fit: BoxFit.fill,
+          AnimatedOpacity(
+            opacity: sportsopacityValue,
+            duration: Duration(seconds: 1),
+            child: Transform.translate(
+              // 사교 위치
+              offset: Offset(200.0, 420.0),
+              child: Container(
+                width: 20.0,
+                height: 20.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: const AssetImage('images/loc.png'),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
           ),
-          Transform.translate(
-            // 대각선
-            offset: Offset(10.0, 10.0),
-            child: CustomPaint(
-              painter: MyPainter(),
+          AnimatedOpacity(
+            opacity: lineopacityValue,
+            duration: Duration(seconds: 1),
+            child: Transform.translate(
+              // 대각선
+              offset: Offset(10.0, 10.0),
+              child: CustomPaint(
+                painter: MyPainter(),
+              ),
             ),
           ),
           Transform.translate(
