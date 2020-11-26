@@ -544,7 +544,7 @@ class NoticePageState extends State<NoticePage> {
 
   Container schoolLogo(String text) {
     return Container(
-      padding: EdgeInsets.only(left: 100, top: 15),
+      margin: EdgeInsets.only(left: 102, top: 13),
       child: Row(
         children: [
           //SvgPicture.asset('images/mytest.svg', width: 30, height: 30),
@@ -618,7 +618,7 @@ class NoticePageState extends State<NoticePage> {
                         children: [
                           addText("공지사항", 25, 28, 1),
                           Transform.translate(
-                            offset: Offset(119.0, 8.5),
+                            offset: Offset(121.0, 7.5),
                             child: Container(
                               width: 21.0,
                               height: 21.0,
@@ -631,7 +631,7 @@ class NoticePageState extends State<NoticePage> {
                           ),
                           Transform.translate(
                             // 원형로고
-                            offset: Offset(100.0, 8.5),
+                            offset: Offset(102.0, 7.5),
                             child: Container(
                               width: 17.0,
                               height: 17.0,
