@@ -610,6 +610,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
             child: Text(
               '공지사항',
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontFamily: 'DX유니고딕 20',
                 fontSize: 25,
                 color: const Color(0xff0c1939),
@@ -634,6 +635,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
             child: Text(
               '분실물 리스트',
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontFamily: 'DX유니고딕 20',
                 fontSize: 20,
                 color: const Color(0xff0c1939),
