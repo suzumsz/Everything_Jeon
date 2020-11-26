@@ -118,7 +118,7 @@ class NoticePageState extends State<NoticePage> {
   Widget buttonExtended(
       String text, TextStyle textstyle, String heroTag, Color backgroundColor) {
     return Container(
-      padding: const EdgeInsets.only(left: 20, top: 10),
+      padding: const EdgeInsets.only(left: 12, top: 10),
       child: Container(
         width: 90.0,
         height: 30.0,
@@ -476,9 +476,9 @@ class NoticePageState extends State<NoticePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("⦁ [긴급] 기숙사생 입사 관련 공지사항"),
-          Text("⦁ 비대면 수업 중간고사 시험 안내"),
-          Text("⦁ 프레젠테이션 경진대회 결과"),
+          Text("⦁ 2020학년도 MJC 스피치 경진대회 개최 안내 "),
+          Text("⦁ 2020학년도 기초학습튜터링(영어) 추가모집 안내 "),
+          Text("⦁ 동계방학기간 중 생활관 사생 모집 안내"),
           buttonArrow(Alignment.centerRight, 1, "btnArrow1"),
         ],
       ),
@@ -501,9 +501,9 @@ class NoticePageState extends State<NoticePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("     최근 분실물",
+                  Text("   최근 분실물",
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("⦁ [체크카트] 정XX님 국민카드"),
+                  Text("⦁ [체크카드] 정XX님 국민카드"),
                   Text("⦁ [에어팟 케이스] 갈색 곰돌이 모양"),
                 ],
               ),
@@ -672,8 +672,8 @@ class NoticePageState extends State<NoticePage> {
     if (startFlag) {
       contents.clear();
       contents.add("⦁ 10. 31 / 16:00     산업디자인과 취업 특강 이수");
-      contents.add("⦁ 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출");
-      contents.add("⦁ 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출");
+      contents.add("⦁ 11. 02 / 18:00     생활영어 9주차 과제 제출");
+      contents.add("⦁ 11. 08 / 24:00     문학과 사회 리포트 제출");
       startFlag = false;
     }
     // ignore: non_constant_identifier_names
