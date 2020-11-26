@@ -89,7 +89,7 @@ class LoginPageState extends State<LoginPage> {
                         )),
             ),
             Container(
-              margin: EdgeInsets.only(left: 40, top: 10),
+              margin: EdgeInsets.only(left: 20, top: 10),
               width: 100.0,
               height: 24.0,
               // child: Stack(
