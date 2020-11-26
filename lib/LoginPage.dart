@@ -36,6 +36,11 @@ class LoginPageState extends State<LoginPage> {
                               margin: EdgeInsets.only(right: 5, top: 7),
                               width: 17.0,
                               height: 17.0,
+                              child: Icon(
+                                Icons.check,
+                                size: 14.0,
+                                color: Colors.grey[400],
+                              ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                     Radius.elliptical(9999.0, 9999.0)),
@@ -51,6 +56,7 @@ class LoginPageState extends State<LoginPage> {
                                 fontSize: 11,
                                 color: const Color(0xff205072),
                                 letterSpacing: -0.14705883026123048,
+                                height: 1.9,
                               ),
                               textAlign: TextAlign.left,
                             ),
@@ -82,6 +88,7 @@ class LoginPageState extends State<LoginPage> {
                                 fontSize: 11,
                                 color: const Color(0xff205072),
                                 letterSpacing: -0.14705883026123048,
+                                height: 1.9,
                               ),
                               textAlign: TextAlign.left,
                             ),
