@@ -323,7 +323,7 @@ class XDinfo_list_state extends State<XDinfo_list_tab>
                   text: '*주의사항',
                 ),
                 TextSpan(
-                  text: '\n분실물 발견 시 학교 [본관/인터넷 프라자] 에 맡기거나 분실 장소에 그대로 나두어 주세요.',
+                  text: '\n분실물 발견 시 학교 [본관/인터넷 프라자] 에 맡기거나 분실 장소에 그대로 놔두어 주세요.',
                   style: TextStyle(
                     fontSize: 7.5,
                   ),
