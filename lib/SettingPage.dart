@@ -7,6 +7,28 @@ final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    void _showDialog() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text("로그아웃"),
+            content: new Text("로그아웃 되었습니다."),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("닫기"),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       body: Stack(
@@ -173,10 +195,8 @@ class SettingPage extends StatelessWidget {
                     //textAlign: TextAlign.left,
                   ),
                   onPressed: () async {
-                    _signOut();
-
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
+                    // _signOut();
+                    _showDialog();
                   }),
             ),
           ),
@@ -186,7 +206,9 @@ class SettingPage extends StatelessWidget {
   }
 }
 
+/*
 _signOut() async {
   await _firebaseAuth.signOut();
   print('signInEmail succeeded: $_signOut');
 }
+*/
