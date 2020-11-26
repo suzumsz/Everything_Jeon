@@ -56,7 +56,7 @@ class MainPage extends StatelessWidget {
                       width: 150,
                       height: 200,
                       child: Image.asset(
-                        'images/sample.jpg',
+                        'images/hj.png',
                         fit: BoxFit.cover,
                       ),
                       decoration: BoxDecoration(
@@ -78,7 +78,7 @@ class MainPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                fontSize: 23,
                                 color: Color.fromRGBO(12, 25, 57, 1)),
                           ),
                         ),
@@ -87,12 +87,12 @@ class MainPage extends StatelessWidget {
                           margin: const EdgeInsets.only(
                               left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
                           padding: const EdgeInsets.only(
-                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                              left: 17.0, top: 0.0, right: 0.0, bottom: 0.0),
                           width: 189,
                           height: 40,
-                          child: Text("김명지",
+                          child: Text("정혜진",
                               style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 19,
                                   color: Color.fromRGBO(12, 25, 57, 1))),
                         ),
                         Container(
@@ -103,9 +103,9 @@ class MainPage extends StatelessWidget {
                               left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
                           width: 189,
                           height: 15,
-                          child: Text("생년월일 : 1997. 03. 17",
+                          child: Text("생년월일 : 1997. 04. 29",
                               style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   color: Color.fromRGBO(12, 25, 57, 1))),
                         ),
                         Container(
@@ -116,9 +116,9 @@ class MainPage extends StatelessWidget {
                               left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
                           width: 189,
                           height: 15,
-                          child: Text("학과 : 정보통신공학과",
+                          child: Text("학과 : 산업디자인 (예술건강학부)",
                               style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   color: Color.fromRGBO(12, 25, 57, 1))),
                         ),
                         Container(
@@ -131,7 +131,7 @@ class MainPage extends StatelessWidget {
                           height: 15,
                           child: Text("학번 : " + hak,
                               style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   color: Color.fromRGBO(12, 25, 57, 1))),
                         ),
                         Container(
@@ -142,9 +142,9 @@ class MainPage extends StatelessWidget {
                               left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
                           width: 189,
                           height: 15,
-                          child: Text("학적상태 : 재학(전공심화)",
+                          child: Text("학적상태 : 재학 (전공심화)",
                               style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   color: Color.fromRGBO(12, 25, 57, 1))),
                         ),
                       ],
