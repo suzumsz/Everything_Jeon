@@ -140,7 +140,7 @@ class LoginPageState extends State<LoginPage> {
           fillColor: const Color(0xcc0b1837),
           hintText: 'ID',
           hintStyle: TextStyle(
-            height: 2.5,
+            height: 2.7,
             fontFamily: 'YDIYGO330',
             fontSize: 18,
             color: const Color(0xffffffff),
@@ -173,7 +173,7 @@ class LoginPageState extends State<LoginPage> {
           fillColor: const Color(0xcc0b1837),
           hintText: 'PW',
           hintStyle: TextStyle(
-            height: 2.5,
+            height: 2.7,
             fontFamily: 'YDIYGO330',
             fontSize: 18,
             color: const Color(0xffffffff),
