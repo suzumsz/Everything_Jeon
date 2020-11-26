@@ -421,6 +421,7 @@ class MyApp extends State<ReservationAppPage>
           child: Text(
             '나의 예약',
             style: TextStyle(
+              fontWeight: FontWeight.bold,
               fontFamily: 'DX유니고딕 20',
               fontSize: 25,
               color: const Color(0xff0c1939),
@@ -433,8 +434,9 @@ class MyApp extends State<ReservationAppPage>
           child: Text(
             '예약하기',
             style: TextStyle(
+              fontWeight: FontWeight.bold,
               fontFamily: 'DX유니고딕 20',
-              fontSize: 25,
+              fontSize: 23,
               color: const Color(0xff0c1939),
             ),
             textAlign: TextAlign.left,
