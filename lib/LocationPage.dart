@@ -47,6 +47,7 @@ class MyApp extends State<LocationAppPage> {
             child: Text(
               '위치',
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontFamily: 'DX유니고딕 20',
                 fontSize: 25,
                 color: const Color(0xff0c1939),
@@ -198,6 +199,7 @@ class MyApp extends State<LocationAppPage> {
             child: Text(
               '학교 지도',
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontFamily: 'DX유니고딕 20',
                 fontSize: 20,
                 color: const Color(0xff0c1939),

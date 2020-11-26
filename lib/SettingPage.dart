@@ -32,6 +32,7 @@ class SettingPage extends StatelessWidget {
             child: Text(
               '설정',
               style: TextStyle(
+                fontWeight: FontWeight.bold,
                 fontFamily: 'DX유니고딕 20',
                 fontSize: 25,
                 color: const Color(0xff0c1939),
@@ -56,6 +57,7 @@ class SettingPage extends StatelessWidget {
               child: Text(
                 '지원 부서 연락',
                 style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontFamily: 'DX유니고딕 20',
                   fontSize: 15,
                   color: const Color(0xff0c1939),

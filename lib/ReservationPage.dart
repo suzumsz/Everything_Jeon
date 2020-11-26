@@ -25,6 +25,7 @@ class ReservationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Sample App',
       home: ReservationAppPage(),
     );
@@ -293,11 +294,11 @@ class MyApp extends State<ReservationAppPage>
       margin: EdgeInsets.only(top: 305, left: 50, right: 50),
       child: TabBar(
         controller: _tabController,
-        indicatorWeight: 1,
+        indicatorWeight: 3,
         indicator: BoxDecoration(
           color: PrimaryColor,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(width: 3.0, color: BorderColor),
+          border: Border.all(width: 4.0, color: BorderColor),
         ),
         labelColor: TextColor,
         unselectedLabelColor: TextColor,
@@ -420,6 +421,7 @@ class MyApp extends State<ReservationAppPage>
           child: Text(
             '나의 예약',
             style: TextStyle(
+              fontWeight: FontWeight.bold,
               fontFamily: 'DX유니고딕 20',
               fontSize: 25,
               color: const Color(0xff0c1939),
@@ -432,8 +434,9 @@ class MyApp extends State<ReservationAppPage>
           child: Text(
             '예약하기',
             style: TextStyle(
+              fontWeight: FontWeight.bold,
               fontFamily: 'DX유니고딕 20',
-              fontSize: 25,
+              fontSize: 23,
               color: const Color(0xff0c1939),
             ),
             textAlign: TextAlign.left,
@@ -495,6 +498,16 @@ class MyApp extends State<ReservationAppPage>
             ),
           ),
         ),
+        Visibility(
+            visible: textVisible2,
+            child: Transform.translate(
+              offset: Offset(230.0, 117.0),
+              child: VerticalDivider(
+                thickness: 2.0,
+                color: Colors.grey[300],
+                endIndent: 702.0,
+              ),
+            )),
         Visibility(
           visible: textVisible2,
           child: Transform.translate(

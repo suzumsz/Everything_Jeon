@@ -104,6 +104,7 @@ class NoticePageState extends State<NoticePage> {
                     fontFamily: 'DX유니고딕 20',
                     fontSize: size,
                     color: const Color(0xff0c1939),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -117,7 +118,7 @@ class NoticePageState extends State<NoticePage> {
   Widget buttonExtended(
       String text, TextStyle textstyle, String heroTag, Color backgroundColor) {
     return Container(
-      padding: const EdgeInsets.only(left: 20, top: 10),
+      padding: const EdgeInsets.only(left: 12, top: 10),
       child: Container(
         width: 90.0,
         height: 30.0,
@@ -431,7 +432,7 @@ class NoticePageState extends State<NoticePage> {
         child: new Center(
           child: new Text(
             '9P',
-            style: new TextStyle(fontSize: 15.0, color: Colors.black),
+            style: new TextStyle(fontSize: 14.0, color: Colors.black),
           ),
         ));
   }
@@ -443,7 +444,8 @@ class NoticePageState extends State<NoticePage> {
   Widget borderContainer1() {
     return Container(
       padding: const EdgeInsets.all(15.0),
-      margin: const EdgeInsets.all(15.0),
+      //margin: const EdgeInsets.all(15.0),
+      margin: const EdgeInsets.only(right: 26, left: 26, top: 8, bottom: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         border: Border.all(width: 3, color: PrimaryColor),
@@ -466,16 +468,17 @@ class NoticePageState extends State<NoticePage> {
   Widget borderContainer2() {
     return Container(
       padding: const EdgeInsets.all(15.0),
-      margin: const EdgeInsets.all(15.0),
+      //margin: const EdgeInsets.all(15.0),
+      margin: const EdgeInsets.only(right: 26, left: 26, top: 8, bottom: 10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(width: 3, color: PrimaryColor)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("⦁ [긴급] 기숙사생 입사 관련 공지사항"),
-          Text("⦁ 비대면 수업 중간고사 시험 안내"),
-          Text("⦁ 프레젠테이션 경진대회 결과"),
+          Text("⦁ 2020학년도 MJC 스피치 경진대회 개최 안내 "),
+          Text("⦁ 2020학년도 기초학습튜터링(영어) 추가모집 안내 "),
+          Text("⦁ 동계방학기간 중 생활관 사생 모집 안내"),
           buttonArrow(Alignment.centerRight, 1, "btnArrow1"),
         ],
       ),
@@ -485,7 +488,8 @@ class NoticePageState extends State<NoticePage> {
 //분실물 찾기
   Widget borderContainer3() {
     return Container(
-      margin: const EdgeInsets.all(15.0),
+      margin: const EdgeInsets.only(right: 26, left: 26, top: 8, bottom: 10),
+      //margin: const EdgeInsets.all(15.0),
       padding: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -497,9 +501,9 @@ class NoticePageState extends State<NoticePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("     최근 분실물",
+                  Text("   최근 분실물",
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("⦁ [체크카트] 정XX님 국민카드"),
+                  Text("⦁ [체크카드] 정XX님 국민카드"),
                   Text("⦁ [에어팟 케이스] 갈색 곰돌이 모양"),
                 ],
               ),
@@ -540,12 +544,12 @@ class NoticePageState extends State<NoticePage> {
 
   Container schoolLogo(String text) {
     return Container(
-      padding: EdgeInsets.only(left: 100, top: 15),
+      margin: EdgeInsets.only(left: 102, top: 13),
       child: Row(
         children: [
           //SvgPicture.asset('images/mytest.svg', width: 30, height: 30),
           Text(
-            "김진원 [2019671062]",
+            "정혜진 [2020581015]",
             style: TextStyle(
               fontFamily: 'DX유니고딕 20',
               fontSize: 13,
@@ -572,19 +576,19 @@ class NoticePageState extends State<NoticePage> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text("마일리지",
-                    style: TextStyle(fontSize: 14.0),
+                    style: TextStyle(fontSize: 12.0),
                     textAlign: TextAlign.center),
               ),
-              padding: EdgeInsets.only(right: 25, bottom: 3),
+              padding: EdgeInsets.only(right: 23, bottom: 3),
               onPressed: () {},
             ),
             top: 100,
-            left: 280,
+            left: 300,
           ),
           Positioned(
             child: boxMileage("12P", TextStyle(fontWeight: FontWeight.normal)),
             top: 100,
-            left: 340,
+            left: 360,
           ),
         ],
       );
@@ -612,9 +616,9 @@ class NoticePageState extends State<NoticePage> {
                     children: [
                       Row(
                         children: [
-                          addText("공지사항", 25, 30, 0),
+                          addText("공지사항", 25, 28, 1),
                           Transform.translate(
-                            offset: Offset(119.0, 8.5),
+                            offset: Offset(121.0, 7.5),
                             child: Container(
                               width: 21.0,
                               height: 21.0,
@@ -627,7 +631,7 @@ class NoticePageState extends State<NoticePage> {
                           ),
                           Transform.translate(
                             // 원형로고
-                            offset: Offset(100.0, 8.5),
+                            offset: Offset(102.0, 7.5),
                             child: Container(
                               width: 17.0,
                               height: 17.0,
@@ -668,14 +672,15 @@ class NoticePageState extends State<NoticePage> {
     if (startFlag) {
       contents.clear();
       contents.add("⦁ 10. 31 / 16:00     산업디자인과 취업 특강 이수");
-      contents.add("⦁ 11. 02 / 18:00     프레젠테이션 잘하기 9주차 과제 제출");
-      contents.add("⦁ 11. 08 / 24:00     프레젠테이션 잘하기 리포트 제출");
+      contents.add("⦁ 11. 02 / 18:00     생활영어 9주차 과제 제출");
+      contents.add("⦁ 11. 08 / 24:00     문학과 사회 리포트 제출");
       startFlag = false;
     }
     // ignore: non_constant_identifier_names
 
     /********************************************** AppBar ***************************************************************/
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter layout demo',
       theme: ThemeData(
         //background 설정
@@ -692,16 +697,16 @@ class NoticePageState extends State<NoticePage> {
               children: [
                 Row(
                   children: [
-                    addText("나의 할 일", 20, 15, 15),
+                    addText("나의 할 일", 20, 32, 22),
                     Container(
                       padding: EdgeInsets.only(left: 10, top: 0),
                     )
                   ],
                 ),
                 borderContainer1(),
-                addText("학사공지", 20, 15, 15),
+                addText("학사공지", 20, 32, 5),
                 borderContainer2(),
-                addText("분실물 찾기", 20, 15, 15),
+                addText("분실물 찾기", 20, 32, 5),
                 borderContainer3(),
               ],
             ),
