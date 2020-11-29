@@ -1,15 +1,51 @@
 import 'package:everything_jeon/MainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
-import 'package:circular_check_box/circular_check_box.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 bool _value = false;
+
+class Auth {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  Future<User> handleSignInEmail(String email, String password) async {
+    UserCredential result =
+        await auth.signInWithEmailAndPassword(email: email, password: password);
+    final User user = result.user;
+
+    assert(user != null);
+    assert(await user.getIdToken() != null);
+
+    final User currentUser = await auth.currentUser;
+    assert(user.uid == currentUser.uid);
+
+    print('signInEmail succeeded: $user');
+
+    return user;
+  }
+
+  Future<User> handleSignUp(email, password) async {
+    UserCredential result = await auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    final User user = result.user;
+
+    assert(user != null);
+    assert(await user.getIdToken() != null);
+
+    return user;
+  }
+}
 
 class LoginPage extends StatefulWidget {
   LoginPageState createState() => LoginPageState();
 }
 
 class LoginPageState extends State<LoginPage> {
+  var authHandler = new Auth();
+  final TextEditingController _emailtextController =
+      new TextEditingController();
+  final TextEditingController _pwtextController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,8 +156,17 @@ class LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MainScreen()));
+                  authHandler
+                      .handleSignInEmail(
+                          _emailtextController.text, _pwtextController.text)
+                      .then((User user) {
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new MainScreen()));
+                  }).catchError((e) => print(e));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => MainScreen()));
                 },
               ),
             ),
@@ -140,6 +185,7 @@ class LoginPageState extends State<LoginPage> {
       width: 282.0,
       height: 43.0,
       child: TextFormField(
+        controller: _emailtextController,
         //textAlign: TextAlign.left,
         style: TextStyle(color: const Color(0xffffffff)),
         decoration: InputDecoration(
@@ -173,6 +219,7 @@ class LoginPageState extends State<LoginPage> {
       width: 282.0,
       height: 43.0,
       child: TextFormField(
+        controller: _pwtextController,
         //textAlign: TextAlign.left,
         style: TextStyle(color: const Color(0xffffffff)),
         decoration: InputDecoration(
