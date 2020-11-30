@@ -1,4 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+class User {
+  String name;
+  String classNum;
+
+  User(this.name, this.classNum);
+}
 
 class LocationPage extends StatelessWidget {
   // This widget is the root of your application.
@@ -22,6 +31,42 @@ class MyApp extends State<LocationAppPage> {
   var sportsopacityValue = 0.0;
   var lineopacityValue = 0.0;
   bool _trigger = true;
+
+  final _firestore = Firestore.instance;
+  final _currentUser = FirebaseAuth.instance.currentUser;
+
+  Widget _buildItemWidget(DocumentSnapshot docs, int i) {
+    final user = User(docs['Name'], docs['classNum']);
+
+    switch (i) {
+      case 1:
+        {
+          return Text(
+            user.name + " [" + user.classNum + "]",
+            style: TextStyle(
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 13,
+              color: const Color(0xff0a1736),
+            ),
+            textAlign: TextAlign.left,
+          );
+        }
+        break;
+      default:
+    }
+  }
+
+  Widget _getDB(int i) {
+    return StreamBuilder<DocumentSnapshot>(
+        stream: _firestore.collection("User").doc(_currentUser.uid).snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          final documents = snapshot.data;
+          return Expanded(child: _buildItemWidget(documents, i));
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,15 +103,7 @@ class MyApp extends State<LocationAppPage> {
           Transform.translate(
             // 사용자 정보
             offset: Offset(265.0, 71.0),
-            child: Text(
-              '정혜진 [2020581015]',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 13,
-                color: const Color(0xff0a1736),
-              ),
-              textAlign: TextAlign.left,
-            ),
+            child: _getDB(1),
           ),
           Transform.translate(
             // 검색어 입력1

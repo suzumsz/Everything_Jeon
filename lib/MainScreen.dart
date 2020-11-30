@@ -2,7 +2,6 @@ import 'package:everything_jeon/LocationPage.dart';
 import 'package:everything_jeon/MainPage.dart';
 import 'package:everything_jeon/NoticePage.dart';
 import 'package:everything_jeon/ReservationPage.dart';
-import 'package:everything_jeon/testfs.dart';
 import 'package:flutter/material.dart';
 import 'SettingPage.dart';
 
@@ -19,7 +18,6 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 2;
 
   List<Widget> _widgetOptions = <Widget>[
-    //ReservationPage(),
     ReservationPage(),
     LocationPage(),
     MainPage(),
@@ -177,7 +175,6 @@ class _MainScreenState extends State<MainScreen> {
     return {
       '/': (context) {
         return [
-          //ReservationPage(),
           ReservationPage(),
           LocationPage(),
           MainPage(),

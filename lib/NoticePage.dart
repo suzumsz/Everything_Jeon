@@ -16,6 +16,13 @@ const PrimaryColor = const Color(0xFFDFE6F3);
 AnimationController aniController;
 Animation<double> animation;
 
+class User {
+  String name;
+  String classNum;
+
+  User(this.name, this.classNum);
+}
+
 class Notice {
   String notice1, notice2, notice3;
 
@@ -28,7 +35,7 @@ void main() async {
   runApp(NoticePage());
 }
 
-class ReservationPage extends StatelessWidget {
+class NoticeAppPage extends StatelessWidget {
   // This widget is the root of your application.
 
   @override
@@ -93,6 +100,46 @@ class NoticePageState extends State<NoticePage> {
       case 3:
         return Text("⦁ " + notice.notice3);
     }
+  }
+
+  Widget _buildIgetName(DocumentSnapshot docs, int i) {
+    final user = User(docs['Name'], docs['classNum']);
+
+    switch (i) {
+      case 1:
+        {
+          return Container(
+            margin: EdgeInsets.only(left: 102, top: 13),
+            child: Row(
+              children: [
+                //SvgPicture.asset('images/mytest.svg', width: 30, height: 30),
+                Text(
+                  user.name + " [" + user.classNum + "]",
+                  style: TextStyle(
+                    fontFamily: 'DX유니고딕 20',
+                    fontSize: 13,
+                    color: const Color(0xff0a1736),
+                  ),
+                )
+              ],
+            ),
+          );
+        }
+        break;
+      default:
+    }
+  }
+
+  Widget _getDB(int i) {
+    return StreamBuilder<DocumentSnapshot>(
+        stream: _firestore.collection("User").doc(_currentUser.uid).snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          final documents = snapshot.data;
+          return Expanded(child: _buildIgetName(documents, i));
+        });
   }
 
   void _visibilitymethod() {
@@ -620,25 +667,6 @@ class NoticePageState extends State<NoticePage> {
     );
   }
 
-  Container schoolLogo(String text) {
-    return Container(
-      margin: EdgeInsets.only(left: 102, top: 13),
-      child: Row(
-        children: [
-          //SvgPicture.asset('images/mytest.svg', width: 30, height: 30),
-          Text(
-            "정혜진 [2020581015]",
-            style: TextStyle(
-              fontFamily: 'DX유니고딕 20',
-              fontSize: 13,
-              color: const Color(0xff0a1736),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
   Container make_Appbar(bool show) {
     Stack get;
     if (show == true) {
@@ -724,7 +752,7 @@ class NoticePageState extends State<NoticePage> {
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 5),
-                            child: schoolLogo("김진원[2019671062]"),
+                            child: _getDB(1),
                           ),
                         ],
                       ),

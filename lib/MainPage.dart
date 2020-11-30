@@ -41,7 +41,6 @@ class MainAppPage extends StatefulWidget {
 
 class MyApp extends State<MainAppPage> {
   final _firestore = Firestore.instance;
-  final _auth = FirebaseAuth.instance;
   final _currentUser = FirebaseAuth.instance.currentUser;
 
   @override

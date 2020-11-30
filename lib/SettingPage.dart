@@ -1,10 +1,81 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:everything_jeon/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+class User {
+  String name;
+  String birth;
+  String depart;
+  String classNum;
+  String state;
+
+  User(this.name, this.birth, this.depart, this.classNum, this.state);
+}
 
 class SettingPage extends StatelessWidget {
+  final _firestore = Firestore.instance;
+  final _currentUser = FirebaseAuth.instance.currentUser;
+
+  Widget _buildItemWidget(DocumentSnapshot docs, int i) {
+    final user = User(docs['Name'], docs['Birth'], docs['Department'],
+        docs['classNum'], docs['State']);
+    String barcode = user.classNum + "30";
+
+    switch (i) {
+      case 1:
+        {
+          return Transform.translate(
+            offset: Offset(140.0, 126.0),
+            child: Text.rich(
+              TextSpan(
+                style: TextStyle(
+                  fontFamily: 'DX유니고딕 20',
+                  fontSize: 17,
+                  color: const Color(0xff0c1939),
+                ),
+                children: [
+                  TextSpan(
+                    text: user.name,
+                  ),
+                  TextSpan(
+                    text: '\n생년월일 : ' +
+                        user.birth +
+                        '\n학과 : ' +
+                        user.depart +
+                        '\n학번 : ' +
+                        user.classNum +
+                        '\n학적상태 : ' +
+                        user.state +
+                        '\n\n*정보 수정은 학교 홈페이지 이용 바랍니다.',
+                    style: TextStyle(
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+              textAlign: TextAlign.left,
+            ),
+          );
+        }
+        break;
+
+      default:
+    }
+  }
+
+  Widget _getDB(int i) {
+    return StreamBuilder<DocumentSnapshot>(
+        stream: _firestore.collection("User").doc(_currentUser.uid).snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          final documents = snapshot.data;
+          return Expanded(child: _buildItemWidget(documents, i));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     void _showDialog() {
@@ -141,31 +212,7 @@ class SettingPage extends StatelessWidget {
               ),
             ),
           ),
-          Transform.translate(
-            offset: Offset(140.0, 126.0),
-            child: Text.rich(
-              TextSpan(
-                style: TextStyle(
-                  fontFamily: 'DX유니고딕 20',
-                  fontSize: 17,
-                  color: const Color(0xff0c1939),
-                ),
-                children: [
-                  TextSpan(
-                    text: '정혜진',
-                  ),
-                  TextSpan(
-                    text:
-                        '\n생년월일 : 1997. 04. 29\n학과 : 산업디자인(예술건강학부)\n학번 : 2020581015\n학적상태 : 재학(전공심화)\n\n*정보 수정은 학교 홈페이지 이용 바랍니다.',
-                    style: TextStyle(
-                      fontSize: 11,
-                    ),
-                  ),
-                ],
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
+          _getDB(1),
           Transform.translate(
             offset: Offset(288.0, 125.0),
             child: Container(

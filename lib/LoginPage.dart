@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-bool _value = false;
+bool _value = true;
 
 class Auth {
   final FirebaseAuth auth = FirebaseAuth.instance;
