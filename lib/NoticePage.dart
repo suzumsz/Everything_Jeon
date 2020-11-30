@@ -3,27 +3,57 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'XDinfo_list.dart';
 import 'package:intl/intl.dart';
-import 'Barcode.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // 브라우저를 열 링크
 const url = 'https://www.mjc.ac.kr/bbs/data/list.do?menu_idx=169';
 
 const double formH = 120;
-
+bool USE_FIRESTORE_EMULATOR = false;
 const PrimaryColor = const Color(0xFFDFE6F3);
 AnimationController aniController;
 Animation<double> animation;
+
+class Notice {
+  String notice1, notice2, notice3;
+
+  Notice(this.notice1, this.notice2, this.notice3);
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(NoticePage());
+}
+
+class ReservationPage extends StatelessWidget {
+  // This widget is the root of your application.
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: NoticePage(),
+    );
+  }
+}
 
 class NoticePage extends StatefulWidget {
   NoticePageState createState() => NoticePageState();
 }
 
 class NoticePageState extends State<NoticePage> {
+  final _firestore = Firestore.instance;
+  final _auth = FirebaseAuth.instance;
+  final _currentUser = FirebaseAuth.instance.currentUser;
+
   /* 나의 할 일 추가 */
   String addCon = '';
   String addDate = '';
   String addTime = '';
   /* */
+  Notice notice;
 
   List<String> contents = List<String>();
   DateTime _selectedTime; //날짜
@@ -34,6 +64,36 @@ class NoticePageState extends State<NoticePage> {
   String _value = '';
   bool a = true;
   String mText = "Press to hide";
+  String temp, notice1, notice2, notice3;
+
+  Widget _getNotice(int i) {
+    return StreamBuilder<DocumentSnapshot>(
+        stream: _firestore.collection("Notice").doc("notice").snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          final documents = snapshot.data;
+          return Container(child: _buildItemWidget(documents, i));
+        });
+  }
+
+  Widget _buildItemWidget(DocumentSnapshot docs, int i) {
+    final notice = Notice(docs['notice1'], docs['notice2'], docs['notice3']);
+
+    print(notice.notice1);
+    print(notice.notice2);
+    print(notice.notice3);
+
+    switch (i) {
+      case 1:
+        return Text("⦁ " + notice.notice1);
+      case 2:
+        return Text("⦁ " + notice.notice2);
+      case 3:
+        return Text("⦁ " + notice.notice3);
+    }
+  }
 
   void _visibilitymethod() {
     setState(() {
@@ -47,6 +107,24 @@ class NoticePageState extends State<NoticePage> {
         print(mText);
       }
     });
+  }
+
+  String _getFirebase(String collection, String document, String field) {
+    Firestore.instance
+        .collection(collection)
+        .document(document)
+        .get()
+        .then((DocumentSnapshot ds) {
+      return ds.data()[field];
+    });
+  }
+
+  void _addFirebase(String collection, Map field) {
+    Firestore.instance.collection(collection).add(field);
+  }
+
+  void _setFirebase(String collection, String document, Map field) {
+    Firestore.instance.collection(collection).document(document).setData(field);
   }
 
   String timePicker() {
@@ -476,9 +554,9 @@ class NoticePageState extends State<NoticePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("⦁ 2020학년도 MJC 스피치 경진대회 개최 안내 "),
-          Text("⦁ 2020학년도 기초학습튜터링(영어) 추가모집 안내 "),
-          Text("⦁ 동계방학기간 중 생활관 사생 모집 안내"),
+          _getNotice(1),
+          _getNotice(2),
+          _getNotice(3),
           buttonArrow(Alignment.centerRight, 1, "btnArrow1"),
         ],
       ),
