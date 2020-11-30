@@ -1,12 +1,120 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 import 'package:everything_jeon/ScrollingText.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MainPage());
+}
+
+class User {
+  String name;
+  String birth;
+  String depart;
+  String classNum;
+  String state;
+
+  User(this.name, this.birth, this.depart, this.classNum, this.state);
+}
+
 class MainPage extends StatelessWidget {
+  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
-    String hak = "2020581015";
-    String barcode = hak + "30";
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Sample App',
+      home: MainAppPage(),
+    );
+  }
+}
+
+class MainAppPage extends StatefulWidget {
+  @override
+  MyApp createState() => MyApp();
+}
+
+class MyApp extends State<MainAppPage> {
+  final _firestore = Firestore.instance;
+  final _auth = FirebaseAuth.instance;
+  final _currentUser = FirebaseAuth.instance.currentUser;
+
+  @override
+  Widget build(BuildContext context) {
+    String _hak = "234";
+    String barcode = "hak";
+
+    void changeText(String time) {
+      initState();
+    }
+
+    Widget _buildItemWidget(DocumentSnapshot docs, int i) {
+      final user = User(docs['Name'], docs['Birth'], docs['Department'],
+          docs['classNum'], docs['State']);
+      print("user.classNum // " + user.classNum);
+
+      switch (i) {
+        case 1:
+          {
+            return Text(user.name,
+                style: TextStyle(
+                    fontSize: 19, color: Color.fromRGBO(12, 25, 57, 1)));
+          }
+          break;
+
+        case 2:
+          {
+            return Text("생년월일 : " + user.birth,
+                style: TextStyle(
+                    fontSize: 12, color: Color.fromRGBO(12, 25, 57, 1)));
+          }
+          break;
+
+        case 3:
+          {
+            return Text("학과 : " + user.depart,
+                style: TextStyle(
+                    fontSize: 12, color: Color.fromRGBO(12, 25, 57, 1)));
+          }
+          break;
+
+        case 4:
+          {
+            return Text("학번 : " + user.classNum,
+                style: TextStyle(
+                    fontSize: 12, color: Color.fromRGBO(12, 25, 57, 1)));
+          }
+          break;
+
+        case 5:
+          {
+            return Text("학적상태 : " + user.state,
+                style: TextStyle(
+                    fontSize: 12, color: Color.fromRGBO(12, 25, 57, 1)));
+          }
+          break;
+
+        default:
+      }
+    }
+
+    Widget _getDB(int i) {
+      return StreamBuilder<DocumentSnapshot>(
+          stream:
+              _firestore.collection("User").doc(_currentUser.uid).snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return CircularProgressIndicator();
+            }
+            final documents = snapshot.data;
+            return Expanded(child: _buildItemWidget(documents, i));
+          });
+    }
 
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -90,10 +198,26 @@ class MainPage extends StatelessWidget {
                               left: 17.0, top: 0.0, right: 0.0, bottom: 0.0),
                           width: 189,
                           height: 40,
-                          child: Text("정혜진",
-                              style: TextStyle(
-                                  fontSize: 19,
-                                  color: Color.fromRGBO(12, 25, 57, 1))),
+                          child: _getDB(1),
+                        ),
+                        Container(
+                            //사용자 정보 div -> 임의로 넣어놓음
+                            margin: const EdgeInsets.only(
+                                left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
+                            padding: const EdgeInsets.only(
+                                left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                            width: 189,
+                            height: 15,
+                            child: _getDB(2)),
+                        Container(
+                          //사용자 정보 div -> 임의로 넣어놓음
+                          margin: const EdgeInsets.only(
+                              left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
+                          padding: const EdgeInsets.only(
+                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                          width: 189,
+                          height: 15,
+                          child: _getDB(3),
                         ),
                         Container(
                           //사용자 정보 div -> 임의로 넣어놓음
@@ -103,50 +227,17 @@ class MainPage extends StatelessWidget {
                               left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
                           width: 189,
                           height: 15,
-                          child: Text("생년월일 : 1997. 04. 29",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color.fromRGBO(12, 25, 57, 1))),
+                          child: _getDB(4),
                         ),
                         Container(
-                          //사용자 정보 div -> 임의로 넣어놓음
-                          margin: const EdgeInsets.only(
-                              left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          padding: const EdgeInsets.only(
-                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          width: 189,
-                          height: 15,
-                          child: Text("학과 : 산업디자인 (예술건강학부)",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color.fromRGBO(12, 25, 57, 1))),
-                        ),
-                        Container(
-                          //사용자 정보 div -> 임의로 넣어놓음
-                          margin: const EdgeInsets.only(
-                              left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          padding: const EdgeInsets.only(
-                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          width: 189,
-                          height: 15,
-                          child: Text("학번 : " + hak,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color.fromRGBO(12, 25, 57, 1))),
-                        ),
-                        Container(
-                          //사용자 정보 div -> 임의로 넣어놓음
-                          margin: const EdgeInsets.only(
-                              left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          padding: const EdgeInsets.only(
-                              left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
-                          width: 189,
-                          height: 15,
-                          child: Text("학적상태 : 재학 (전공심화)",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  color: Color.fromRGBO(12, 25, 57, 1))),
-                        ),
+                            //사용자 정보 div -> 임의로 넣어놓음
+                            margin: const EdgeInsets.only(
+                                left: 0.0, top: 0.0, right: 0.0, bottom: 0.0),
+                            padding: const EdgeInsets.only(
+                                left: 18.0, top: 0.0, right: 0.0, bottom: 0.0),
+                            width: 189,
+                            height: 15,
+                            child: _getDB(5)),
                       ],
                     ),
                   ],
