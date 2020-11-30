@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> _widgetOptions = <Widget>[
     //ReservationPage(),
-    testfs(),
+    ReservationPage(),
     LocationPage(),
     MainPage(),
     NoticePage(),
@@ -35,8 +35,13 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        height: 63.0,
-        width: 63.0,
+        height: 68.0,
+        width: 68.0,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.white, width: 4.0),
+          //color: Colors.white,
+          shape: BoxShape.circle,
+        ),
         child: FittedBox(
           child: FloatingActionButton(
               backgroundColor: BtnColor,
@@ -72,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
       ),*/
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
-        notchMargin: 12,
+        notchMargin: 10,
         color: Colors.blue,
         clipBehavior: Clip.antiAlias,
         child: BottomNavigationBar(
@@ -173,7 +178,7 @@ class _MainScreenState extends State<MainScreen> {
       '/': (context) {
         return [
           //ReservationPage(),
-          testfs(),
+          ReservationPage(),
           LocationPage(),
           MainPage(),
           NoticePage(),

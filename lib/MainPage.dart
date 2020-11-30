@@ -46,17 +46,10 @@ class MyApp extends State<MainAppPage> {
 
   @override
   Widget build(BuildContext context) {
-    String _hak = "234";
-    String barcode = "hak";
-
-    void changeText(String time) {
-      initState();
-    }
-
     Widget _buildItemWidget(DocumentSnapshot docs, int i) {
       final user = User(docs['Name'], docs['Birth'], docs['Department'],
           docs['classNum'], docs['State']);
-      print("user.classNum // " + user.classNum);
+      String barcode = user.classNum + "30";
 
       switch (i) {
         case 1:
@@ -98,6 +91,14 @@ class MyApp extends State<MainAppPage> {
                     fontSize: 12, color: Color.fromRGBO(12, 25, 57, 1)));
           }
           break;
+        case 6:
+          {
+            return SfBarcodeGenerator(
+              value: "$barcode",
+              showValue: true,
+            );
+          }
+          break;
 
         default:
       }
@@ -120,8 +121,13 @@ class MyApp extends State<MainAppPage> {
       resizeToAvoidBottomPadding: false,
       //------------ 여기서부터 body ------------------------
       backgroundColor: Color.fromRGBO(223, 230, 243, 1),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Wrap(
+        spacing: 8.0, // gap between adjacent chips
+        runSpacing: 4.0, // gap between lines
+        direction: Axis.horizontal,
+
+        //crossAxisAlignment: CrossAxisAlignment.start,
+
         children: <Widget>[
           Container(
             //명지전문대학 로고 div
@@ -153,7 +159,10 @@ class MyApp extends State<MainAppPage> {
               ],
               color: Colors.white, //background color
             ),
-            child: Column(
+            child: Wrap(
+              spacing: 8.0, // gap between adjacent chips
+              runSpacing: 4.0, // gap between lines
+              direction: Axis.horizontal,
               children: <Widget>[
                 Row(
                   children: <Widget>[
@@ -271,10 +280,7 @@ class MyApp extends State<MainAppPage> {
                       left: 20.0, top: 30.0, right: 20.0, bottom: 0.0),
                   width: 400,
                   height: 90,
-                  child: SfBarcodeGenerator(
-                    value: '$barcode',
-                    showValue: true,
-                  ),
+                  child: _getDB(6),
                 ),
               ],
             ),
@@ -307,7 +313,7 @@ class MyApp extends State<MainAppPage> {
               ),
             ),
           ),
-          Transform.translate(
+          /* Transform.translate(
             offset: Offset(172.2, 34.8),
             child: Container(
               width: 70.0,
@@ -318,7 +324,7 @@ class MyApp extends State<MainAppPage> {
                 color: const Color(0xffffffff),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );
