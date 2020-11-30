@@ -120,8 +120,13 @@ class MyApp extends State<MainAppPage> {
       resizeToAvoidBottomPadding: false,
       //------------ 여기서부터 body ------------------------
       backgroundColor: Color.fromRGBO(223, 230, 243, 1),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Wrap(
+        spacing: 8.0, // gap between adjacent chips
+        runSpacing: 4.0, // gap between lines
+        direction: Axis.horizontal,
+
+        //crossAxisAlignment: CrossAxisAlignment.start,
+
         children: <Widget>[
           Container(
             //명지전문대학 로고 div
@@ -153,7 +158,10 @@ class MyApp extends State<MainAppPage> {
               ],
               color: Colors.white, //background color
             ),
-            child: Column(
+            child: Wrap(
+              spacing: 8.0, // gap between adjacent chips
+              runSpacing: 4.0, // gap between lines
+              direction: Axis.horizontal,
               children: <Widget>[
                 Row(
                   children: <Widget>[
@@ -307,7 +315,7 @@ class MyApp extends State<MainAppPage> {
               ),
             ),
           ),
-          Transform.translate(
+          /* Transform.translate(
             offset: Offset(172.2, 34.8),
             child: Container(
               width: 70.0,
@@ -318,7 +326,7 @@ class MyApp extends State<MainAppPage> {
                 color: const Color(0xffffffff),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );

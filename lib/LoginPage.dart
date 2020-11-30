@@ -50,128 +50,134 @@ class LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            mainlogo(),
-            mainlogo2(),
-            _idInput(),
-            _pwInput(),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  _value = !_value;
-                });
-              },
-              child: Container(
-                  margin: EdgeInsets.only(left: 260, top: 3),
-                  child: _value
-                      ? Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 5, top: 7),
-                              width: 17.0,
-                              height: 17.0,
-                              child: Icon(
-                                Icons.check,
-                                size: 14.0,
-                                color: Colors.grey[400],
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                    Radius.elliptical(9999.0, 9999.0)),
-                                color: const Color(0xfff5f8fc),
-                                border: Border.all(
-                                    width: 1.0, color: const Color(0xff205072)),
-                              ),
-                            ),
-                            Text(
-                              '자동로그인',
-                              style: TextStyle(
-                                fontFamily: 'DX유니고딕 20',
-                                fontSize: 11,
-                                color: const Color(0xff205072),
-                                letterSpacing: -0.14705883026123048,
-                                height: 1.9,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        )
-                      : Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(right: 5, top: 7),
-                              width: 17.0,
-                              height: 17.0,
-                              child: Icon(
-                                Icons.check,
-                                size: 14.0,
-                                color: Color(0xff205072),
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                    Radius.elliptical(9999.0, 9999.0)),
-                                color: Color.fromRGBO(155, 255, 161, 1),
-                                border: Border.all(
-                                    width: 1.0, color: const Color(0xff205072)),
-                              ),
-                            ),
-                            Text(
-                              '자동로그인',
-                              style: TextStyle(
-                                fontFamily: 'DX유니고딕 20',
-                                fontSize: 11,
-                                color: const Color(0xff205072),
-                                letterSpacing: -0.14705883026123048,
-                                height: 1.9,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        )),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 20, top: 10),
-              width: 100.0,
-              height: 24.0,
-              // child: Stack(
-              //  children: <Widget>[
-              child: FlatButton(
-                child: Pinned.fromSize(
-                  bounds: Rect.fromLTWH(0.0, 0.0, 49.0, 24.0),
-                  size: Size(49.0, 24.0),
-                  pinLeft: true,
-                  pinRight: true,
-                  pinTop: true,
-                  pinBottom: true,
-                  child: Text(
-                    'Log in',
-                    style: TextStyle(
-                      fontFamily: 'YDIYGO320',
-                      fontSize: 18,
-                      color: const Color(0xff09316d),
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-                onPressed: () {
-                  authHandler
-                      .handleSignInEmail(
-                          _emailtextController.text, _pwtextController.text)
-                      .then((User user) {
-                    Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (context) => new MainScreen()));
-                  }).catchError((e) => print(e));
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => MainScreen()));
+      body: ListView(
+        /*constraints: BoxConstraints(
+            minHeight: 500.0, maxHeight: 800.0, minWidth: 100.0, maxWidth: 800),*/
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              mainlogo(),
+              mainlogo2(),
+              _idInput(),
+              _pwInput(),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    _value = !_value;
+                  });
                 },
+                child: Container(
+                    margin: EdgeInsets.only(left: 260, top: 3),
+                    child: _value
+                        ? Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 5, top: 7),
+                                width: 17.0,
+                                height: 17.0,
+                                child: Icon(
+                                  Icons.check,
+                                  size: 14.0,
+                                  color: Colors.grey[400],
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.elliptical(9999.0, 9999.0)),
+                                  color: const Color(0xfff5f8fc),
+                                  border: Border.all(
+                                      width: 1.0,
+                                      color: const Color(0xff205072)),
+                                ),
+                              ),
+                              Text(
+                                '자동로그인',
+                                style: TextStyle(
+                                  fontFamily: 'DX유니고딕 20',
+                                  fontSize: 11,
+                                  color: const Color(0xff205072),
+                                  letterSpacing: -0.14705883026123048,
+                                  height: 1.9,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          )
+                        : Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 5, top: 7),
+                                width: 17.0,
+                                height: 17.0,
+                                child: Icon(
+                                  Icons.check,
+                                  size: 14.0,
+                                  color: Color(0xff205072),
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.elliptical(9999.0, 9999.0)),
+                                  color: Color.fromRGBO(155, 255, 161, 1),
+                                  border: Border.all(
+                                      width: 1.0,
+                                      color: const Color(0xff205072)),
+                                ),
+                              ),
+                              Text(
+                                '자동로그인',
+                                style: TextStyle(
+                                  fontFamily: 'DX유니고딕 20',
+                                  fontSize: 11,
+                                  color: const Color(0xff205072),
+                                  letterSpacing: -0.14705883026123048,
+                                  height: 1.9,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          )),
               ),
-            ),
-          ],
-        ),
+              Container(
+                margin: EdgeInsets.only(left: 20, top: 10),
+                width: 100.0,
+                height: 24.0,
+                // child: Stack(
+                //  children: <Widget>[
+                child: FlatButton(
+                  child: Pinned.fromSize(
+                    bounds: Rect.fromLTWH(0.0, 0.0, 49.0, 24.0),
+                    size: Size(49.0, 24.0),
+                    pinLeft: true,
+                    pinRight: true,
+                    pinTop: true,
+                    pinBottom: true,
+                    child: Text(
+                      'Log in',
+                      style: TextStyle(
+                        fontFamily: 'YDIYGO320',
+                        fontSize: 18,
+                        color: const Color(0xff09316d),
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                  onPressed: () {
+                    authHandler
+                        .handleSignInEmail(
+                            _emailtextController.text, _pwtextController.text)
+                        .then((User user) {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new MainScreen()));
+                    }).catchError((e) => print(e));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => MainScreen()));
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -180,6 +186,7 @@ class LoginPageState extends State<LoginPage> {
     return //Transform.translate(
         // offset: Offset(66.0, 491.0),
         //child:
+
         Container(
       margin: EdgeInsets.only(top: 130),
       width: 282.0,
@@ -255,7 +262,7 @@ class LoginPageState extends State<LoginPage> {
     //  child:
     // Adobe XD layer: '로고base' (group)
     return Container(
-      margin: EdgeInsets.only(top: 237),
+      margin: EdgeInsets.only(top: 190),
 
       width: 154.0,
       height: 73.0,
