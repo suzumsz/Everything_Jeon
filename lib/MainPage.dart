@@ -46,17 +46,10 @@ class MyApp extends State<MainAppPage> {
 
   @override
   Widget build(BuildContext context) {
-    String _hak = "234";
-    String barcode = "hak";
-
-    void changeText(String time) {
-      initState();
-    }
-
     Widget _buildItemWidget(DocumentSnapshot docs, int i) {
       final user = User(docs['Name'], docs['Birth'], docs['Department'],
           docs['classNum'], docs['State']);
-      print("user.classNum // " + user.classNum);
+      String barcode = user.classNum + "30";
 
       switch (i) {
         case 1:
@@ -96,6 +89,14 @@ class MyApp extends State<MainAppPage> {
             return Text("학적상태 : " + user.state,
                 style: TextStyle(
                     fontSize: 12, color: Color.fromRGBO(12, 25, 57, 1)));
+          }
+          break;
+        case 6:
+          {
+            return SfBarcodeGenerator(
+              value: "$barcode",
+              showValue: true,
+            );
           }
           break;
 
@@ -271,10 +272,7 @@ class MyApp extends State<MainAppPage> {
                       left: 20.0, top: 30.0, right: 20.0, bottom: 0.0),
                   width: 400,
                   height: 90,
-                  child: SfBarcodeGenerator(
-                    value: '$barcode',
-                    showValue: true,
-                  ),
+                  child: _getDB(6),
                 ),
               ],
             ),

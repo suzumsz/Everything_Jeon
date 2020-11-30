@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
@@ -5,18 +7,19 @@ import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-bool USE_FIRESTORE_EMULATOR = false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  if (USE_FIRESTORE_EMULATOR) {
-    FirebaseFirestore.instance.settings = Settings(
-        host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
-  }
   runApp(ReservationPage());
+}
+
+class User {
+  String name;
+  String classNum;
+  String resInfo;
+
+  User(this.name, this.classNum, this.resInfo);
 }
 
 class ReservationPage extends StatelessWidget {
@@ -76,16 +79,138 @@ class MyApp extends State<ReservationAppPage>
   bool dayVisible1 = true; //보이는거 안보이게
   bool dayVisible2 = false; //안보이는거 보이게
 
-  bool textVisible1 = true; //보이는거 안보이게
-  bool textVisible2 = false; //안보이는거 보이게
-
   // 디비 값
+
+  final _firestore = Firestore.instance;
+  final _currentUser = FirebaseAuth.instance.currentUser;
+
   String _dbplce = "본관 스터디룸 B";
   String _dbyear = "2020";
   String _dbmonth = "10";
   String _dbday = "31";
   String _dbstarttime = "17";
   String _dbendtime = "18";
+
+  Widget _buildItemWidget(DocumentSnapshot docs, int i) {
+    final user = User(docs['Name'], docs['classNum'], docs['resInfo']);
+
+    List<String> resinfo = user.resInfo.split(",");
+
+    switch (i) {
+      case 1:
+        {
+          return Text(
+            user.name + " [" + user.classNum + "]",
+            style: TextStyle(
+              fontFamily: 'DX유니고딕 20',
+              fontSize: 13,
+              color: const Color(0xff0a1736),
+            ),
+            textAlign: TextAlign.left,
+          );
+        }
+        break;
+      case 2:
+        {
+          if (user.resInfo == "null") {
+            return Text(
+              '예약 정보가 없습니다.',
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 12,
+                color: const Color(0xff205072),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.left,
+            );
+          } else {
+            return Text(
+              '장소 : ' + resinfo[0],
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 12,
+                color: const Color(0xff205072),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.left,
+            );
+          }
+        }
+        break;
+
+      case 3:
+        {
+          if (user.resInfo == "null") {
+            return Text(
+              "",
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 12,
+                color: const Color(0xff205072),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.left,
+            );
+          } else {
+            return Text(
+              '날짜 : ' +
+                  resinfo[1] +
+                  '.' +
+                  resinfo[2] +
+                  '.' +
+                  resinfo[3] +
+                  '\n시간 : ' +
+                  resinfo[4] +
+                  ':00 - ' +
+                  resinfo[5] +
+                  ':00',
+              style: TextStyle(
+                fontFamily: 'DX유니고딕 20',
+                fontSize: 12,
+                color: const Color(0xff205072),
+                height: 1.5,
+              ),
+              textAlign: TextAlign.left,
+            );
+          }
+        }
+        break;
+
+      default:
+    }
+  }
+
+  Widget _getDB(int i) {
+    return StreamBuilder<DocumentSnapshot>(
+        stream: _firestore.collection("User").doc(_currentUser.uid).snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          final documents = snapshot.data;
+          return Expanded(child: _buildItemWidget(documents, i));
+        });
+  }
+
+  void _addRes(String place, String year, String month, String day,
+      String sttime, String endtime) {
+    String resinfo = place +
+        "," +
+        year +
+        "," +
+        month +
+        "," +
+        day +
+        "," +
+        sttime +
+        "," +
+        endtime;
+
+    Firestore.instance
+        .collection('User')
+        .doc(_currentUser.uid)
+        .update({'resInfo': resinfo});
+  }
 
   void refresh() {
     setState(() {
@@ -121,17 +246,17 @@ class MyApp extends State<ReservationAppPage>
   }
 
 //DB
-  void changeDB(String place, String year, String month, String day,
-      String sttime, String endtime) {
-    setState(() {
-      _dbplce = place;
-      _dbyear = year;
-      _dbmonth = month;
-      _dbday = day;
-      _dbstarttime = sttime;
-      _dbendtime = endtime;
-    });
-  }
+  // void changeDB(String place, String year, String month, String day,
+  //     String sttime, String endtime) {
+  //   setState(() {
+  //     _dbplce = place;
+  //     _dbyear = year;
+  //     _dbmonth = month;
+  //     _dbday = day;
+  //     _dbstarttime = sttime;
+  //     _dbendtime = endtime;
+  //   });
+  // }
 
 //시간
   void changeText(String time) {
@@ -257,22 +382,6 @@ class MyApp extends State<ReservationAppPage>
       bookVisible2 = true;
       timeVisible2 = false;
       dayVisible2 = false;
-    });
-  }
-
-  void textshowWidget() {
-    //보이기
-    setState(() {
-      textVisible1 = true;
-      textVisible2 = false;
-    });
-  }
-
-  void texthideWidget() {
-    //숨기기
-    setState(() {
-      textVisible1 = false;
-      textVisible2 = true;
     });
   }
 
@@ -444,15 +553,7 @@ class MyApp extends State<ReservationAppPage>
         ),
         Transform.translate(
           offset: Offset(265.0, 71.0),
-          child: Text(
-            '정혜진 [2020581015]',
-            style: TextStyle(
-              fontFamily: 'DX유니고딕 20',
-              fontSize: 13,
-              color: const Color(0xff0a1736),
-            ),
-            textAlign: TextAlign.left,
-          ),
+          child: _getDB(1),
         ),
         Transform.translate(
           offset: Offset(37.0, 148.0),
@@ -466,76 +567,16 @@ class MyApp extends State<ReservationAppPage>
             textAlign: TextAlign.left,
           ),
         ),
-        Visibility(
-          visible: textVisible1,
-          child: Transform.translate(
-            offset: Offset(97.0, 147.0),
-            child: Text(
-              '예약 정보가 없습니다.',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff205072),
-                height: 1.5,
-              ),
-              textAlign: TextAlign.left,
-            ),
+        Transform.translate(offset: Offset(97.0, 147.0), child: _getDB(2)),
+        Transform.translate(
+          offset: Offset(230.0, 117.0),
+          child: VerticalDivider(
+            thickness: 2.0,
+            color: Colors.grey[300],
+            endIndent: 702.0,
           ),
         ),
-        Visibility(
-          visible: textVisible2,
-          child: Transform.translate(
-            offset: Offset(97.0, 147.0),
-            child: Text(
-              '장소 : ' + _dbplce,
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff205072),
-                height: 1.5,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-        ),
-        Visibility(
-            visible: textVisible2,
-            child: Transform.translate(
-              offset: Offset(230.0, 117.0),
-              child: VerticalDivider(
-                thickness: 2.0,
-                color: Colors.grey[300],
-                endIndent: 702.0,
-              ),
-            )),
-        Visibility(
-          visible: textVisible2,
-          child: Transform.translate(
-            offset: Offset(256.0, 137.0),
-            child:
-                // Adobe XD layer: 'Svyatoslav Taushev' (text)
-                Text(
-              '날짜 : ' +
-                  _dbyear +
-                  '.' +
-                  _dbmonth +
-                  '.' +
-                  _dbday +
-                  '\n시간 : ' +
-                  _dbstarttime +
-                  ':00 - ' +
-                  _dbendtime +
-                  ':00',
-              style: TextStyle(
-                fontFamily: 'DX유니고딕 20',
-                fontSize: 12,
-                color: const Color(0xff205072),
-                height: 1.5,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-        ),
+        Transform.translate(offset: Offset(256.0, 137.0), child: _getDB(3)),
       ],
     );
 
@@ -1878,8 +1919,7 @@ class MyApp extends State<ReservationAppPage>
                 textAlign: TextAlign.left,
               ),
               onPressed: () {
-                texthideWidget();
-                changeDB(
+                _addRes(
                     stPlace, currYear, currMonth, currDay, currTime, nextTime);
                 showDialog(
                     context: context,
