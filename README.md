@@ -1,4 +1,4 @@
-# Everything_Jeon / 에브리띵전
+# Everything_Jeon / 에브리띵전 <img src="etc/applogo.png" height="70"> 
 
 ### 소개
 - 모바일 학생증이 내장된 편리한 학교 생활을 위한 어플리케이션
