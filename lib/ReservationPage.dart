@@ -28,6 +28,7 @@ class ReservationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       title: 'Sample App',
       home: ReservationAppPage(),
@@ -1960,6 +1961,7 @@ class MyApp extends State<ReservationAppPage>
     );
 
     return Scaffold(
+      backgroundColor:Colors.white,
       resizeToAvoidBottomPadding: false,
       // appBar: AppBar(
       //   title: new Text(widget.title),
