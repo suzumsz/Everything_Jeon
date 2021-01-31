@@ -23,7 +23,7 @@
 
 ## Workflow
 
-<img src="./etc/workflow.png">
+<img width="100%" src="./etc/workflow.png">
 
 ## 기능소개 
 |  담당자  |  화면  |   기능설명   |   구현여부   |                              
