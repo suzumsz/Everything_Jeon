@@ -16,7 +16,7 @@
 ### TEAM (Developer)
 👩 김수정 - [suzumsz](https://github.com/suzumsz)  
 👧 양혜원 - [hhyewon](https://github.com/hhyewon)  
-👩‍ 이보라 - [aroob6](https://github.com/aroob6)  
+👩 이보라 - [aroob6](https://github.com/aroob6)  
 🧑 김진원 - [hdev1004](https://github.com/hdev1004)  
 
 ### 기능소개
@@ -27,11 +27,15 @@
 |이보라| 메인화면 | 솰라솰라 | ⭕ |
 |김진원| 메인화면 | 솰라솰라 | ⭕ |
 
+### 개발환경
+<img src="https://img.shields.io/badge/Cordova-9.0.0-black?logo=Apache-Cordova&logoColor=E8E8E8"> <img src="https://img.shields.io/badge/HTML5-E34F26?logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/CSS3-1572B6?logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=white">  
+<img src="https://img.shields.io/badge/Firebase Cloud-FFCA28?logo=Firebase&logoColor=white"> <img src="https://img.shields.io/badge/Google Maps-4285F4?logo=Google-Maps&logoColor=white">
+
 ### 참고
-- 결과물 구동은 [시연동영상](/etc/에브리띵전_앱동영상.mp4) 참고
-- 에브리띵전 [계획서/주차별 보고서](/etc/계획서_보고서/) 및 [최종보고서](/etc/최종보고서/)
-- [에브리띵전 홍보용 판넬](/etc/에브리띵전_판넬.jpg) 
-- 교내 대회 - [대상 수상](/etc/상장.jpg) 
+✔ 결과물 구동은 [시연동영상](/etc/에브리띵전_앱동영상.mp4) 참고  
+✔ 에브리띵전 [계획서/주차별 보고서](/etc/계획서_보고서/) 및 [최종보고서](/etc/최종보고서/)  
+✔ [에브리띵전 홍보용 판넬](/etc/에브리띵전_판넬.jpg)   
+✔ 교내 대회 - [대상 수상](/etc/상장.jpg)   
 
 
 ### 다운로드
