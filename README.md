@@ -39,7 +39,8 @@
 
 <details>
 <summary> 다운로드 및 실행 </summary>
-<div markdown="1">       
+<div markdown="1">
+
 ```
 git clone 주소복사
 npm install
