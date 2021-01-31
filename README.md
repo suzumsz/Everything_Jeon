@@ -21,6 +21,10 @@
 - 이보라 - [aroob6](https://github.com/aroob6)  
 - 김진원 - [hdev1004](https://github.com/hdev1004)  
 
+## Workflow
+
+<img width="100%" src="./etc/workflow.png">
+
 ## 기능소개 
 |  담당자  |  화면  |   기능설명   |   구현여부   |                              
 | :----------: | :----------: | :----------------: | :----------: |
