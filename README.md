@@ -37,15 +37,17 @@
 ✔ [에브리띵전 홍보용 판넬](/etc/에브리띵전_판넬.jpg)   
 ✔ 교내 대회 - [대상 수상](/etc/상장.pdf)   
 
-
-### 다운로드
-
+<details>
+<summary> 다운로드 및 실행 </summary>
+<div markdown="1">       
 ```
 git clone 주소복사
 npm install
 ```
 
-### 실행
 ```
 flutter run
 ```
+
+</div>
+</details>
