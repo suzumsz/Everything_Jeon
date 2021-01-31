@@ -13,13 +13,13 @@
 📌 도서 관련 서비스와 함께 분실물 찾기 등 다양한 서비스를 제공합니다.  
 ```
 
-### TEAM (Developer) 👩🏻‍💻👨🏻‍💻
+## TEAM (Developer) 👩🏻‍💻👨🏻‍💻
 - 김수정 - [suzumsz](https://github.com/suzumsz)  
 - 양혜원 - [hhyewon](https://github.com/hhyewon)  
 - 이보라 - [aroob6](https://github.com/aroob6)  
 - 김진원 - [hdev1004](https://github.com/hdev1004)  
 
-### 기능소개 
+## 기능소개 
 |  담당자  |  화면  |   기능설명   |   구현여부   |                              
 | :----------: | :----------: | :----------------: | :----------: |
 |김수정| 메인화면 | 솰라솰라 | ⭕ |
@@ -27,11 +27,11 @@
 |이보라| 메인화면 | 솰라솰라 | ⭕ |
 |김진원| 메인화면 | 솰라솰라 | ⭕ |
 
-### 개발환경
+## 개발환경
 <img src="https://img.shields.io/badge/Flutter-black?logo=Flutter&logoColor=white"> <img src="https://img.shields.io/badge/Dart-E34F26?logo=Dart&logoColor=white"> <img src="https://img.shields.io/badge/Authentication-1572B6?logo=Firebase&logoColor=white"> <img src="https://img.shields.io/badge/Cloud Firestore-F7DF1E?logo=Firebase&logoColor=white">   
 <img src="https://img.shields.io/badge/Android Studio-FFCA28?logo=Android Studio&logoColor=white"> <img src="https://img.shields.io/badge/Visual Studio Code-4285F4?logo=Visual Studio Code&logoColor=white"> 
 
-### 참고
+## 참고
 ✔ 결과물 구동은 [시연동영상](/etc/에브리띵전_앱동영상.mp4) 참고  
 ✔ 에브리띵전 [계획서/주차별 보고서](/etc/계획서_보고서/) 및 [최종보고서](/etc/최종보고서/)  
 ✔ [에브리띵전 홍보용 판넬](/etc/에브리띵전_판넬.jpg)   
