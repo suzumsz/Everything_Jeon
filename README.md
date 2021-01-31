@@ -1,5 +1,6 @@
 # 에브리띵전  <img src="etc/applogo.png" height="70">   
-## Myongji Mobile Student ID
+## Myongji Mobile Student ID  
+> 프로젝트 기간 : 20.10.12 ~ 2020.11.27
 
 <img width="100%" src="./etc/메인판넬.jpg">
 
