@@ -1,5 +1,5 @@
 # 에브리띵전
-## Myongji Mobile Student ID
+## Myongji Mobile Student ID 📱
 
 <img width="100%" src="./etc/메인판넬.jpg">
 
