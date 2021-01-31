@@ -1,6 +1,7 @@
 # 에브리띵전  <img src="etc/applogo.png" height="70">   
 ## Myongji Mobile Student ID  
-> 프로젝트 기간 : 20.10.12 ~ 2020.11.27
+> 프로젝트 기간 : 20.10.12 ~ 20.11.27  
+> 교내 대회 <MJC 학습동아리> 작품 출품 및 대상 수상
 
 <img width="100%" src="./etc/메인판넬.jpg">
 
