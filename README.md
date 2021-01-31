@@ -13,13 +13,13 @@
 📌 도서 관련 서비스와 함께 분실물 찾기 등 다양한 서비스를 제공합니다.  
 ```
 
-### TEAM (Developer)
-👩 김수정 - [suzumsz](https://github.com/suzumsz)  
-👧 양혜원 - [hhyewon](https://github.com/hhyewon)  
-👩 이보라 - [aroob6](https://github.com/aroob6)  
-🧑 김진원 - [hdev1004](https://github.com/hdev1004)  
+### TEAM (Developer) 👩🏻‍💻👨🏻‍💻
+- 김수정 - [suzumsz](https://github.com/suzumsz)  
+- 양혜원 - [hhyewon](https://github.com/hhyewon)  
+- 이보라 - [aroob6](https://github.com/aroob6)  
+- 김진원 - [hdev1004](https://github.com/hdev1004)  
 
-### 기능소개
+### 기능소개 
 |  담당자  |  화면  |   기능설명   |   구현여부   |                              
 | :----------: | :----------: | :----------------: | :----------: |
 |김수정| 메인화면 | 솰라솰라 | ⭕ |
