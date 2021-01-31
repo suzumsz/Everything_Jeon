@@ -21,10 +21,6 @@
 - 이보라 - [aroob6](https://github.com/aroob6)  
 - 김진원 - [hdev1004](https://github.com/hdev1004)  
 
-## Workflow
-
-<img width="100%" src="./etc/workflow.png">
-
 ## 기능소개 
 |  담당자  |  화면  |   기능설명   |   구현여부   |                              
 | :----------: | :----------: | :----------------: | :----------: |
@@ -32,6 +28,11 @@
 |양혜원| 메인화면 | 솰라솰라 | ⭕ |
 |이보라| 메인화면 | 솰라솰라 | ⭕ |
 |김진원| 메인화면 | 솰라솰라 | ⭕ |
+
+## Workflow
+
+<img width="100%" src="./etc/workflow.png">
+
 
 ## 개발환경
 <img src="https://img.shields.io/badge/Flutter-black?logo=Flutter&logoColor=white"> <img src="https://img.shields.io/badge/Dart-E34F26?logo=Dart&logoColor=white"> <img src="https://img.shields.io/badge/Authentication-1572B6?logo=Firebase&logoColor=white"> <img src="https://img.shields.io/badge/Cloud Firestore-F7DF1E?logo=Firebase&logoColor=white">   
