@@ -28,8 +28,7 @@
 |김진원| 메인화면 | 솰라솰라 | ⭕ |
 
 ### 개발환경
-<img src="https://img.shields.io/badge/Flutter-black?logo=Flutter&logoColor=white"> <img src="https://img.shields.io/badge/HTML5-E34F26?logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/CSS3-1572B6?logo=CSS3&logoColor=white"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=white">  
-<img src="https://img.shields.io/badge/Firebase Cloud-FFCA28?logo=Firebase&logoColor=white"> <img src="https://img.shields.io/badge/Google Maps-4285F4?logo=Google-Maps&logoColor=white">
+<img src="https://img.shields.io/badge/Flutter-black?logo=Flutter&logoColor=white"> <img src="https://img.shields.io/badge/Dart-E34F26?logo=Dart&logoColor=white"> <img src="https://img.shields.io/badge/Authentication-1572B6?logo=Firebase&logoColor=white"> <img src="https://img.shields.io/badge/Cloud Firestore-F7DF1E?logo=Firebase&logoColor=white">  
 
 ### 참고
 ✔ 결과물 구동은 [시연동영상](/etc/에브리띵전_앱동영상.mp4) 참고  
