@@ -14,10 +14,10 @@
 ```
 
 ### TEAM (Developer)
-- 김수정 - [suzumsz](https://github.com/suzumsz)
-- 양혜원 - [hhyewon](https://github.com/hhyewon)
-- 이보라 - [aroob6](https://github.com/aroob6)
-- 김진원 - [hdev1004](https://github.com/hdev1004)
+👩 김수정 - [suzumsz](https://github.com/suzumsz)  
+👧 양혜원 - [hhyewon](https://github.com/hhyewon)  
+👩‍🦰 이보라 - [aroob6](https://github.com/aroob6)  
+🧑 김진원 - [hdev1004](https://github.com/hdev1004)  
 
 ### 기능소개
 |  담당자  |  화면  |   기능설명   |   구현여부   |                              
