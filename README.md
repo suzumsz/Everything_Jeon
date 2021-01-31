@@ -1,4 +1,4 @@
-# 에브리띵전 <img src="etc/applogo.png" height="70"> 
+# 📱 에브리띵전
 
 <img width="100%" src="./etc/메인판넬.jpg">
 
