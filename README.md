@@ -35,8 +35,8 @@
 
 
 ## 개발환경
-<img src="https://img.shields.io/badge/Flutter-red?logo=Flutter&logoColor=white"> <img src="https://img.shields.io/badge/Dart-black?logo=Dart&logoColor=white"> <img src="https://img.shields.io/badge/Authentication-purple?logo=Firebase&logoColor=white"> <img src="https://img.shields.io/badge/Cloud Firestore-lemon?logo=Firebase&logoColor=white">   
-<img src="https://img.shields.io/badge/Android Studio-yellow?logo=Android Studio&logoColor=white"> <img src="https://img.shields.io/badge/Visual Studio Code-4285F4?logo=Visual Studio Code&logoColor=white"> 
+<img src="https://img.shields.io/badge/Flutter-02569B?logo=Flutter&logoColor=white"> <img src="https://img.shields.io/badge/Dart-black?logo=Dart&logoColor=white"> <img src="https://img.shields.io/badge/Authentication-purple?logo=Firebase&logoColor=white"> <img src="https://img.shields.io/badge/Cloud Firestore-FFCA28?logo=Firebase&logoColor=white">   
+<img src="https://img.shields.io/badge/Android Studio-3DDC84?logo=Android-Studio&logoColor=white"> <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?logo=Visual-Studio-Code&logoColor=white"> 
 
 ## 참고
 ✔ 결과물 구동은 [시연동영상](/etc/에브리띵전_앱동영상.mp4) 참고  
